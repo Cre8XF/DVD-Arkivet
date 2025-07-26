@@ -317,6 +317,7 @@ document.getElementById("manualAddForm").addEventListener("submit", (e) => {
 
   // Åpne kamera etter liten forsinkelse
   const cameraInput = document.getElementById("backCoverCameraInput");
+
   if (cameraInput) {
     setTimeout(() => {
       cameraInput.click();
