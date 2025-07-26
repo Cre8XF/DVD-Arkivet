@@ -1,0 +1,295 @@
+/* === 0. Fargevariabler for tema (default) === */
+:root {
+  --bg: #121212;
+  --bg-light: #1e1e1e;
+  --text: #e0e0e0;
+  --text-muted: #cccccc;
+  --accent: #00bcd4;
+  --accent-hover: #00acc1;
+  --border: #444;
+  --shadow: rgba(0, 188, 212, 0.2);
+  --highlight: rgba(0, 188, 212, 0.7);
+}
+.theme-neon {
+  --bg: #0a0a0a;
+  --bg-light: #1f0030;
+  --text: #e0e0ff;
+  --text-muted: #aaaadd;
+  --accent: #ff00ff;
+  --accent-hover: #ff66ff;
+  --border: #660066;
+  --shadow: rgba(255, 0, 255, 0.2);
+  --highlight: rgba(255, 0, 255, 0.5);
+}
+.theme-sunset {
+  --bg: #2d1a1a;
+  --bg-light: #402020;
+  --text: #ffe5d0;
+  --text-muted: #ffb899;
+  --accent: #ff6f00;
+  --accent-hover: #ff8800;
+  --border: #aa4400;
+  --shadow: rgba(255, 111, 0, 0.2);
+  --highlight: rgba(255, 111, 0, 0.4);
+}
+.theme-frost {
+  --bg: #e9f5ff;
+  --bg-light: #ffffff;
+  --text: #00334d;
+  --text-muted: #336680;
+  --accent: #007acc;
+  --accent-hover: #0099ff;
+  --border: #a3cde8;
+  --shadow: rgba(0, 122, 204, 0.2);
+  --highlight: rgba(0, 122, 204, 0.4);
+}
+
+/* === 1. Grunnstruktur og bakgrunn === */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 1rem;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* === 2. Typografi === */
+h1 {
+  font-weight: normal;
+  font-size: 2rem;
+  margin-top: 0;
+  color: var(--text);
+  font-style: italic;
+}
+
+h2,
+h3 {
+  font-weight: normal;
+  margin-top: 0;
+  color: var(--accent);
+}
+
+.filters label {
+  font-weight: 500;
+}
+
+/* === 3. Header og footer === */
+header,
+footer {
+  background: #222;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* === 4. Seksjoner (bokser) === */
+section {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--bg-light);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+/* === 5. Inputs og knapper === */
+input,
+select,
+button {
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  border-radius: 4px;
+  background-color: var(--bg-light);
+  color: var(--text);
+  border: 1px solid var(--accent);
+}
+
+button {
+  background-color: var(--bg-light);
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
+/* === 6. Filter-seksjon === */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  background: var(--bg-light);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+/* === 7. Filmliste (samling) === */
+#collectionList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.movie-card {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  margin: 1rem;
+  text-align: center;
+  background: var(--bg-light);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px var(--shadow);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px var(--highlight);
+}
+
+.poster {
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+}
+
+/* === 8. Søkeboks og resultater === */
+.search-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.search-left {
+  flex: 1;
+  min-width: 220px;
+}
+
+.search-right {
+  flex: 2;
+  min-width: 300px;
+  padding-left: 1rem;
+  border-left: 1px solid var(--border);
+}
+
+#searchResults {
+  background-color: var(--bg-light);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  box-shadow: 0 0 10px var(--shadow);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#searchResults div {
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+#searchResults div:hover {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
+/* === 9. Modal for filminfo === */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.modal-content {
+  background: var(--bg-light);
+  color: var(--text);
+  padding: 2rem;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 12px;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 20px var(--shadow);
+}
+
+.modal-content img {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* === 10. Movie details kort (søkeresultat til høyre) === */
+.movie-details {
+  background-color: var(--bg-light);
+  padding: 1rem;
+  border-radius: 8px;
+  color: var(--text);
+  box-shadow: 0 0 10px var(--shadow);
+}
+
+.movie-details h3 {
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.movie-details p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.movie-details img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.manual-entry {
+  margin: 2rem 0;
+  padding: 1rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.manual-entry input {
+  padding: 0.6rem;
+  font-size: 1rem;
+  width: 60%;
+  margin-right: 1rem;
+}
+
+.manual-entry button {
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.delete-btn {
+  display: none;
+  width: auto;
+  padding: 4px 8px;
+  font-size: 0.9rem;
+  background-color: crimson;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  z-index: 2;
+}

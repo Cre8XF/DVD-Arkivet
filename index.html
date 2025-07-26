@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DVD Profiler</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="responsive.css" />
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</head>
+<body class="theme-neon">
+  <header>
+    <h1>📀 DVD Profiler</h1>
+  
+    <!-- Filter-knapp for mobil -->
+    <button id="toggleFilters" class="mobile-only">🎛️ Filtrer</button>
+  
+    <!-- Filterpanel -->
+    <section id="filterPanel" class="filters hidden">
+      <label for="genreFilter">Filtrer etter sjanger:</label>
+      <select id="genreFilter"></select>
+  
+      <label for="yearFilter">Filtrer etter år:</label>
+      <select id="yearFilter"></select>
+  
+      <button id="resetBtn">Nullstill søk</button>
+  
+      <label for="themeSelect">🎨 Tema:</label>
+      <select id="themeSelect">
+        <option value="">Standard</option>
+        <option value="theme-neon">Neon</option>
+        <option value="theme-sunset">Sunset</option>
+        <option value="theme-frost">Frost</option>
+      </select>
+    </section>
+  </header>
+
+
+  <main>
+    <section>
+      <h3>🔍 Søk film manuelt</h3>
+      <div class="search-container">
+        <div class="search-left">
+        <input type="text" id="titleInput" placeholder="Skriv filmtittel..." />
+        <button id="searchBtn">Søk</button>
+        <div id="searchResults"></div>
+      </div>
+      <div class="search-right">
+        <div id="movieDetails" class="movie-details"></div>
+        <button id="addBtn" style="display:none;">Legg til i samling</button>
+      </div>
+    </div>
+  </section>
+  <section class="manual-entry">
+    <h2>Legg til film manuelt</h2>
+    <input type="text" id="manualTitle" placeholder="Tittel på filmen" />
+    <button id="manualAddBtn">Legg til</button>
+  </section>
+
+
+
+    <section class="collection">
+      <h2>📚 Samlingen min</h2>
+      <ul id="collectionList"></ul>
+    </section>
+
+<div id="movieModal" class="modal">
+  <div id="modalContent" class="modal-content"></div>
+</div>
+
+  </main>
+
+  <footer>
+    <button id="exportBtn">⬇️ Eksporter samling</button>
+  </footer>
+<input type="file" accept="image/*" capture="environment" id="backCoverCameraInput" style="display: none" />
+<button id="addBackCoverBtn" style="display: none;">📸 Ta bilde av baksiden</button>
+
+
+  <script src="app.js"></script>
+</body>
+</html>
