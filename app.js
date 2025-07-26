@@ -265,11 +265,9 @@ document.getElementById("manualAddBtn").addEventListener("click", () => {
   const title = document.getElementById("manualTitle").value.trim();
   if (!title) return;
 
-  const stored = localStorage.getItem("collection") || "[]";
-  const collection = JSON.parse(stored);
-
   const newItem = {
-    title: title,
+    id: Date.now(), // unik ID
+    title,
     tmdb_id: null,
     year: "",
     genre: [],
@@ -282,29 +280,7 @@ document.getElementById("manualAddBtn").addEventListener("click", () => {
     overview: "",
     seen: false,
     location: "",
-    added: new Date().toISOString().split("T")[0]
-  };
-
-  collection.push(newItem);
-  localStorage.setItem("collection", JSON.stringify(collection));
-  renderCollection();
-  populateFilters();
-}
-);
-
-// === Legg til film manuelt og åpne kamera ===
-document.getElementById("manualAddForm").addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const title = document.getElementById("manualTitle").value.trim();
-  if (!title) return;
-
-  const newItem = {
-    id: Date.now(), // unik ID
-    title,
-    genre: [],
-    year: "",
-    cover: "",
+    added: new Date().toISOString().split("T")[0],
     backcover: ""
   };
 
@@ -315,9 +291,11 @@ document.getElementById("manualAddForm").addEventListener("submit", (e) => {
 
   currentMovie = newItem;
 
+  renderCollection();
+  populateFilters();
+
   // Åpne kamera etter liten forsinkelse
   const cameraInput = document.getElementById("backCoverCameraInput");
-
   if (cameraInput) {
     setTimeout(() => {
       cameraInput.click();
@@ -326,7 +304,45 @@ document.getElementById("manualAddForm").addEventListener("submit", (e) => {
     console.warn("⚠️ backCoverCameraInput not found");
   }
 
-  alert("Filmen ble lagt til manuelt!");
   document.getElementById("manualTitle").value = "";
-  renderCollection();
+});
+// === Eksport ===
+document.getElementById("exportBtn").addEventListener("click", () => {
+  const collection = localStorage.getItem("collection") || "[]";
+  const blob = new Blob([collection], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "dvd-collection.json";
+  link.click();
+  URL.revokeObjectURL(url);
+});
+
+// === Import ===
+document.getElementById("importBtn").addEventListener("click", () => {
+  document.getElementById("importFile").click();
+});
+
+document.getElementById("importFile").addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    try {
+      const imported = JSON.parse(event.target.result);
+      if (Array.isArray(imported)) {
+        localStorage.setItem("collection", JSON.stringify(imported));
+        renderCollection();
+        populateFilters();
+        alert("Samlingen ble importert!");
+      } else {
+        alert("Ugyldig format. Sørg for at det er en liste med filmer.");
+      }
+    } catch (err) {
+      alert("Kunne ikke lese filen.");
+      console.error(err);
+    }
+  };
+  reader.readAsText(file);
 });
