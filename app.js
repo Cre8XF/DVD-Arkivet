@@ -1,6 +1,12 @@
-// === Firebase-importer ===
-import { getDocs, setDoc, doc, collection, getFirestore } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+// === Firebase og TMDB-integrasjon ===
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  setDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 // === Firebase config ===
 const firebaseConfig = {
@@ -19,49 +25,41 @@ const collectionRef = collection(db, "movies");
 // === Globale variabler ===
 let allMovies = [];
 let currentMovie = null;
+const tmdbApiKey = "db3d7987e3a39baedf6bc138afa46e74"; // ← Sett inn din TMDB API-nøkkel her
 
-// === HTML-elementer ===
+// === DOM-elementer ===
 const collectionList = document.getElementById("collectionList");
-const genreFilter = document.getElementById("genreFilter");
-const yearFilter = document.getElementById("yearFilter");
-const themeSelect = document.getElementById("themeSelect");
-const manualAddForm = document.getElementById("manualAddForm");
 const manualTitleInput = document.getElementById("manualTitle");
+const manualAddBtn = document.getElementById("manualAddBtn");
 const cameraInput = document.getElementById("backCoverCameraInput");
+const titleInput = document.getElementById("titleInput");
+const searchBtn = document.getElementById("searchBtn");
+const searchResults = document.getElementById("searchResults");
+const movieDetails = document.getElementById("movieDetails");
+const addBtn = document.getElementById("addBtn");
 
-// === INIT ===
+// === Init ===
 document.addEventListener("DOMContentLoaded", async () => {
-  await loadCollectionFromFirebase();
+  await loadCollection();
   renderCollection();
-  populateFilters();
-
-  // Temavelger
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme) {
-    document.body.classList.add(savedTheme);
-    themeSelect.value = savedTheme;
-  }
 });
 
-// === Hent filmer fra Firebase ===
-async function loadCollectionFromFirebase() {
+// === Hent samling fra Firebase ===
+async function loadCollection() {
   const snapshot = await getDocs(collectionRef);
   allMovies = snapshot.docs.map(doc => doc.data());
 }
 
 // === Lagre film til Firebase ===
-async function saveMovieToFirebase(movie) {
+async function saveMovie(movie) {
   if (!movie.id) movie.id = Date.now();
   await setDoc(doc(collectionRef, movie.id.toString()), movie);
-  const index = allMovies.findIndex(m => m.id === movie.id);
-  if (index !== -1) {
-    allMovies[index] = movie;
-  } else {
-    allMovies.push(movie);
-  }
+  const existingIndex = allMovies.findIndex(m => m.id === movie.id);
+  if (existingIndex >= 0) allMovies[existingIndex] = movie;
+  else allMovies.push(movie);
 }
 
-// === Render filmer ===
+// === Render samling ===
 function renderCollection() {
   collectionList.innerHTML = "";
   allMovies.forEach(movie => {
@@ -90,57 +88,88 @@ function showDetails(movie) {
   if (movie.overview) info += `📖 ${movie.overview}\n\n`;
   if (movie.genre?.length) info += `🎭 Sjanger: ${movie.genre.join(", ")}\n`;
   if (movie.year) info += `📅 År: ${movie.year}\n`;
-
   alert(info);
 }
 
-// === Fyll filtermenyer ===
-function populateFilters() {
-  const genres = new Set();
-  const years = new Set();
 
-  allMovies.forEach(movie => {
-    (movie.genre || []).forEach(g => genres.add(g));
-    if (movie.year) years.add(movie.year);
+// === Søk etter filmer i TMDb ===
+searchBtn?.addEventListener("click", async () => {
+  const query = titleInput.value.trim();
+  if (!query) return;
+  const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${tmdbApiKey}&query=${encodeURIComponent(query)}`);
+  const data = await res.json();
+  displaySearchResults(data.results || []);
+});
+
+function displaySearchResults(results) {
+  searchResults.innerHTML = "";
+  results.forEach(movie => {
+    const div = document.createElement("div");
+    div.className = "search-result";
+    div.textContent = movie.title;
+    div.addEventListener("click", () => showMovieDetails(movie));
+    searchResults.appendChild(div);
   });
+}
 
-  genreFilter.innerHTML = '<option value="">Alle</option>' + [...genres].sort().map(g => `<option value="${g}">${g}</option>`).join("");
-  yearFilter.innerHTML = '<option value="">Alle</option>' + [...years].sort().map(y => `<option value="${y}">${y}</option>`).join("");
+function showMovieDetails(movie) {
+  movieDetails.innerHTML = `
+    <h3>${movie.title}</h3>
+    <p>${movie.overview || "Ingen beskrivelse tilgjengelig."}</p>
+    <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="Poster" />
+  `;
+  addBtn.style.display = "block";
+  addBtn.onclick = () => addToCollection(movie);
+}
+
+async function addToCollection(movie) {
+  const newMovie = {
+    id: movie.id,
+    title: movie.title,
+    genre: [], // kan legges til senere
+    year: (movie.release_date || "").split("-")[0],
+    cover: movie.poster_path ? "https://image.tmdb.org/t/p/w300" + movie.poster_path : "",
+    backcover: "",
+    overview: movie.overview || "",
+    added: new Date().toISOString().split("T")[0]
+  };
+  currentMovie = newMovie;
+  await saveMovie(newMovie);
+  renderCollection();
+
+  setTimeout(() => {
+    if (cameraInput) cameraInput.click();
+  }, 300);
 }
 
 // === Legg til film manuelt ===
-manualAddForm?.addEventListener("submit", async (e) => {
-  e.preventDefault();
+manualAddBtn?.addEventListener("click", async () => {
   const title = manualTitleInput.value.trim();
   if (!title) return;
 
-  const newItem = {
+  const movie = {
     id: Date.now(),
     title,
     genre: [],
     year: "",
-    director: "",
-    runtime: "",
     cover: "",
     backcover: "",
     overview: "",
     added: new Date().toISOString().split("T")[0]
   };
 
-  currentMovie = newItem;
-  await saveMovieToFirebase(newItem);
+  currentMovie = movie;
+  await saveMovie(movie);
   renderCollection();
-  populateFilters();
 
-  // Start kamera
-  if (cameraInput) {
-    setTimeout(() => cameraInput.click(), 300);
-  }
+  setTimeout(() => {
+    if (cameraInput) cameraInput.click();
+  }, 300);
 
   manualTitleInput.value = "";
 });
 
-// === Ta bilde av baksiden ===
+// === Lytt etter bildeopplasting ===
 cameraInput?.addEventListener("change", async (e) => {
   const file = e.target.files[0];
   if (!file || !currentMovie) return;
@@ -148,16 +177,8 @@ cameraInput?.addEventListener("change", async (e) => {
   const reader = new FileReader();
   reader.onload = async () => {
     currentMovie.backcover = reader.result;
-    await saveMovieToFirebase(currentMovie);
+    await saveMovie(currentMovie);
     renderCollection();
   };
   reader.readAsDataURL(file);
-});
-
-// === Endre tema ===
-themeSelect?.addEventListener("change", () => {
-  const selected = themeSelect.value;
-  document.body.className = "";
-  document.body.classList.add(selected);
-  localStorage.setItem("theme", selected);
 });
