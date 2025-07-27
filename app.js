@@ -5,7 +5,8 @@ import {
   collection,
   getDocs,
   setDoc,
-  doc
+  doc,
+  deleteDoc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 // === Firebase config ===
@@ -58,6 +59,12 @@ async function saveMovie(movie) {
   if (existingIndex >= 0) allMovies[existingIndex] = movie;
   else allMovies.push(movie);
 }
+// === Slett film fra Firebase ===
+async function deleteMovie(movieId) {
+  await deleteDoc(doc(collectionRef, movieId.toString()));
+  allMovies = allMovies.filter(m => m.id !== movieId);
+}
+
 
 // === Render samling ===
 function renderCollection() {
@@ -74,6 +81,20 @@ function renderCollection() {
     const title = document.createElement("h4");
     title.textContent = movie.title;
 
+    // 🗑️ Slett-knapp
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "delete-btn";
+    deleteBtn.textContent = "🗑️";
+    deleteBtn.title = "Slett film";
+    deleteBtn.onclick = async (e) => {
+      e.stopPropagation();
+      if (confirm(`Slette filmen «${movie.title}» fra samlingen?`)) {
+        await deleteMovie(movie.id);
+        renderCollection();
+      }
+    };
+
+    card.appendChild(deleteBtn);
     card.appendChild(img);
     card.appendChild(title);
     card.addEventListener("click", () => showDetails(movie));
@@ -81,6 +102,7 @@ function renderCollection() {
     collectionList.appendChild(card);
   });
 }
+
 
 // === Vis detaljer (enkelt alert) ===
 function showDetails(movie) {
