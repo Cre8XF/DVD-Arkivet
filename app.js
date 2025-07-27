@@ -32,7 +32,6 @@ const tmdbApiKey = "db3d7987e3a39baedf6bc138afa46e74"; // ← Sett inn din TMDB 
 const collectionList = document.getElementById("collectionList");
 const manualTitleInput = document.getElementById("manualTitle");
 const manualAddBtn = document.getElementById("manualAddBtn");
-const cameraInput = document.getElementById("backCoverCameraInput");
 const titleInput = document.getElementById("titleInput");
 const searchBtn = document.getElementById("searchBtn");
 const searchResults = document.getElementById("searchResults");
@@ -159,9 +158,6 @@ async function addToCollection(movie) {
   await saveMovie(newMovie);
   renderCollection();
 
-  setTimeout(() => {
-    if (cameraInput) cameraInput.click();
-  }, 300);
 }
 
 // === Legg til film manuelt ===
@@ -184,50 +180,6 @@ manualAddBtn?.addEventListener("click", async () => {
   await saveMovie(movie);
   renderCollection();
 
-  setTimeout(() => {
-    if (cameraInput) cameraInput.click();
-  }, 300);
-
   manualTitleInput.value = "";
-});
-
-cameraInput?.addEventListener("change", async (e) => {
-  const file = e.target.files[0];
-  if (!file || !currentMovie) return;
-
-  const img = new Image();
-  const url = URL.createObjectURL(file);
-
-  img.onload = async () => {
-    const canvas = document.createElement("canvas");
-    const maxWidth = 800;
-    const scale = maxWidth / img.width;
-    canvas.width = maxWidth;
-    canvas.height = img.height * scale;
-
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-    // Komprimer til JPEG med 80% kvalitet
-    const scaledDataUrl = canvas.toDataURL("image/jpeg", 0.8);
-    currentMovie.backcover = scaledDataUrl;
-
-    try {
-      await saveMovie(currentMovie);
-      renderCollection();
-    } catch (err) {
-      alert("Feil ved lagring av bilde: " + err.message);
-    }
-
-    // Frigjør minne
-    URL.revokeObjectURL(url);
-  };
-
-  img.onerror = () => {
-    alert("Kunne ikke laste bildet.");
-    URL.revokeObjectURL(url);
-  };
-
-  img.src = url;
 });
 
