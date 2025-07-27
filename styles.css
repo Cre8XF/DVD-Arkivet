@@ -94,8 +94,7 @@ section {
   border-radius: 8px;
   box-shadow: 0 2px 6px var(--shadow);
 }
-/* Utils */
-.hidden {
+.is-hidden {
   display: none !important;
 }
 
