@@ -94,6 +94,10 @@ section {
   border-radius: 8px;
   box-shadow: 0 2px 6px var(--shadow);
 }
+/* Utils */
+.hidden {
+  display: none !important;
+}
 
 /* === 5. Inputs og knapper === */
 input,
