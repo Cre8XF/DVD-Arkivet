@@ -196,25 +196,38 @@ cameraInput?.addEventListener("change", async (e) => {
   if (!file || !currentMovie) return;
 
   const img = new Image();
-  const reader = new FileReader();
+  const url = URL.createObjectURL(file);
 
-  reader.onload = async () => {
-    img.onload = async () => {
-      const canvas = document.createElement("canvas");
-      const scale = 800 / img.width;
-      canvas.width = 800;
-      canvas.height = img.height * scale;
+  img.onload = async () => {
+    const canvas = document.createElement("canvas");
+    const maxWidth = 800;
+    const scale = maxWidth / img.width;
+    canvas.width = maxWidth;
+    canvas.height = img.height * scale;
 
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-      const scaledDataUrl = canvas.toDataURL("image/jpeg", 0.8); // komprimert
-      currentMovie.backcover = scaledDataUrl;
+    // Komprimer til JPEG med 80% kvalitet
+    const scaledDataUrl = canvas.toDataURL("image/jpeg", 0.8);
+    currentMovie.backcover = scaledDataUrl;
+
+    try {
       await saveMovie(currentMovie);
       renderCollection();
-    };
-    img.src = reader.result;
+    } catch (err) {
+      alert("Feil ved lagring av bilde: " + err.message);
+    }
+
+    // Frigjør minne
+    URL.revokeObjectURL(url);
   };
 
-  reader.readAsDataURL(file);
+  img.onerror = () => {
+    alert("Kunne ikke laste bildet.");
+    URL.revokeObjectURL(url);
+  };
+
+  img.src = url;
 });
+
