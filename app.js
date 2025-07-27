@@ -191,16 +191,30 @@ manualAddBtn?.addEventListener("click", async () => {
   manualTitleInput.value = "";
 });
 
-// === Lytt etter bildeopplasting ===
 cameraInput?.addEventListener("change", async (e) => {
   const file = e.target.files[0];
   if (!file || !currentMovie) return;
 
+  const img = new Image();
   const reader = new FileReader();
+
   reader.onload = async () => {
-    currentMovie.backcover = reader.result;
-    await saveMovie(currentMovie);
-    renderCollection();
+    img.onload = async () => {
+      const canvas = document.createElement("canvas");
+      const scale = 800 / img.width;
+      canvas.width = 800;
+      canvas.height = img.height * scale;
+
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      const scaledDataUrl = canvas.toDataURL("image/jpeg", 0.8); // komprimert
+      currentMovie.backcover = scaledDataUrl;
+      await saveMovie(currentMovie);
+      renderCollection();
+    };
+    img.src = reader.result;
   };
+
   reader.readAsDataURL(file);
 });
