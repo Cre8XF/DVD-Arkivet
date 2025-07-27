@@ -156,7 +156,6 @@ button:hover {
 }
 
 .poster {
-  width: 100%;
   border-radius: 8px 8px 0 0;
 }
 
@@ -292,4 +291,20 @@ button:hover {
   cursor: pointer;
   margin-top: 0.5rem;
   z-index: 2;
+}
+.tmdb-details {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+
+.tmdb-details .poster-thumb {
+  max-width: 120px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.tmdb-details .movie-meta {
+  flex: 1;
 }
