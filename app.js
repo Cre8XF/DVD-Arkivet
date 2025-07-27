@@ -134,14 +134,24 @@ function displaySearchResults(results) {
 }
 
 function showMovieDetails(movie) {
+  const title = movie.title || "Ukjent tittel";
+  const overview = movie.overview || "Ingen beskrivelse tilgjengelig.";
+  const poster = movie.poster_path
+    ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+    : "https://via.placeholder.com/300x450?text=No+Image";
+  const year = movie.release_date ? movie.release_date.split("-")[0] : "Ukjent år";
+
   movieDetails.innerHTML = `
-    <h3>${movie.title}</h3>
-    <p>${movie.overview || "Ingen beskrivelse tilgjengelig."}</p>
-    <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="Poster" />
+    <h3>${title}</h3>
+    <img src="${poster}" alt="Poster for ${title}" style="max-width:200px; border-radius:8px; box-shadow:0 0 12px #888;" />
+    <p><strong>📖 Beskrivelse:</strong><br>${overview}</p>
+    <p><strong>📅 År:</strong> ${year}</p>
   `;
+
   addBtn.style.display = "block";
   addBtn.onclick = () => addToCollection(movie);
 }
+
 
 async function addToCollection(movie) {
   const newMovie = {
