@@ -302,5 +302,67 @@ async function addMovie() {
   }
 }
 
+function renderFilteredCollection(movies) {
+  collectionList.innerHTML = "";
+  movies.forEach(movie => {
+    const card = document.createElement("li");
+    card.className = "movie-card";
+
+    const img = document.createElement("img");
+    img.src = movie.cover || "https://via.placeholder.com/300x450?text=No+Image";
+    img.alt = movie.title;
+    img.className = "poster";
+
+    const title = document.createElement("h4");
+    title.textContent = movie.title;
+
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "🗑️";
+    delBtn.className = "delete-btn";
+    delBtn.onclick = () => {
+      if (confirm(`Slette "${movie.title}"?`)) deleteMovie(movie.id);
+    };
+
+    card.appendChild(img);
+    card.appendChild(title);
+    card.appendChild(delBtn);
+    card.addEventListener("click", () => showMovieDetails(movie));
+    collectionList.appendChild(card);
+  });
+}
+
+
+function applyFilters() {
+  const selectedGenre = genreFilter.value;
+  const selectedYear = yearFilter.value;
+
+  const filtered = allMovies.filter(movie => {
+    const genreMatch = !selectedGenre || (Array.isArray(movie.genre) ? movie.genre.includes(selectedGenre) : movie.genre === selectedGenre);
+    const yearMatch = !selectedYear || movie.year === selectedYear;
+    return genreMatch && yearMatch;
+  });
+
+  renderFilteredCollection(filtered);
+}
+genreFilter?.addEventListener("change", applyFilters);
+yearFilter?.addEventListener("change", applyFilters);
+function applyTheme(theme) {
+  const themes = ["theme-neon", "theme-sunset", "theme-frost"];
+  document.body.classList.remove(...themes);
+  if (theme) {
+    document.body.classList.add(theme);
+  }
+}
+themeSelect?.addEventListener("change", () => {
+  applyTheme(themeSelect.value);
+});
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadCollection();
+  renderCollection();
+  populateFilters();
+
+  applyTheme(themeSelect.value); // ← Bruk valgt tema ved start
+});
+
 
 
