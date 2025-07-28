@@ -45,28 +45,33 @@
       let raw = JSON.parse(text);
       let importedMovies = Array.isArray(raw) && raw[0]?.["Title"]
         ? raw.map(item => ({
-          title: item["Title"] || "",
-          year: String(item["Release Date"] || ""),
-          genre: item["Genres"] ? item["Genres"].split(" | ") : [],
-          runtime: item["Runtime"] || "",
-          director: item["Director"] || "",
-          cover: "",
-          backcover: "",
-          overview: "",
-          added: item["Added Date"] || new Date().toISOString().split("T")[0]
-        }))
+            title: item["Title"] || "",
+            year: String(item["Release Date"] || ""),
+            genre: item["Genres"] ? item["Genres"].split(" | ") : [],
+            runtime: item["Runtime"] || "",
+            director: item["Director"] || "",
+            cover: "",
+            backcover: "",
+            overview: "",
+            added: item["Added Date"] || new Date().toISOString().split("T")[0]
+          }))
         : raw;
 
       const container = document.getElementById("movieList");
       container.innerHTML = "";
       newMovies = [];
+      let notFoundTitles = [];
 
       for (let movie of importedMovies) {
         try {
-          const searchRes = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movie.title)}&api_key=${tmdbApiKey}`);
+          const searchRes = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movie.title)}&year=${movie.year}&api_key=${tmdbApiKey}`);
           const searchData = await searchRes.json();
-          const result = searchData.results && searchData.results[0];
-          if (!result) continue;
+          const result = searchData.results?.find(r => r.title.toLowerCase() === movie.title.toLowerCase());
+          if (!result) {
+            console.warn(`❌ Ingen TMDb-treff for: "${movie.title}"`);
+            notFoundTitles.push(movie.title);
+            continue;
+          }
 
           const detailsRes = await fetch(`https://api.themoviedb.org/3/movie/${result.id}?api_key=${tmdbApiKey}&append_to_response=credits`);
           const details = await detailsRes.json();
@@ -119,6 +124,16 @@
           console.error("Feil:", err);
         }
       }
+
+      if (notFoundTitles.length) {
+        const failedList = document.createElement("div");
+        failedList.innerHTML = `
+          <h2 style="color:tomato;">❌ Filmer ikke funnet på TMDb (${notFoundTitles.length})</h2>
+          <ul>${notFoundTitles.map(t => `<li>${t}</li>`).join("")}</ul>
+        `;
+        container.appendChild(failedList);
+      }
+      console.log(`📦 Totalt i fil: ${importedMovies.length}, ✅ lagt til: ${newMovies.length}, ❌ ikke funnet: ${notFoundTitles.length}`);
     };
 
     window.addAll = async function () {
@@ -137,7 +152,6 @@
       color: #eee;
       padding: 2rem;
     }
-
     .movie-card {
       background: #222;
       border: 1px solid #444;
@@ -145,13 +159,11 @@
       margin-bottom: 1rem;
       border-radius: 8px;
     }
-
     img {
       max-height: 200px;
       display: block;
       margin: 0.5rem 0;
     }
-
     button {
       background: #4caf50;
       color: white;
@@ -160,20 +172,17 @@
       cursor: pointer;
       border-radius: 4px;
     }
-
     button:hover {
       background: #45a049;
     }
   </style>
 </head>
-
 <body>
   <h1>📥 Import med TMDb + Duplikatsjekk</h1>
   <label for="fileInput">Velg JSON-fil for import:</label>
-  <input type="file" id="fileInput" accept=".json" title="Velg en JSON-fil for import" />
+  <input type="file" id="fileInput" accept=".json" />
   <button onclick="loadAndSearch()">Hent og vis filmer</button>
   <button onclick="addAll()">➕ Legg til alle nye</button>
   <div id="movieList"></div>
 </body>
-
 </html>
