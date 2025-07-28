@@ -41,7 +41,22 @@
       const file = document.getElementById('fileInput').files[0];
       if (!file) return alert("Velg en fil først.");
       const text = await file.text();
-      const importedMovies = JSON.parse(text);
+
+      let raw = JSON.parse(text);
+      let importedMovies = Array.isArray(raw) && raw[0]?.["Title"]
+        ? raw.map(item => ({
+          title: item["Title"] || "",
+          year: String(item["Release Date"] || ""),
+          genre: item["Genres"] ? item["Genres"].split(" | ") : [],
+          runtime: item["Runtime"] || "",
+          director: item["Director"] || "",
+          cover: "",
+          backcover: "",
+          overview: "",
+          added: item["Added Date"] || new Date().toISOString().split("T")[0]
+        }))
+        : raw;
+
       const container = document.getElementById("movieList");
       container.innerHTML = "";
       newMovies = [];
@@ -68,7 +83,7 @@
             cover: details.poster_path ? "https://image.tmdb.org/t/p/w300" + details.poster_path : "",
             imdb: result.vote_average ? result.vote_average.toFixed(1) : "Ukjent",
             backcover: "",
-            added: new Date().toISOString().split("T")[0]
+            added: movie.added || new Date().toISOString().split("T")[0]
           };
 
           const exists = existingIds.has(fullMovie.id);
