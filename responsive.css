@@ -184,3 +184,8 @@
     text-align: left;
   }
 }
+@media (min-width: 481px) {
+  #filterPanel {
+    display: block !important;
+  }
+}

@@ -43,6 +43,15 @@ const genreFilter = document.getElementById("genreFilter");
 const yearFilter = document.getElementById("yearFilter");
 const resetBtn = document.getElementById("resetBtn");
 
+// === Mobil: Vis/skjul filterpanel ===
+const toggleBtn = document.getElementById("toggleFilters");
+const filtersPanel = document.getElementById("filterPanel"); // ← korrekt id fra index
+
+toggleBtn?.addEventListener("click", () => {
+  filtersPanel?.classList.toggle("hidden");
+});
+
+
 // === Init ===
 document.addEventListener("DOMContentLoaded", async () => {
   await loadCollection();
