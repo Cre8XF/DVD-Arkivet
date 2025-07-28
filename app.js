@@ -28,6 +28,8 @@ const tmdbApiKey = "db3d7987e3a39baedf6bc138afa46e74"; // ← Sett inn din TMDB 
 // === Globale variabler ===
 let allMovies = [];
 let currentMovie = null;
+let lastScrollY = 0;
+
 
 // === DOM-elementer ===
 const collectionList = document.getElementById("collectionList");
