@@ -234,6 +234,7 @@ manualAddBtn?.addEventListener("click", async () => {
   manualTitleInput.value = "";
 });
 function showMovieDetails(movie) {
+   lastScrollY = window.scrollY;
   const title = movie.title || "Ukjent tittel";
   const overview = movie.overview || "Ingen beskrivelse tilgjengelig.";
   const poster = movie.cover
@@ -257,15 +258,15 @@ function showMovieDetails(movie) {
       </div>
     </div>
   `;
+movieDetails.scrollIntoView({ behavior: "smooth", block: "start" });
 
-  // Skjul "Legg til"-knappen
-  addBtn.style.display = "none";
-
-  // Lukk-knapp fjerner detaljvisning
   const closeBtn = document.getElementById("closeDetailsBtn");
   closeBtn?.addEventListener("click", () => {
     movieDetails.innerHTML = "";
+    window.scrollTo({ top: lastScrollY, behavior: "smooth" });
   });
+  // Skjul "Legg til"-knappen
+  addBtn.style.display = "none";
 }
 
 

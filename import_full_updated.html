@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Import med TMDb + Duplikatsjekk</title>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import {
+      getFirestore,
+      doc,
+      setDoc,
+      collection,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAHoNIX-Pu58-faT0IV0QfSajvx0j9hABQ",
+      authDomain: "dvd-arkivet.firebaseapp.com",
+      projectId: "dvd-arkivet",
+      storageBucket: "dvd-arkivet.appspot.com",
+      messagingSenderId: "936877330102",
+      appId: "1:936877330102:web:8444ad9e0743617ea22017"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const tmdbApiKey = "db3d7987e3a39baedf6bc138afa46e74";
+    let existingIds = new Set();
+    let newMovies = [];
+
+    async function getExistingMovieIds() {
+      const snapshot = await getDocs(collection(db, "movies"));
+      snapshot.forEach(doc => existingIds.add(doc.id));
+    }
+
+    window.loadAndSearch = async function () {
+      await getExistingMovieIds();
+
+      const file = document.getElementById('fileInput').files[0];
+      if (!file) return alert("Velg en fil først.");
+      const text = await file.text();
+      const importedMovies = JSON.parse(text);
+      const container = document.getElementById("movieList");
+      container.innerHTML = "";
+      newMovies = [];
+
+      for (let movie of importedMovies) {
+        try {
+          const searchRes = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movie.title)}&api_key=${tmdbApiKey}`);
+          const searchData = await searchRes.json();
+          const result = searchData.results && searchData.results[0];
+          if (!result) continue;
+
+          const detailsRes = await fetch(`https://api.themoviedb.org/3/movie/${result.id}?api_key=${tmdbApiKey}&append_to_response=credits`);
+          const details = await detailsRes.json();
+
+          const fullMovie = {
+            id: String(result.id),
+            title: details.title,
+            overview: details.overview || "",
+            year: details.release_date ? details.release_date.split("-")[0] : "",
+            genre: details.genres.map(g => g.name),
+            director: details.credits.crew.find(p => p.job === "Director")?.name || "",
+            cast: details.credits.cast.slice(0, 5).map(a => a.name).join(", "),
+            runtime: details.runtime ? `${Math.floor(details.runtime / 60)}:${String(details.runtime % 60).padStart(2, '0')}` : "",
+            cover: details.poster_path ? "https://image.tmdb.org/t/p/w300" + details.poster_path : "",
+            imdb: result.vote_average ? result.vote_average.toFixed(1) : "Ukjent",
+            backcover: "",
+            added: new Date().toISOString().split("T")[0]
+          };
+
+          const exists = existingIds.has(fullMovie.id);
+          if (!exists) newMovies.push(fullMovie);
+
+          const div = document.createElement("div");
+          div.className = "movie-card";
+          div.innerHTML = `
+            <h3>${fullMovie.title} (${fullMovie.year})</h3>
+            ${fullMovie.cover ? `<img src="${fullMovie.cover}" alt="Poster">` : "<p>❌ Ingen plakat</p>"}
+            <p><strong>⭐ IMDb:</strong> ${fullMovie.imdb}</p>
+            <p><strong>Sjanger:</strong> ${fullMovie.genre.join(", ")}</p>
+            <p><strong>Regissør:</strong> ${fullMovie.director}</p>
+            <p><strong>Skuespillere:</strong> ${fullMovie.cast}</p>
+            <p><strong>Spilletid:</strong> ${fullMovie.runtime}</p>
+            <p><strong>📖 Beskrivelse:</strong><br>${fullMovie.overview}</p>
+            <p style="color:${exists ? 'lime' : 'orange'};">${exists ? "✅ Allerede i samling" : "🆕 Ikke lagret ennå"}</p>
+            ${!exists ? `<button>➕ Legg til</button>` : ""}
+          `;
+
+          if (!exists) {
+            div.querySelector("button").addEventListener("click", async () => {
+              await setDoc(doc(db, "movies", fullMovie.id), fullMovie);
+              alert(`${fullMovie.title} lagt til!`);
+              div.querySelector("p:last-of-type").textContent = "✅ Allerede i samling";
+              div.querySelector("p:last-of-type").style.color = "lime";
+              div.querySelector("button").remove();
+            });
+          }
+
+          container.appendChild(div);
+        } catch (err) {
+          console.error("Feil:", err);
+        }
+      }
+    };
+
+    window.addAll = async function () {
+      if (!newMovies.length) return alert("Ingen nye filmer å legge til.");
+      for (const movie of newMovies) {
+        await setDoc(doc(db, "movies", movie.id), movie);
+      }
+      alert(`La til ${newMovies.length} nye filmer!`);
+      window.loadAndSearch();
+    };
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #111;
+      color: #eee;
+      padding: 2rem;
+    }
+
+    .movie-card {
+      background: #222;
+      border: 1px solid #444;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+    }
+
+    img {
+      max-height: 200px;
+      display: block;
+      margin: 0.5rem 0;
+    }
+
+    button {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>📥 Import med TMDb + Duplikatsjekk</h1>
+  <label for="fileInput">Velg JSON-fil for import:</label>
+  <input type="file" id="fileInput" accept=".json" title="Velg en JSON-fil for import" />
+  <button onclick="loadAndSearch()">Hent og vis filmer</button>
+  <button onclick="addAll()">➕ Legg til alle nye</button>
+  <div id="movieList"></div>
+</body>
+
+</html>
