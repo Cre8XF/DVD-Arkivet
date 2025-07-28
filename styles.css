@@ -257,10 +257,15 @@ button:hover {
 }
 
 .movie-details img {
-  max-width: 100%;
+  max-width: 160px;
+  height: auto;
+  float: left;
+  margin-right: 1.2rem;
+  margin-bottom: 0.5rem;
   border-radius: 8px;
-  margin-bottom: 1rem;
+  box-shadow: 0 0 8px var(--shadow);
 }
+
 .manual-entry {
   margin: 2rem 0;
   padding: 1rem;
@@ -310,4 +315,37 @@ button:hover {
 
 .tmdb-details .movie-meta {
   flex: 1;
+}
+.details-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem;
+  background: var(--bg-light);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px var(--shadow);
+  margin: 1rem auto;
+  max-width: 800px;
+}
+.details-info {
+  flex: 1;
+}
+.details-info h3 {
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.details-info p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+.details-info img {
+  max-width: 160px;
+  height: auto;
+  float: left;
+  margin-right: 1.2rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 8px var(--shadow);
 }

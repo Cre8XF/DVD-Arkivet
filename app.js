@@ -260,7 +260,12 @@ function showMovieDetails(movie) {
       </div>
     </div>
   `;
-movieDetails.scrollIntoView({ behavior: "smooth", block: "start" });
+setTimeout(() => {
+  const yOffset = -200; // juster gjerne til -60 eller -80 om du trenger mer
+  const y = movieDetails.getBoundingClientRect().top + window.pageYOffset + yOffset;
+  window.scrollTo({ top: y, behavior: "smooth" });
+}, 100);
+
 
   const closeBtn = document.getElementById("closeDetailsBtn");
   closeBtn?.addEventListener("click", () => {
