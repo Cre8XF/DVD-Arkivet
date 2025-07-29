@@ -14,7 +14,7 @@
   <header>
     <h1>📀 DVD Profiler</h1>
 
-    <button id="toggleFilters" class="mobile-only">🎛️ Filtrer</button>
+<button id="toggleFilters" class="mobile-only">🎛️ Filtrer</button>
 
     <section id="filterPanel" class="filters hidden">
       <label for="sortSelect">📁 Sorter etter:</label>
@@ -42,6 +42,13 @@
         <option value="theme-sunset">Sunset</option>
         <option value="theme-frost">Frost</option>
       </select>
+      
+      <label for="viewModeSelect">🧱 Visningsmodus:</label>
+      <select id="viewModeSelect">
+        <option value="grid">Standardvisning</option>
+        <option value="shelf">Hyllevisning</option>
+      </select>
+
 
       <label for="searchInput">🔎 Søk etter tittel eller skuespiller:</label>
       <input type="text" id="searchInput" placeholder="F.eks. Matrix eller Brad Pitt" />

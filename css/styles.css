@@ -139,23 +139,44 @@ button:hover {
   justify-content: center;
   gap: 1rem;
 }
-
-.movie-card {
+#collectionList.shelf-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 2rem 1rem;
+  padding: 3rem 1rem;
+  justify-items: center;
+  align-items: end;
   position: relative;
-  display: inline-block;
-  width: 150px;
-  margin: 1rem;
-  text-align: center;
-  background: var(--bg-light);
-  border-radius: 8px;
-  box-shadow: 0 2px 6px var(--shadow);
-  cursor: pointer;
-  transition: transform 0.2s ease;
+  z-index: 1;
 }
 
+#collectionList.shelf-view::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0, rgba(0, 0, 0, 0.4) 2px, transparent 2px, transparent 180px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.movie-card {
+  background: var(--bg-light);
+  padding: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.6);
+  transform: perspective(800px) rotateX(1deg);
+  transition: transform 0.2s ease;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  width: 150px;
+}
 .movie-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px var(--highlight);
+  transform: perspective(800px) rotateX(0deg) scale(1.03);
+  z-index: 2;
 }
 
 .poster {
@@ -437,4 +458,57 @@ button:hover {
 }
 #sortSelect {
   margin-left: 1rem;
+}
+/* Bakgrunn på siden */
+body {
+  background: #1a1a1a url('/images/wood-texture.jpg') repeat;
+  background-size: cover;
+}
+/* === Temaer === */
+body.theme-neon {
+  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+  color: #fff;
+}
+body.theme-sunset {
+  background: linear-gradient(to bottom, #ff7e5f, #feb47b);
+  color: #222;
+}
+body.theme-frost {
+  background: linear-gradient(to bottom, #e0eafc, #cfdef3);
+  color: #222;
+}
+body.theme-wood {
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  color: #fff;
+}
+
+/* === Generelt === */
+#collectionList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* === Hylleeffekt for wood theme === */
+body.theme-wood #collectionList {
+  background: repeating-linear-gradient(to bottom, #5a3e22 0, #5a3e22 2px, transparent 2px, transparent 120px);
+  padding: 3rem 1rem;
+  position: relative;
+}
+
+body.theme-wood .movie-card {
+  background: #2d1f0f;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  transform: perspective(600px) rotateX(1.5deg);
+  transition: transform 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+body.theme-wood .movie-card:hover {
+  transform: perspective(600px) rotateX(0deg) scale(1.03);
 }

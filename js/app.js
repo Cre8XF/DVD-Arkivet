@@ -7,6 +7,7 @@ let lastScrollY = 0;
 
 const collectionList = document.getElementById("collectionList");
 const themeSelect = document.getElementById("themeSelect");
+const viewModeSelect = document.getElementById("viewModeSelect");
 const genreFilter = document.getElementById("genreFilter");
 const yearFilter = document.getElementById("yearFilter");
 const resetBtn = document.getElementById("resetBtn");
@@ -163,12 +164,6 @@ function populateFilters() {
   yearFilter.innerHTML = `<option value="">Alle</option>` + [...years].sort().map(y => `<option value="${y}">${y}</option>`).join("");
 }
 
-function applyTheme(theme) {
-  const themes = ["theme-neon", "theme-sunset", "theme-frost"];
-  document.body.classList.remove(...themes);
-  if (theme) document.body.classList.add(theme);
-}
-
 genreFilter?.addEventListener("change", () => renderCollection());
 yearFilter?.addEventListener("change", () => renderCollection());
 sortSelect?.addEventListener("change", () => renderCollection());
@@ -179,3 +174,35 @@ tmdbResetBtn?.addEventListener("click", () => {
   tmdbInput.value = "";
   tmdbResults.innerHTML = "";
 });
+viewModeSelect.addEventListener("change", () => {
+  collectionList.className = viewModeSelect.value === "shelf" ? "shelf-view" : "";
+  renderCollection();
+});
+// === Tema- og visningsmodus ===
+viewModeSelect?.addEventListener("change", () => {
+  const mode = viewModeSelect.value;
+  const body = document.body;
+
+  if (mode === "shelf") {
+    collectionList.classList.add("shelf-view");
+    body.classList.remove("theme-neon", "theme-sunset", "theme-frost");
+    body.classList.add("theme-wood");
+  } else {
+    collectionList.classList.remove("shelf-view");
+    body.classList.remove("theme-wood");
+    applyTheme(themeSelect?.value); // Bruk valgt tema
+  }
+
+  renderCollection(); // Viktig!
+});
+
+themeSelect?.addEventListener("change", () => {
+  if (viewModeSelect?.value === "shelf") return; // Ikke bruk tema i hyllemodus
+  applyTheme(themeSelect.value);
+});
+
+function applyTheme(theme) {
+  const themes = ["theme-neon", "theme-sunset", "theme-frost", "theme-wood"];
+  document.body.classList.remove(...themes);
+  if (theme) document.body.classList.add(theme);
+}
