@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manuell CLZ-import</title>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import {
+      getFirestore,
+      doc,
+      setDoc,
+      collection,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAHoNIX-Pu58-faT0IV0QfSajvx0j9hABQ",
+      authDomain: "dvd-arkivet.firebaseapp.com",
+      projectId: "dvd-arkivet",
+      storageBucket: "dvd-arkivet.appspot.com",
+      messagingSenderId: "936877330102",
+      appId: "1:936877330102:web:8444ad9e0743617ea22017"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    let existingTitles = new Set();
+
+    async function getExistingTitles() {
+      const snapshot = await getDocs(collection(db, "movies"));
+      snapshot.forEach(doc => existingTitles.add(doc.data().title));
+    }
+
+    window.loadManual = async function () {
+      await getExistingTitles();
+
+      const file = document.getElementById("fileInput").files[0];
+      if (!file) return alert("Velg en JSON-fil.");
+      const text = await file.text();
+      const movies = JSON.parse(text);
+      const container = document.getElementById("movieList");
+      container.innerHTML = "";
+
+      for (const movie of movies) {
+        const exists = existingTitles.has(movie.title);
+        const div = document.createElement("div");
+        div.className = "movie-card";
+        div.innerHTML = `
+          <h3>${movie.title} (${movie.year})</h3>
+          ${movie.cover ? `<img src="${movie.cover}" alt="Poster">` : "<p>❌ Ingen plakat</p>"}
+          <p><strong>Sjanger:</strong> ${movie.genre?.join(", ") || ""}</p>
+          <p><strong>Format:</strong> ${movie.format || "-"}</p>
+          <p><strong>Regissør:</strong> ${movie.director || "-"}</p>
+          <p><strong>Lengde:</strong> ${movie.runtime || "-"}</p>
+          <p><strong>IMDb:</strong> ${movie.imdb || "-"}</p>
+          <p style="color:${exists ? 'lime' : 'orange'};">${exists ? "✅ Allerede i samling" : "🆕 Ikke lagret ennå"}</p>
+          ${!exists ? `<button>➕ Legg til</button>` : ""}
+        `;
+
+        if (!exists) {
+          div.querySelector("button").addEventListener("click", async () => {
+            const id = String(movie.title + "_" + movie.year).replace(/\s+/g, "_").toLowerCase();
+            await setDoc(doc(db, "movies", id), movie);
+            alert(`${movie.title} lagt til!`);
+            div.querySelector("p:last-of-type").textContent = "✅ Allerede i samling";
+            div.querySelector("p:last-of-type").style.color = "lime";
+            div.querySelector("button").remove();
+          });
+        }
+
+        container.appendChild(div);
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #111;
+      color: #eee;
+      padding: 2rem;
+    }
+    .movie-card {
+      background: #222;
+      border: 1px solid #444;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+    }
+    img {
+      max-height: 200px;
+      display: block;
+      margin: 0.5rem 0;
+      border-radius: 4px;
+    }
+    button {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎬 Manuell import fra CLZ</h1>
+  <p>Denne siden legger inn filmer uten å bruke TMDb. Filmer som allerede finnes i samlingen vil ikke få "Legg til"-knapp.</p>
+  <label for="fileInput">Velg JSON-fil:</label>
+  <input type="file" id="fileInput" accept=".json" title="Velg en JSON-fil for import" />
+  <button onclick="loadManual()">Last og vis</button>
+  <div id="movieList"></div>
+</body>
+</html>

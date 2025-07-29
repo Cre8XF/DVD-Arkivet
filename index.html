@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DVD Profiler</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="responsive.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
   <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 </head>
+
 <body class="theme-neon">
   <header>
     <h1>📀 DVD Profiler</h1>
-  
-    <!-- Filter-knapp for mobil -->
+
     <button id="toggleFilters" class="mobile-only">🎛️ Filtrer</button>
-  
-    <!-- Filterpanel -->
+
     <section id="filterPanel" class="filters hidden">
       <label for="genreFilter">Filtrer etter sjanger:</label>
       <select id="genreFilter"></select>
-  
+
       <label for="yearFilter">Filtrer etter år:</label>
       <select id="yearFilter"></select>
-  
+
       <button id="resetBtn">Nullstill søk</button>
-  
+
       <label for="themeSelect">🎨 Tema:</label>
       <select id="themeSelect">
         <option value="">Standard</option>
@@ -32,49 +32,55 @@
         <option value="theme-sunset">Sunset</option>
         <option value="theme-frost">Frost</option>
       </select>
+
+      <label for="searchInput">🔎 Søk etter tittel eller skuespiller:</label>
+      <input type="text" id="searchInput" placeholder="F.eks. Matrix eller Brad Pitt" />
     </section>
   </header>
 
-
   <main>
-  <section>
-    <h3>🔍 Søk film manuelt</h3>
-    <div class="search-container">
-      <div class="search-left">
-        <input type="text" id="titleInput" placeholder="Skriv filmtittel..." />
-        <button id="searchBtn">Søk</button>
-        <div id="searchResults"></div>
-      </div>
-      <div class="search-right">
-        <div id="movieDetails" class="movie-details"></div>
-        <button id="addBtn" style="display:none;">Legg til i samling</button>
-      </div>
-    </div> <!-- 🔴 Manglet denne -->
-  </section>
-  
-  <section class="manual-entry">
-    <h2>Legg til film manuelt</h2>
-    <input type="text" id="manualTitle" placeholder="Tittel på filmen" />
-    <button id="manualAddBtn">Legg til</button>
-  </section>
+    <section class="add-panel">
+      <h2>➕ Legg til ny film</h2>
 
+      <fieldset>
+        <legend>🎬 Søk film fra TMDb</legend>
+        <input type="text" id="tmdbInput" placeholder="Skriv filmtittel..." />
+        <button id="tmdbBtn">Søk</button>
+        <div id="tmdbResults"></div>
+      </fieldset>
 
-
+      <fieldset>
+        <legend>✍️ Legg til film manuelt</legend>
+        <input type="text" id="addInput" placeholder="Tittel på filmen" />
+        <button id="addBtn">Legg til</button>
+      </fieldset>
+    </section>
 
     <section class="collection">
       <h2>📚 Samlingen min</h2>
       <ul id="collectionList"></ul>
     </section>
-
-<div id="modalOverlay" class="modal-overlay is-hidden">
-  <div class="modal-content">
-    <button id="closeModal" class="close-button">✖</button>
-    <div id="modalDetails"></div>
-  </div>
-</div>
-
-
   </main>
+
+  <div id="modalOverlay" class="modal modal-overlay is-hidden">
+    <div class="modal-content">
+      <button id="closeModal" class="close-button">✖</button>
+      <div id="modalDetails"></div>
+      <section id="editPanel" class="edit-panel is-hidden">
+        <h2>🛠️ Rediger film</h2>
+        <label>Tittel: <input type="text" id="editTitle" /></label>
+        <label>Utgivelsesår: <input type="text" id="editYear" /></label>
+        <label>Sjanger: <input type="text" id="editGenre" /></label>
+        <label>Spilletid: <input type="text" id="editRuntime" /></label>
+        <label>Regissør: <input type="text" id="editDirector" /></label>
+        <label>Skuespillere: <input type="text" id="editCast" /></label>
+        <label>IMDB-rating: <input type="text" id="editImdb" /></label>
+        <label>Beskrivelse: <textarea id="editOverview"></textarea></label>
+        <label>Last opp cover: <input type="file" id="editCoverUpload" accept="image/*" /></label>
+        <button id="saveEditBtn">Lagre endringer</button>
+      </section>
+    </div>
+  </div>
 
   <footer>
     <button id="exportBtn">⬇️ Eksporter samling</button>
@@ -82,8 +88,7 @@
     <button id="importBtn">⬆️ Importer samling</button>
   </footer>
 
-
-  <script type="module" src="app.js"></script>
-
+  <script type="module" src="js/app.js"></script>
 </body>
+
 </html>
