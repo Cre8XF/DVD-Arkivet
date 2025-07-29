@@ -10,12 +10,14 @@ const themeSelect = document.getElementById("themeSelect");
 const genreFilter = document.getElementById("genreFilter");
 const yearFilter = document.getElementById("yearFilter");
 const resetBtn = document.getElementById("resetBtn");
+const sortSelect = document.getElementById("sortSelect");
 const searchInput = document.getElementById("searchInput");
 const addInput = document.getElementById("addInput");
 const addBtn = document.getElementById("addBtn");
 const tmdbInput = document.getElementById("tmdbInput");
 const tmdbBtn = document.getElementById("tmdbBtn");
 const tmdbResults = document.getElementById("tmdbResults");
+const tmdbResetBtn = document.getElementById("tmdbResetBtn");
 const tmdbApiKey = "db3d7987e3a39baedf6bc138afa46e74";
 
 const toggleBtn = document.getElementById("toggleFilters");
@@ -25,7 +27,6 @@ toggleBtn?.addEventListener("click", () => filtersPanel?.classList.toggle("hidde
 document.addEventListener("DOMContentLoaded", async () => {
   allMovies = await loadMoviesFromFirestore();
 
-  // 🧼 Rydd opp i sjangerstrenger som er slått sammen med "|"
   allMovies = allMovies.map(movie => {
     if (Array.isArray(movie.genre) && movie.genre.length === 1 && movie.genre[0].includes("|")) {
       movie.genre = movie.genre[0].split("|").map(g => g.trim());
@@ -37,6 +38,28 @@ document.addEventListener("DOMContentLoaded", async () => {
   populateFilters();
   applyTheme(themeSelect.value);
 });
+
+function sortMovies(movies) {
+  const sortBy = sortSelect?.value || "title-asc";
+  return [...movies].sort((a, b) => {
+    const aTitle = (a.title || "").toLowerCase();
+    const bTitle = (b.title || "").toLowerCase();
+    const aYear = parseInt(a.year) || 0;
+    const bYear = parseInt(b.year) || 0;
+    const aDate = new Date(a.added || 0);
+    const bDate = new Date(b.added || 0);
+
+    switch (sortBy) {
+      case "title-asc": return aTitle.localeCompare(bTitle);
+      case "title-desc": return bTitle.localeCompare(aTitle);
+      case "year-asc": return aYear - bYear;
+      case "year-desc": return bYear - aYear;
+      case "added-asc": return aDate - bDate;
+      case "added-desc": return bDate - aDate;
+      default: return 0;
+    }
+  });
+}
 
 function renderCollection() {
   collectionList.innerHTML = "";
@@ -62,7 +85,9 @@ function renderCollection() {
     return matchGenre && matchYear && matchSearch;
   });
 
-  filtered.forEach(movie => {
+  const sorted = sortMovies(filtered);
+
+  sorted.forEach(movie => {
     const card = document.createElement("li");
     card.className = "movie-card";
     card.innerHTML = `
@@ -146,75 +171,11 @@ function applyTheme(theme) {
 
 genreFilter?.addEventListener("change", () => renderCollection());
 yearFilter?.addEventListener("change", () => renderCollection());
+sortSelect?.addEventListener("change", () => renderCollection());
 searchInput?.addEventListener("input", () => renderCollection());
 themeSelect?.addEventListener("change", () => applyTheme(themeSelect.value));
 
-addBtn?.addEventListener("click", async () => {
-  const title = addInput?.value.trim();
-  if (!title) return;
-  const newMovie = {
-    id: Date.now(),
-    title,
-    year: "",
-    genre: [],
-    runtime: "",
-    director: "",
-    cast: "",
-    imdb: "",
-    overview: "",
-    cover: "",
-    backcover: "",
-    format: "DVD",
-    distributor: "",
-    added: new Date().toLocaleDateString("no-NO", { month: "short", day: "2-digit", year: "numeric" })
-  };
-  await saveMovieToFirestore(newMovie);
-  allMovies.push(newMovie);
-  renderCollection();
-  populateFilters();
-  addInput.value = "";
-});
-
-tmdbBtn?.addEventListener("click", async () => {
-  const query = tmdbInput?.value.trim();
-  if (!query) return;
-  const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${tmdbApiKey}&query=${encodeURIComponent(query)}`);
-  const data = await res.json();
-  tmdbResults.innerHTML = data.results.map(movie => `
-    <div class="search-result">
-      <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" />
-      <div>
-        <strong>${movie.title}</strong> (${movie.release_date?.split("-")[0] || "Ukjent"})
-        <button class="add-tmdb" data-id="${movie.id}">➕ Legg til</button>
-      </div>
-    </div>
-  `).join("");
-
-  document.querySelectorAll(".add-tmdb").forEach(btn => {
-    btn.addEventListener("click", async () => {
-      const id = btn.getAttribute("data-id");
-      const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${tmdbApiKey}`);
-      const m = await res.json();
-      const newMovie = {
-        id: Date.now(),
-        title: m.title,
-        year: m.release_date?.split("-")[0] || "",
-        genre: m.genres?.map(g => g.name) || [],
-        runtime: `${Math.floor(m.runtime / 60)}:${String(m.runtime % 60).padStart(2, "0")}`,
-        director: "",
-        cast: "",
-        imdb: m.vote_average ? m.vote_average + "/10" : "",
-        overview: m.overview,
-        cover: m.poster_path ? `https://image.tmdb.org/t/p/w300${m.poster_path}` : "",
-        backcover: "",
-        format: "DVD",
-        distributor: "",
-        added: new Date().toLocaleDateString("no-NO", { month: "short", day: "2-digit", year: "numeric" })
-      };
-      await saveMovieToFirestore(newMovie);
-      allMovies.push(newMovie);
-      renderCollection();
-      populateFilters();
-    });
-  });
+tmdbResetBtn?.addEventListener("click", () => {
+  tmdbInput.value = "";
+  tmdbResults.innerHTML = "";
 });

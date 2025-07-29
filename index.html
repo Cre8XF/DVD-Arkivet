@@ -17,6 +17,16 @@
     <button id="toggleFilters" class="mobile-only">🎛️ Filtrer</button>
 
     <section id="filterPanel" class="filters hidden">
+      <label for="sortSelect">📁 Sorter etter:</label>
+      <select id="sortSelect">
+        <option value="title-asc">Tittel A–Å</option>
+        <option value="title-desc">Tittel Å–A</option>
+        <option value="year-desc">År: nyeste først</option>
+        <option value="year-asc">År: eldste først</option>
+        <option value="added-desc">Dato lagt til: nyeste</option>
+        <option value="added-asc">Dato lagt til: eldste</option>
+      </select>
+
       <label for="genreFilter">Filtrer etter sjanger:</label>
       <select id="genreFilter"></select>
 
@@ -36,6 +46,7 @@
       <label for="searchInput">🔎 Søk etter tittel eller skuespiller:</label>
       <input type="text" id="searchInput" placeholder="F.eks. Matrix eller Brad Pitt" />
     </section>
+    
   </header>
 
   <main>
@@ -46,6 +57,7 @@
         <legend>🎬 Søk film fra TMDb</legend>
         <input type="text" id="tmdbInput" placeholder="Skriv filmtittel..." />
         <button id="tmdbBtn">Søk</button>
+        <button id="tmdbResetBtn">Nullstill</button>
         <div id="tmdbResults"></div>
       </fieldset>
 
