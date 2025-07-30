@@ -201,3 +201,36 @@
     margin-bottom: 1rem;
   }
 }
+/* === Mobilvisning === */
+@media (max-width: 768px) {
+  .movie-card {
+    width: 100%;
+  }
+
+  #collectionList.grid-view {
+    justify-content: center;
+  }
+
+  .movie-card.list {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .movie-card.list img {
+    width: 70px;
+  }
+
+  .movie-card.list .info {
+    font-size: 0.95rem;
+  }
+
+  .modal-content {
+    width: 95%;
+    max-height: 90%;
+  }
+
+  .nav-buttons {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

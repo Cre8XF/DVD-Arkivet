@@ -1,10 +1,17 @@
-
+let currentMovieId = null;
 let allMovies = [];
 
 async function fetchCollection() {
   const res = await fetch("json/collection.json");
   const data = await res.json();
   return data;
+}
+
+function updateMovieCount(count) {
+  const countElem = document.getElementById("movieCount");
+  if (countElem) {
+    countElem.textContent = `Totalt: ${count} filmer`;
+  }
 }
 
 function renderMovies(movies) {
@@ -28,9 +35,12 @@ function renderMovies(movies) {
     `;
     container.appendChild(card);
   });
+   updateMovieCount(movies.length);
 }
 
 function showDetails(id) {
+  currentMovieId = id;
+
   const movie = allMovies.find(m => m.id == id);
   const modal = document.getElementById("modalOverlay");
   const content = document.getElementById("modalDetails");
@@ -49,6 +59,17 @@ function showDetails(id) {
 window.showDetails = showDetails;
 document.getElementById("closeModal").onclick = () => {
   document.getElementById("modalOverlay").classList.add("is-hidden");
+
+document.getElementById("prevMovie").onclick = () => {
+  const current = allMovies.findIndex(m => m.id == currentMovieId);
+  if (current > 0) showDetails(allMovies[current - 1].id);
+};
+
+document.getElementById("nextMovie").onclick = () => {
+  const current = allMovies.findIndex(m => m.id == currentMovieId);
+  if (current < allMovies.length - 1) showDetails(allMovies[current + 1].id);
+};
+
 };
 
 document.getElementById("resetBtn").onclick = () => {
@@ -56,6 +77,17 @@ document.getElementById("resetBtn").onclick = () => {
   document.getElementById("yearFilter").value = "";
   document.getElementById("sortSelect").value = "title-asc";
   renderMovies(allMovies);
+
+document.getElementById("prevMovie").onclick = () => {
+  const current = allMovies.findIndex(m => m.id == currentMovieId);
+  if (current > 0) showDetails(allMovies[current - 1].id);
+};
+
+document.getElementById("nextMovie").onclick = () => {
+  const current = allMovies.findIndex(m => m.id == currentMovieId);
+  if (current < allMovies.length - 1) showDetails(allMovies[current + 1].id);
+};
+
 };
 
 document.getElementById("sortSelect").addEventListener("change", () => {
@@ -139,4 +171,24 @@ window.onload = async () => {
       (m.actors && m.actors.toLowerCase().includes(query))
     ));
   });
+  const toggleFiltersBtn = document.getElementById("toggleFilters");
+const filterPanel = document.getElementById("filterPanel");
+
+if (toggleFiltersBtn && filterPanel) {
+  toggleFiltersBtn.addEventListener("click", () => {
+    filterPanel.classList.toggle("hidden");
+  });
+}
+
+
+document.getElementById("prevMovie").onclick = () => {
+  const current = allMovies.findIndex(m => m.id == currentMovieId);
+  if (current > 0) showDetails(allMovies[current - 1].id);
+};
+
+document.getElementById("nextMovie").onclick = () => {
+  const current = allMovies.findIndex(m => m.id == currentMovieId);
+  if (current < allMovies.length - 1) showDetails(allMovies[current + 1].id);
+};
+
 };

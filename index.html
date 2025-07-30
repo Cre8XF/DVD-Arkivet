@@ -14,7 +14,7 @@
   <header>
     <h1>📀 DVD Profiler</h1>
 
-<button id="toggleFilters" class="mobile-only">🎛️ Filtrer</button>
+    <button id="toggleFilters" class="mobile-only">🎛️ Filtrer</button>
 
     <section id="filterPanel" class="filters hidden">
       <label for="sortSelect">📁 Sorter etter:</label>
@@ -42,27 +42,22 @@
         <option value="theme-sunset">Sunset</option>
         <option value="theme-frost">Frost</option>
       </select>
-      
+
       <label for="viewModeSelect">🧱 Visningsmodus:</label>
       <select id="viewModeSelect">
-        <option value="grid">Standardvisning</option>
-        <option value="shelf">Hyllevisning</option>
+        <option value="grid">Kortvisning</option>
+        <option value="list">Listevisning (mobil)</option>
       </select>
-<div class="shelf-row">
-  <div class="shelf-bg"></div>
-  <div class="movies-on-shelf"> ... </div>
-</div>
 
       <label for="searchInput">🔎 Søk etter tittel eller skuespiller:</label>
       <input type="text" id="searchInput" placeholder="F.eks. Matrix eller Brad Pitt" />
     </section>
-    
   </header>
 
   <main>
-
     <section class="collection">
       <h2>📚 Samlingen min</h2>
+      <p id="movieCount">Totalt: 0 filmer</p>
       <ul id="collectionList"></ul>
     </section>
   </main>
@@ -71,6 +66,10 @@
     <div class="modal-content">
       <button id="closeModal" class="close-button">✖</button>
       <div id="modalDetails"></div>
+      <div class="nav-buttons">
+        <button id="prevMovie">‹ Forrige</button>
+        <button id="nextMovie">Neste ›</button>
+      </div>
       <section id="editPanel" class="edit-panel is-hidden">
         <h2>🛠️ Rediger film</h2>
         <label>Tittel: <input type="text" id="editTitle" /></label>
@@ -86,7 +85,7 @@
       </section>
     </div>
   </div>
-<div id="movieList"></div>
+
   <footer>
     <button id="exportBtn">⬇️ Eksporter samling</button>
     <input type="file" id="importFile" accept=".json" style="display: none;" />
