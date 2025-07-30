@@ -2,26 +2,37 @@ const fs = require("fs");
 const fetch = require("node-fetch");
 
 // === KONFIG ===
-const inputFile = "collection_part4.json";
-const outputFile = "collection_part4_with_posters.json";
-const tmdbApiKey = "db3d7987e3a39baedf6bc138afa46e74"; // v3 API Key
-const delayMs = 300; // forsinkelse mellom forespørsler
+const inputFile = "missing_posters.json";
+const outputFile = "missing_posters_with_posters.json";
+const tmdbApiKey = "db3d7987e3a39baedf6bc138afa46e74";
+const delayMs = 300;
 
-// === Hjelpefunksjon: vent litt ===
+// === Hjelpefunksjon ===
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// === TMDb-forespørsel (v3 API Key)
+// === TMDb-søk med fallback til 'tv'
 async function fetchPoster(title, year) {
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${tmdbApiKey}&query=${encodeURIComponent(title)}&year=${year}`;
-  const res = await fetch(url);
-  const data = await res.json();
-  const posterPath = data?.results?.[0]?.poster_path;
-  return posterPath ? `https://image.tmdb.org/t/p/w500${posterPath}` : "";
+  const baseUrl = "https://api.themoviedb.org/3/search/";
+  const imgBase = "https://image.tmdb.org/t/p/w500";
+
+  for (const type of ["movie", "tv"]) {
+    const url = `${baseUrl}${type}?api_key=${tmdbApiKey}&query=${encodeURIComponent(title)}&year=${year}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const posterPath = data?.results?.[0]?.poster_path;
+    if (posterPath) {
+      console.log(`✅ FANT via ${type.toUpperCase()}: ${title}`);
+      return imgBase + posterPath;
+    }
+  }
+
+  console.log(`❌ Fant ikke: ${title}`);
+  return "";
 }
 
-// === Hovedfunksjon ===
+// === Hovedløp ===
 async function run() {
   const data = JSON.parse(fs.readFileSync(inputFile, "utf-8"));
   for (let i = 0; i < data.length; i++) {
@@ -39,7 +50,7 @@ async function run() {
     }
   }
   fs.writeFileSync(outputFile, JSON.stringify(data, null, 2), "utf-8");
-  console.log(`✅ Ferdig! Lagret til ${outputFile}`);
+  console.log(`✅ Lagret til ${outputFile}`);
 }
 
 run();

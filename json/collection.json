@@ -72,7 +72,7 @@
     "actors": "Penny Johnson | Kiefer Sutherland | Dennis Haysbert",
     "edition": "Season 1",
     "barcode": "7036988005983",
-    "poster": ""
+    "poster": "https://media.themoviedb.org/t/p/w58_and_h87_face/nsOf5hvGQCHlONzPJ22ROUbje6v.jpg"
   },
   {
     "title": "24: Season 2",
@@ -87,7 +87,7 @@
     "actors": "Penny Johnson | Kiefer Sutherland | Dennis Haysbert",
     "edition": "The Complete Season 2",
     "barcode": "7036988007963",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/uf2E2VNbKh1r5x5YiKK2JSHBg2w.jpg"
   },
   {
     "title": "24: Season 3",
@@ -102,7 +102,7 @@
     "actors": "James Badge Dale | Mary Lynn Rajskub | Joaquim de Almeida",
     "edition": "Season Three DVD Collection",
     "barcode": "7036988011199",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/1zgtoa3viopytiLwOtfUvJi3dxP.jpg"
   },
   {
     "title": "24: Season 4",
@@ -117,7 +117,7 @@
     "actors": "Kim Raver | Roger R. Cross | Mary Lynn Rajskub",
     "edition": "Season Four DVD Collection",
     "barcode": "7036988014343",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/3xZtEyMbvhnexU8JVErRvu1AWUv.jpg"
   },
   {
     "title": "24: Season 5",
@@ -132,7 +132,7 @@
     "actors": "Mary Lynn Rajskub | Kim Raver | Roger R. Cross",
     "edition": "",
     "barcode": "7036988018884",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/xZXf9wGhQqTnHm2aoJGG105JDQd.jpg"
   },
   {
     "title": "24: Season 7",
@@ -147,7 +147,7 @@
     "actors": "Kiefer Sutherland | Mary Lynn Rajskub | Cherry Jones",
     "edition": "",
     "barcode": "7036988028036",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/pkZfdyuO5Vf0fOji7y9ccJgJI99.jpg"
   },
   {
     "title": "24: Season 8",
@@ -162,7 +162,7 @@
     "actors": "Mary Lynn Rajskub | Freddie Prinze Jr. | Kiefer Sutherland",
     "edition": "",
     "barcode": "7036988032620",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/nDV7aQ0TULUPi5o9borF84cpaau.jpg"
   },
   {
     "title": "37 1/2",
@@ -210,21 +210,6 @@
     "poster": "https://image.tmdb.org/t/p/w500/jBoRAWYOv7tBtfXbNJMAojGj0Xf.jpg"
   },
   {
-    "title": "The 40-Year-Old Virgin",
-    "year": "2005",
-    "genres": "Comedy | Romance",
-    "runtime": "1:56",
-    "director": "Judd Apatow",
-    "format": "DVD",
-    "overview": "Andy Stitzer har et trivelig liv med en fin leilighet og jobb med å stemple fakturaer i en elektronikkbutikk. Men i en alder av 40 er det én ting Andy ikke har gjort, og det plager virkelig hans sex-besatte mannlige medarbeidere: Andy er fortsatt jomfru. Gutta er fast bestemt på å hjelpe Andy med å bli lagt, og gjør det til sitt oppdrag å de-virginisere ham. Men alt virker håpløst før Andy møter småbedriftseieren Trish, en alenemor.",
-    "imdbRating": "7.1",
-    "imdbUrl": "https://www.imdb.com/title/tt0405422/?ref_=ref_ext_clz",
-    "actors": "Steve Carell | Catherine Keener | Paul Rudd",
-    "edition": "",
-    "barcode": "5050582393064",
-    "poster": "https://image.tmdb.org/t/p/w500/jBoRAWYOv7tBtfXbNJMAojGj0Xf.jpg"
-  },
-  {
     "title": "The 4400: Season 2",
     "year": "2005",
     "genres": "Drama | Mystery | Science Fiction | Thriller",
@@ -237,7 +222,7 @@
     "actors": "Mahershalalhashbaz Ali | Joel Gretsch | Jacqueline McKenzie",
     "edition": "",
     "barcode": "4332151022768",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/8TdJ70yejU3Dj5Uge4MQPu63pTF.jpg"
   },
   {
     "title": "The 4400: Season 1",
@@ -252,7 +237,7 @@
     "actors": "Mahershalalhashbaz Ali | Peter Coyote | Joel Gretsch",
     "edition": "",
     "barcode": "7332431019157",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/8n1xn0AxnuI0YTedhrvxIpUrx3g.jpg"
   },
   {
     "title": "8 Mile",
@@ -297,7 +282,7 @@
     "actors": "Robert Vaughn | Dwight Schultz | Mr. T",
     "edition": "",
     "barcode": "7036988021693",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/ak8ZvkrjNsYgX42uxouze00Up2M.jpg"
   },
   {
     "title": "Ace Ventura Deluxe Double Feature: Pet Detective / When Nature Calls",
@@ -372,7 +357,7 @@
     "actors": "Sten-Åke Cederhök | Tomas von Brömssen | Lennart Lundh",
     "edition": "",
     "barcode": "7391970244819",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/7SmwDiV5pszDlvZTqOkxpO3Wrwf.jpg"
   },
   {
     "title": "Alice in Wonderland",
@@ -1047,7 +1032,7 @@
     "actors": "Dee Bradley Baker | Yuri Lowenthal | Greg Cipes",
     "edition": "",
     "barcode": "5051895052457",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/4hRKliNabiHz2EHM3LBkS3ulbSh.jpg"
   },
   {
     "title": "Beverly Hills Cop",
@@ -1137,7 +1122,7 @@
     "actors": "Rowan Atkinson | Tim McInnerny | Elspet Gray",
     "edition": "",
     "barcode": "",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/y3rXOeklqhZ7BTBveW5WLJqyjgU.jpg"
   },
   {
     "title": "Black Adder the Third",
@@ -1152,7 +1137,7 @@
     "actors": "Rowan Atkinson | Tony Robinson | Stephen Fry",
     "edition": "",
     "barcode": "",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/y3rXOeklqhZ7BTBveW5WLJqyjgU.jpg"
   },
   {
     "title": "Black Hawk Down",
@@ -1197,7 +1182,7 @@
     "actors": "Rowan Atkinson | Tim McInnerny | Tony Robinson",
     "edition": "",
     "barcode": "",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/y3rXOeklqhZ7BTBveW5WLJqyjgU.jpg"
   },
   {
     "title": "Blackadder Back & Forth",
@@ -1227,7 +1212,7 @@
     "actors": "Stephen Fry | Hugh Laurie | Rowan Atkinson",
     "edition": "",
     "barcode": "",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/y3rXOeklqhZ7BTBveW5WLJqyjgU.jpg"
   },
   {
     "title": "Blackadder's Christmas Carol",
@@ -1302,21 +1287,6 @@
     "actors": "Will Ferrell | Jon Heder | Will Arnett",
     "edition": "",
     "barcode": "7332431026995",
-    "poster": "https://image.tmdb.org/t/p/w500/yclY3zyzrL1MS9b6Eygs9ks0ZTY.jpg"
-  },
-  {
-    "title": "Blades of Glory",
-    "year": "2007",
-    "genres": "Comedy | Sports",
-    "runtime": "1:33",
-    "director": "Josh Gordon | Will Speck",
-    "format": "",
-    "overview": "Når en mye omtalt skøyteskandale fratar dem gullmedaljene deres, går to idrettsutøvere i verdensklasse tilbake på isen via et smutthull som lar dem konkurrere sammen som et parlag.",
-    "imdbRating": "6.3",
-    "imdbUrl": "https://www.imdb.com/title/tt0445934/?ref_=ref_ext_clz",
-    "actors": "Will Ferrell | Jon Heder | Will Arnett",
-    "edition": "",
-    "barcode": "",
     "poster": "https://image.tmdb.org/t/p/w500/yclY3zyzrL1MS9b6Eygs9ks0ZTY.jpg"
   },
   {
@@ -1530,21 +1500,6 @@
     "poster": ""
   },
   {
-    "title": "Brannmann Sam",
-    "year": "2004",
-    "genres": "Animation",
-    "runtime": "1:00",
-    "director": "",
-    "format": "DVD",
-    "overview": "",
-    "imdbRating": "",
-    "imdbUrl": "",
-    "actors": "",
-    "edition": "",
-    "barcode": "7036988041356",
-    "poster": ""
-  },
-  {
     "title": "Brannmann Sam - Helter I Fleng",
     "year": "",
     "genres": "",
@@ -1632,7 +1587,7 @@
     "actors": "Fredde Granberg | Peter Settman | Anna-Lena Strindlund",
     "edition": "",
     "barcode": "7391970200556",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/iG9xIZJqaQhQiN9beAiElWnLY5D.jpg"
   },
   {
     "title": "Californication: Season 1",
@@ -1647,7 +1602,7 @@
     "actors": "Pamela Segall | David Duchovny | Natascha McElhone",
     "edition": "The First Season",
     "barcode": "7332431030619",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/yz46AmvMqeGGkziIl6BMjGTHBzv.jpg"
   },
   {
     "title": "Californication: Season 2",
@@ -1662,7 +1617,7 @@
     "actors": "Callum Keith Rennie | Pamela Segall | David Duchovny",
     "edition": "The Second Season",
     "barcode": "7332431031975",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/6Wt8urpQnDxqSim0haRtUckgLqt.jpg"
   },
   {
     "title": "Californication: Season 3",
@@ -1677,7 +1632,7 @@
     "actors": "Pamela Segall | David Duchovny | Natascha McElhone",
     "edition": "The Third Season",
     "barcode": "7332431034587",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/zgiHJJI08sDVH3LmVJMOpVeK99S.jpg"
   },
   {
     "title": "The Cannonball Run",
@@ -1800,21 +1755,6 @@
     "poster": "https://image.tmdb.org/t/p/w500/iKP6wg3c6COUe8gYutoGG7qcPnO.jpg"
   },
   {
-    "title": "Charlie and the Chocolate Factory",
-    "year": "2005",
-    "genres": "Adventure | Comedy | Family | Fantasy | Musical",
-    "runtime": "1:55",
-    "director": "Tim Burton",
-    "format": "DVD",
-    "overview": "En ung gutt vinner en tur gjennom den mest storslåtte sjokoladefabrikken i verden, ledet av verdens mest uvanlige godteriprodusent.",
-    "imdbRating": "6.7",
-    "imdbUrl": "https://www.imdb.com/title/tt0367594/?ref_=ref_ext_clz",
-    "actors": "Johnny Depp | Freddie Highmore | David Kelly",
-    "edition": "Special Edition",
-    "barcode": "7321940593371",
-    "poster": "https://image.tmdb.org/t/p/w500/iKP6wg3c6COUe8gYutoGG7qcPnO.jpg"
-  },
-  {
     "title": "Charlie St. Cloud",
     "year": "2010",
     "genres": "Drama | Fantasy | Romance",
@@ -1828,21 +1768,6 @@
     "edition": "",
     "barcode": "5050582838916",
     "poster": "https://image.tmdb.org/t/p/w500/r4XSrs6N086EU8CNm339dHRPhZg.jpg"
-  },
-  {
-    "title": "Chicken Little",
-    "year": "2005",
-    "genres": "Adventure | Animation | Comedy | Family | Fantasy | Science Fiction",
-    "runtime": "1:21",
-    "director": "Mark Dindal",
-    "format": "DVD",
-    "overview": "Når himmelen virkelig faller og fornuften har flydd i hagen, hvem vil reise seg for å redde dagen? Sammen med det hysteriske bandet av mistilpassede venner må Chicken Little lage en plan for å redde planeten fra romveseninvasjon og bevise at verdens største helt er en liten kylling.",
-    "imdbRating": "5.7",
-    "imdbUrl": "https://www.imdb.com/title/tt0371606/?ref_=ref_ext_clz",
-    "actors": "Zach Braff | Garry Marshall | Don Knotts",
-    "edition": "",
-    "barcode": "8717418071264",
-    "poster": "https://image.tmdb.org/t/p/w500/vkhMtzwmAEglnilVNsL3IE6kU0B.jpg"
   },
   {
     "title": "Chicken Little",
@@ -1935,21 +1860,6 @@
     "poster": "https://image.tmdb.org/t/p/w500/3fMKujwp38YN7nX94HHqWjekQCf.jpg"
   },
   {
-    "title": "Chip 'n' Dale: Here Comes Trouble",
-    "year": "2005",
-    "genres": "Adventure | Animation | Children | Comedy | Family | Musical | Romance",
-    "runtime": "0:52",
-    "director": "Jack Hannah",
-    "format": "DVD",
-    "overview": "Denne samlingen inneholder: \n<b> – Alt i et nøtteskall (1949)</b>\n<b> - Chicken in the Rough (1951)</b>\n<b> - Chip an' Dale (1947)</b>\n<b> - Ute av skala (1951)</b>\n<b> - Two Chips and a Miss (1952)</b>\n<b> - Up a Tree (1955)</b>\n<b> - Food for Feudin' (1950)</b>\n<b> - Trailer Horn (1950)</b>",
-    "imdbRating": "",
-    "imdbUrl": "",
-    "actors": "James MacDonald | Dessie Flynn | Clarence Nash",
-    "edition": "",
-    "barcode": "7393834476404",
-    "poster": "https://image.tmdb.org/t/p/w500/3fMKujwp38YN7nX94HHqWjekQCf.jpg"
-  },
-  {
     "title": "Ben 10: Alien Force: Volume 3",
     "year": "2008",
     "genres": "Action | Adventure | Animation | Comedy | Drama | Family | Science Fiction",
@@ -1995,21 +1905,6 @@
     "poster": "https://image.tmdb.org/t/p/w500/iREd0rNCjYdf5Ar0vfaW32yrkm.jpg"
   },
   {
-    "title": "The Chronicles of Narnia: The Lion, the Witch and the Wardrobe",
-    "year": "2005",
-    "genres": "Adventure | Family | Fantasy",
-    "runtime": "2:23",
-    "director": "Andrew Adamson",
-    "format": "DVD",
-    "overview": "Søsknene Lucy, Edmund, Susan og Peter går gjennom en magisk garderobe og finner landet Narnia. Der oppdager de et sjarmerende, en gang fredelig rike som har blitt kastet inn i evig vinter av den onde hvite heksa, Jadis. Hjulpet av den kloke og storslåtte løven, Aslan, fører barna Narnia inn i en spektakulær, klimaktisk kamp for å bli fri fra heksens brekrefter for alltid.",
-    "imdbRating": "6.9",
-    "imdbUrl": "https://www.imdb.com/title/tt0363771/?ref_=ref_ext_clz",
-    "actors": "Georgie Henley | Skandar Keynes | William Moseley",
-    "edition": "Special Edition",
-    "barcode": "8717418070779",
-    "poster": "https://image.tmdb.org/t/p/w500/iREd0rNCjYdf5Ar0vfaW32yrkm.jpg"
-  },
-  {
     "title": "The Chronicles of Riddick",
     "year": "2004",
     "genres": "Action | Adventure | Science Fiction | Thriller",
@@ -2052,21 +1947,6 @@
     "actors": "Ilene Woods | Eleanor Audley | Verna Felton",
     "edition": "Speisialutgave",
     "barcode": "8717418063917",
-    "poster": "https://image.tmdb.org/t/p/w500/4nssBcQUBadCTBjrAkX46mVEKts.jpg"
-  },
-  {
-    "title": "Cinderella",
-    "year": "1950",
-    "genres": "Animation | Family | Fantasy | Musical | Romance",
-    "runtime": "1:14",
-    "director": "Clyde Geronimi | Wilfred Jackson | Hamilton Luske",
-    "format": "DVD",
-    "overview": "Askepott har tro på at drømmene hennes om et bedre liv vil gå i oppfyllelse. Med hjelp fra sine lojale musevenner og en bølge av gudmorens tryllestav, blir Askepotts filler på magisk vis forvandlet til en strålende kjole og drar til Royal Ball. Men når klokken slår midnatt, brytes trolldommen, og etterlater en enkelt glasstøffel... den eneste nøkkelen til den ultimate eventyravslutningen!",
-    "imdbRating": "7.3",
-    "imdbUrl": "https://www.imdb.com/title/tt0042332/?ref_=ref_ext_clz",
-    "actors": "Ilene Woods | Eleanor Audley | Verna Felton",
-    "edition": "",
-    "barcode": "8717418356927",
     "poster": "https://image.tmdb.org/t/p/w500/4nssBcQUBadCTBjrAkX46mVEKts.jpg"
   },
   {
@@ -2310,21 +2190,6 @@
     "poster": "https://image.tmdb.org/t/p/w500/prdFY9Bc28frBhhWl7mPSr7JmFp.jpg"
   },
   {
-    "title": "Crossroads",
-    "year": "2002",
-    "genres": "Comedy | Drama | Romance",
-    "runtime": "1:33",
-    "director": "Tamra Davis",
-    "format": "DVD",
-    "overview": "Etter åtte års mellomrom gjenoppdager tre barndomsvenner - Lucy, Kit og Mimi - vennskapet sitt på en langrennstur. Med knapt en plan, praktisk talt ingen penger, men massevis av drømmer, tar jentene et løft med Mimis kjekke venn Ben i cabriolet hans. Underveis samler de ikke bare erfaringer som vil forandre livene deres, men de oppdager også hvor viktig det er å holde fast ved hjertens ønsker.",
-    "imdbRating": "3.9",
-    "imdbUrl": "https://www.imdb.com/title/tt0275022/?ref_=ref_ext_clz",
-    "actors": "Britney Spears | Anson Mount | Zoe Saldana",
-    "edition": "",
-    "barcode": "5708758656634",
-    "poster": "https://image.tmdb.org/t/p/w500/prdFY9Bc28frBhhWl7mPSr7JmFp.jpg"
-  },
-  {
     "title": "Crouching Tiger, Hidden Dragon",
     "year": "2000",
     "genres": "Action | Adventure | Drama | Fantasy | Romance",
@@ -2562,7 +2427,7 @@
     "actors": "Eva Longoria | Kyle MacLachlan | Teri Hatcher",
     "edition": "",
     "barcode": "",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/4Q64W87EgCaEjWMI9foQ4PI3NiN.jpg"
   },
   {
     "title": "Desperate Housewives: Season 4",
@@ -2577,7 +2442,7 @@
     "actors": "Eva Longoria | Kyle MacLachlan | Teri Hatcher",
     "edition": "",
     "barcode": "8717418177775",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/z7a9U2OLfOJyCrLzyiVcLUfgHBL.jpg"
   },
   {
     "title": "Desperate Measures",
@@ -2667,7 +2532,7 @@
     "actors": "Lauren Vélez | Geoffrey Pierson | James Remar",
     "edition": "1. tuotantokausi",
     "barcode": "7332431028371",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/rmhoMEHK3ZP2EAXX2VpxuKpW3Bf.jpg"
   },
   {
     "title": "Dexter: Season 2",
@@ -2682,22 +2547,7 @@
     "actors": "Lauren Vélez | James Remar | David Zayas",
     "edition": "2. Tuotantokausi",
     "barcode": "7332431031876",
-    "poster": ""
-  },
-  {
-    "title": "Dexter: Season 2",
-    "year": "2007",
-    "genres": "Crime | Drama | Mystery | Thriller",
-    "runtime": "10:34",
-    "director": "Tony Goldwyn | Marcos Siega | Steve Shill",
-    "format": "DVD",
-    "overview": "Basert på Jeff Lindsays romaner Darkly Dreaming Dexter og Dearly Devoted Dexter følger denne krimthrilleren Dexter Morgan. Dexter er en rettsmedisinsk blodsprutekspert for Miami Metro Police Department. Takket være en kode innpodet i ham av fosterfaren hans, Harry, jakter han på folk som har rømt rettferdigheten og sørger for at de ikke slipper unna med en forbrytelse igjen.",
-    "imdbRating": "8.6",
-    "imdbUrl": "https://www.imdb.com/title/tt0773262/?ref_=ref_ext_clz",
-    "actors": "Lauren Vélez | James Remar | David Zayas",
-    "edition": "",
-    "barcode": "4332151031876",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/t8o6P0pTsnfgsUo6AXSuaiw9fgG.jpg"
   },
   {
     "title": "Dexter: Season 3",
@@ -2712,7 +2562,7 @@
     "actors": "Lauren Vélez | James Remar | Jimmy Smits",
     "edition": "3. Tuotantokausi",
     "barcode": "7332431033764",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/8zyoh0AtArOyTq0F2USckRGzZEU.jpg"
   },
   {
     "title": "Die Hard",
@@ -2862,7 +2712,7 @@
     "actors": "T.J. Miller | Jay Baruchel | Christopher Mintz-Plasse",
     "edition": "",
     "barcode": "7340112714727",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/gFhBIF8oXjpdVk1NbI4kP4l8LAe.jpg"
   },
   {
     "title": "Dragons: Riders of Berk / Defenders of Berk",
@@ -2877,7 +2727,7 @@
     "actors": "America Ferrera | Jay Baruchel | T.J. Miller",
     "edition": "",
     "barcode": "7340112711092",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/gFhBIF8oXjpdVk1NbI4kP4l8LAe.jpg"
   },
   {
     "title": "Drive Angry",
@@ -2953,21 +2803,6 @@
     "edition": "Collector's Edition",
     "barcode": "7036988021037",
     "poster": "https://image.tmdb.org/t/p/w500/iZFugYtV61QodF2X1N3HA1FKQBP.jpg"
-  },
-  {
-    "title": "Elias and the Treasure of the Sea",
-    "year": "2010",
-    "genres": "Adventure | Animation | Family | Musical",
-    "runtime": "1:14",
-    "director": "Lise I. Osvoll",
-    "format": "DVD",
-    "overview": "De årlige vinterfiskene er i ferd med å starte, men den store fangsten ser aldri ut til å komme. Det viser seg at store industritrålere har tømt havet for fisk, og de vanlige små fiskebåtene vil få vanskelig for å overleve. Elias samler alle vennene sine for å redde fremtiden til det lille kystsamfunnet sitt.",
-    "imdbRating": "5.8",
-    "imdbUrl": "https://www.imdb.com/title/tt1692191/?ref_=ref_ext_clz",
-    "actors": "Mikael Aksnes-Pehrson | Elisabeth Moberg | Atle Antonsen",
-    "edition": "",
-    "barcode": "7036988035089",
-    "poster": "https://image.tmdb.org/t/p/w500/g3cjeeLhALmKCDKDiEnHxHwFkXK.jpg"
   },
   {
     "title": "Elias and the Treasure of the Sea",
@@ -3240,21 +3075,6 @@
     "poster": "https://image.tmdb.org/t/p/w500/fPtlCO1yQtnoLHOwKtWz7db6RGU.jpg"
   },
   {
-    "title": "The Fifth Element",
-    "year": "1997",
-    "genres": "Action | Adventure | Science Fiction",
-    "runtime": "2:06",
-    "director": "Luc Besson",
-    "format": "DVD",
-    "overview": "I 2257 får en drosjesjåfør utilsiktet oppgaven med å redde en ung jente som er en del av nøkkelen som skal sikre menneskehetens overlevelse.",
-    "imdbRating": "7.6",
-    "imdbUrl": "https://www.imdb.com/title/tt0119116/?ref_=ref_ext_clz",
-    "actors": "Bruce Willis | Gary Oldman | Ian Holm",
-    "edition": "",
-    "barcode": "7393834092406",
-    "poster": "https://image.tmdb.org/t/p/w500/fPtlCO1yQtnoLHOwKtWz7db6RGU.jpg"
-  },
-  {
     "title": "Fight Club",
     "year": "1999",
     "genres": "Crime | Drama | Thriller",
@@ -3390,36 +3210,6 @@
     "poster": ""
   },
   {
-    "title": "Fireman Sam: Action Stations",
-    "year": "1987",
-    "genres": "Animation | Family",
-    "runtime": "0:00",
-    "director": "Gary Andrews | Oskar Nilsson | Jerry Hibbert",
-    "format": "DVD",
-    "overview": "Episodeoppføring •High Jinx •Fiery Finale •Bursdagsoverraskelse •Fields of Fire •La det snø •The Big Freeze",
-    "imdbRating": "6.1",
-    "imdbUrl": "https://www.imdb.com/title/tt0329829/?ref_=ref_ext_clz",
-    "actors": "Steven Kynman | Tegwen Tucker | David Carling",
-    "edition": "",
-    "barcode": "5034217423005",
-    "poster": ""
-  },
-  {
-    "title": "Fireman Sam: The Best Of Fireman Sam",
-    "year": "1987",
-    "genres": "Animation | Family",
-    "runtime": "0:00",
-    "director": "Gary Andrews | Oskar Nilsson | Jerry Hibbert",
-    "format": "DVD",
-    "overview": "Eventyrene til en samfunnsbrannmann, Sam.",
-    "imdbRating": "6.1",
-    "imdbUrl": "https://www.imdb.com/title/tt0329829/?ref_=ref_ext_clz",
-    "actors": "Steven Kynman | Tegwen Tucker | David Carling",
-    "edition": "",
-    "barcode": "7036988022003",
-    "poster": ""
-  },
-  {
     "title": "Fireman Sam: The Best Of Fireman Sam",
     "year": "1987",
     "genres": "Animation | Family",
@@ -3492,7 +3282,7 @@
     "actors": "Rolv Wesenlund | Aud Schønemann | Henki Kolstad",
     "edition": "30-års Jubileum",
     "barcode": "7393834235308",
-    "poster": ""
+    "poster": "https://media.themoviedb.org/t/p/w130_and_h195_bestv2/9pwms6zio951iZhl6hzgMlIeqCo.jpg"
   },
   {
     "title": "Fleksnes 2",
@@ -3507,7 +3297,7 @@
     "actors": "Rolv Wesenlund | Aud Schønemann | Henki Kolstad",
     "edition": "",
     "barcode": "7393834234806",
-    "poster": ""
+    "poster": "https://media.themoviedb.org/t/p/w130_and_h195_bestv2/jIz6UYJTJ9iEiCbne8Fg81CCXhn.jpg"
   },
   {
     "title": "Fleksnes 3",
@@ -3522,7 +3312,7 @@
     "actors": "Rolv Wesenlund | Aud Schønemann | Henki Kolstad",
     "edition": "",
     "barcode": "7393834234905",
-    "poster": ""
+    "poster": "https://media.themoviedb.org/t/p/w130_and_h195_bestv2/1BZNWOxje3wAF4Mlid86HBre82w.jpg"
   },
   {
     "title": "Fleksnes 4",
@@ -3537,7 +3327,7 @@
     "actors": "Rolv Wesenlund | Aud Schønemann | Henki Kolstad",
     "edition": "",
     "barcode": "7393834235001",
-    "poster": ""
+    "poster": "https://media.themoviedb.org/t/p/w130_and_h195_bestv2/sHOVnWINCKxvKnIIicEUD1zpUwU.jpg"
   },
   {
     "title": "Fleksnes 5",
@@ -3552,7 +3342,7 @@
     "actors": "Rolv Wesenlund | Aud Schønemann | Henki Kolstad",
     "edition": "",
     "barcode": "7393834235100",
-    "poster": ""
+    "poster": "https://media.themoviedb.org/t/p/w130_and_h195_bestv2/oHepJsN01ncDcpjE62pAYP3q9Qn.jpg"
   },
   {
     "title": "Fleksnes 6",
@@ -3567,7 +3357,7 @@
     "actors": "Rolv Wesenlund | Aud Schønemann | Henki Kolstad",
     "edition": "",
     "barcode": "7393834343706",
-    "poster": ""
+    "poster": "https://media.themoviedb.org/t/p/w130_and_h195_bestv2/hWVZp1bFN8gR7xYKAZfZi9Nd4Eu.jpg"
   },
   {
     "title": "Flight of the Phoenix",
@@ -3807,7 +3597,7 @@
     "actors": "Jennifer Love Hewitt | Aisha Tyler | David Conrad",
     "edition": "",
     "barcode": "8717418119843",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/dxGZP4NWrLPQbe2ZFDmX8dMSkCl.jpg"
   },
   {
     "title": "Ghost Whisperer: Season 2",
@@ -3822,7 +3612,7 @@
     "actors": "Jennifer Love Hewitt | David Conrad | Camryn Manheim",
     "edition": "",
     "barcode": "8717418153007",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/kG6VQLXUwg7Ig5b01CXJglQvsMt.jpg"
   },
   {
     "title": "Ghost Whisperer: Season 3",
@@ -3837,7 +3627,7 @@
     "actors": "Jennifer Love Hewitt | Jay Mohr | Camryn Manheim",
     "edition": "",
     "barcode": "8717418276034",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/pz298l2ilo4iakW1h7vY6qAL9PI.jpg"
   },
   {
     "title": "Ghosts of Girlfriends Past",
@@ -3867,21 +3657,6 @@
     "actors": "Michael Nyqvist | Noomi Rapace | Lena Endre",
     "edition": "",
     "barcode": "7041271840738",
-    "poster": "https://image.tmdb.org/t/p/w500/7mlbVfQOSTFJmgE1xaJK3wauJEP.jpg"
-  },
-  {
-    "title": "Girl Who Kicked the Hornet's Nest",
-    "year": "2009",
-    "genres": "Crime | Drama | Mystery | Thriller",
-    "runtime": "2:27",
-    "director": "Daniel Alfredson",
-    "format": "DVD",
-    "overview": "Etter å ha tatt en kule mot hodet, er Salander under tett oppsyn på et sykehus og står overfor rettssak for drapsforsøk når hun eventuelt blir løslatt. Ved hjelp av journalist Mikael Blomkvist og hans forskere ved Millennium magazine, må Salander bevise sin uskyld. Ved å gjøre dette spiller hun mot mektige fiender og sin egen fortid.",
-    "imdbRating": "7.3",
-    "imdbUrl": "https://www.imdb.com/title/tt1343097/?ref_=ref_ext_clz",
-    "actors": "Michael Nyqvist | Noomi Rapace | Lena Endre",
-    "edition": "",
-    "barcode": "7041271808639",
     "poster": "https://image.tmdb.org/t/p/w500/7mlbVfQOSTFJmgE1xaJK3wauJEP.jpg"
   },
   {
@@ -4107,7 +3882,7 @@
     "actors": "Robert Gustafsson | Stig Grybe | Sissela Kyle",
     "edition": "",
     "barcode": "7391970024770",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/pUm50VrnULAF0RqVUVLhd5Je2eH.jpg"
   },
   {
     "title": "Gustafsson 3 tr: Säsong 2",
@@ -4332,7 +4107,7 @@
     "actors": "Ehud Kafri | Tommy Karlsen | Pål David Blakely",
     "edition": "",
     "barcode": "7041271576231",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/yXqVq5IJfQGjTuwe6ugX4STqRvs.jpg"
   },
   {
     "title": "Hellboy",
@@ -4437,7 +4212,7 @@
     "actors": "James Kyson Lee | Hayden Panettiere | Masi Oka",
     "edition": "7pc",
     "barcode": "5050582535365",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/x0RT82mMurrT6DTbt2X3oEkj5N7.jpg"
   },
   {
     "title": "Heroes: Season 2",
@@ -4452,7 +4227,7 @@
     "actors": "James Kyson Lee | Jack Coleman | Sendhil Ramamurthy",
     "edition": "4pc",
     "barcode": "5050582570168",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/qXBhCRkOQH4erVJe8eygxu7qB3V.jpg"
   },
   {
     "title": "Heroes: Season 3",
@@ -4467,7 +4242,7 @@
     "actors": "James Kyson Lee | Milo Ventimiglia | Adrian Pasdar",
     "edition": "6 -Disc Set",
     "barcode": "5050582731811",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/sGnkqL7S6MfCa3j0zfwQ3yQcBsZ.jpg"
   },
   {
     "title": "High Crimes",
@@ -4695,21 +4470,6 @@
     "poster": "https://image.tmdb.org/t/p/w500/3nFnrivNgipSKZ8LZJJbRSlAcTR.jpg"
   },
   {
-    "title": "Hotel Transylvania 2",
-    "year": "2015",
-    "genres": "Adventure | Animation | Comedy | Family | Fantasy | Romance",
-    "runtime": "1:29",
-    "director": "Genndy Tartakovsky",
-    "format": "DVD",
-    "overview": "Når den gammel-gammeldagse vampyren Vlad ankommer hotellet for en improvisert familiesammenkomst, står Hotel Transylvania for en kollisjon mellom overnaturlig gammeldags og moderne kul.",
-    "imdbRating": "6.6",
-    "imdbUrl": "https://www.imdb.com/title/tt2510894/?ref_=ref_ext_clz",
-    "actors": "Adam Sandler | Andy Samberg | Selena Gomez",
-    "edition": "",
-    "barcode": "5051161357910",
-    "poster": "https://image.tmdb.org/t/p/w500/3nFnrivNgipSKZ8LZJJbRSlAcTR.jpg"
-  },
-  {
     "title": "House M.D.: Season 1",
     "year": "2005",
     "genres": "Drama | Mystery",
@@ -4722,7 +4482,7 @@
     "actors": "Robert Sean Leonard | Hugh Laurie | Jennifer Morrison",
     "edition": "Season One",
     "barcode": "5050582448399",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/lXBIhFheyDRA72vRQvYF1mkEF27.jpg"
   },
   {
     "title": "House M.D.: Season 2",
@@ -4737,7 +4497,7 @@
     "actors": "Robert Sean Leonard | Hugh Laurie | Jennifer Morrison",
     "edition": "Season Two",
     "barcode": "5050582467147",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/j2LxTsMhXYqfi4k9Vome8kQc26U.jpg"
   },
   {
     "title": "House M.D.: Season 3",
@@ -4752,7 +4512,7 @@
     "actors": "Robert Sean Leonard | Hugh Laurie | Jennifer Morrison",
     "edition": "",
     "barcode": "5050582840681",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/muuLevUfVbpq87lWljfZ8HLga6b.jpg"
   },
   {
     "title": "House M.D.: Season 4",
@@ -4767,7 +4527,7 @@
     "actors": "Robert Sean Leonard | Hugh Laurie | Jennifer Morrison",
     "edition": "Season Four",
     "barcode": "5050582732078",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/CryJFbwif5U1VViZ5EkmeomD3q.jpg"
   },
   {
     "title": "House M.D.: Season 5",
@@ -4782,7 +4542,7 @@
     "actors": "Robert Sean Leonard | Olivia Wilde | Hugh Laurie",
     "edition": "",
     "barcode": "5050582769982",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/bwE3QGVeC7E5VycnIPVzPtzpBId.jpg"
   },
   {
     "title": "House M.D.: Season 7",
@@ -4797,7 +4557,7 @@
     "actors": "Robert Sean Leonard | Hugh Laurie | Peter Jacobson",
     "edition": "Season Seven",
     "barcode": "5050582889260",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/x62Ii2v8fZer0jhpT4w9ngdUE4j.jpg"
   },
   {
     "title": "How the Grinch Stole Christmas",
@@ -4827,21 +4587,6 @@
     "actors": "Jay Baruchel | Gerard Butler | Craig Ferguson",
     "edition": "",
     "barcode": "7332505001927",
-    "poster": "https://image.tmdb.org/t/p/w500/ygGmAO60t8GyqUo9xYeYxSZAR3b.jpg"
-  },
-  {
-    "title": "How to Train Your Dragon",
-    "year": "2010",
-    "genres": "Action | Adventure | Animation | Family | Fantasy",
-    "runtime": "1:38",
-    "director": "Dean DeBlois | Chris Sanders",
-    "format": "Blu-ray",
-    "overview": "Som sønn av en vikingleder på vei til manndom, står sjenerte Hiccup Horrendous Haddock III overfor en overgangsrite: han må drepe en drage for å bevise sin krigerevne. Men etter å ha styrtet ned en fryktet drage, innser han at han ikke lenger vil ødelegge den, og blir i stedet venn med udyret – som han kaller Tannløs – til stor irritasjon for krigerfaren.",
-    "imdbRating": "8.1",
-    "imdbUrl": "https://www.imdb.com/title/tt0892769/?ref_=ref_ext_clz",
-    "actors": "Jay Baruchel | Gerard Butler | Craig Ferguson",
-    "edition": "",
-    "barcode": "7332505002344",
     "poster": "https://image.tmdb.org/t/p/w500/ygGmAO60t8GyqUo9xYeYxSZAR3b.jpg"
   },
   {
@@ -4992,22 +4737,7 @@
     "actors": "Derek Jacobi | Nick Kellington | Andy Wareham",
     "edition": "",
     "barcode": "7036988030008",
-    "poster": ""
-  },
-  {
-    "title": "In The Night Garden: Season 1",
-    "year": "2007",
-    "genres": "Adventure | Comedy | Family | Fantasy | Music",
-    "runtime": "38:06:00",
-    "director": "Dirk Campbell | Alex Kirby",
-    "format": "DVD",
-    "overview": "I natthagen er et magisk sted som eksisterer mellom den våkne og sovende fantasien til barn nær representasjonen av et barnerim.",
-    "imdbRating": "6.7",
-    "imdbUrl": "https://www.imdb.com/title/tt0896228/?ref_=ref_ext_clz",
-    "actors": "Derek Jacobi | Nick Kellington | Andy Wareham",
-    "edition": "",
-    "barcode": "7036988030008",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/8QBBywMELXjDhUgfr7ZtK1GMDMe.jpg"
   },
   {
     "title": "The Inbetweeners",
@@ -5412,7 +5142,7 @@
     "actors": "Thorbjørn Harr | Ivar Nørve | Janne Formoe",
     "edition": "",
     "barcode": "7036988041660",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/fUFCC8kej2L9EP6vZhr15ET1ovn.jpg"
   },
   {
     "title": "Kick-Ass",
@@ -5490,21 +5220,6 @@
     "poster": "https://image.tmdb.org/t/p/w500/iKLZEAnjzr51Ij7TJtNejc5CN3i.jpg"
   },
   {
-    "title": "King Arthur",
-    "year": "2004",
-    "genres": "Action | Adventure | Drama | War",
-    "runtime": "2:06",
-    "director": "Antoine Fuqua",
-    "format": "DVD",
-    "overview": "Historien om den Arthurianske legenden, basert på den 'sarmatiske hypotesen' som hevder at legenden har en historisk kjerne i de sarmatiske tunge kavaleritroppene stasjonert i Storbritannia, og at den romersk-britiske militærsjefen, Lucius Artorius Castus er den historiske personen bak legenden.",
-    "imdbRating": "6.3",
-    "imdbUrl": "https://www.imdb.com/title/tt0349683/?ref_=ref_ext_clz",
-    "actors": "Clive Owen | Ioan Gruffudd | Mads Mikkelsen",
-    "edition": "Extended Version",
-    "barcode": "7393834503209",
-    "poster": "https://image.tmdb.org/t/p/w500/iKLZEAnjzr51Ij7TJtNejc5CN3i.jpg"
-  },
-  {
     "title": "King Kong",
     "year": "2005",
     "genres": "Action | Adventure | Romance",
@@ -5547,7 +5262,7 @@
     "actors": "",
     "edition": "",
     "barcode": "5706122361023",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/nhHc8ds9Q4763VUAUnBIRNYCBZx.jpg"
   },
   {
     "title": "KM 31: Kilometre 31",
@@ -5802,21 +5517,6 @@
     "actors": "Rowan Atkinson | Matthew Broderick | Niketa Calame",
     "edition": "Diamond Edition",
     "barcode": "8717418307059",
-    "poster": "https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg"
-  },
-  {
-    "title": "The Lion King",
-    "year": "1994",
-    "genres": "Adventure | Animation | Drama | Family | Fantasy | Musical",
-    "runtime": "1:28",
-    "director": "Roger Allers | Rob Minkoff",
-    "format": "Blu-ray",
-    "overview": "Den unge løveprins Simba, ivrig etter å en dag bli konge av Pride-landene, vokser opp under faren Mufasas våkent øye; alt mens hans skurke onkel Scar konspirerer for å ta tronen for seg selv. Midt i svik og tragedier må Simba konfrontere fortiden sin og finne sin rettmessige plass i Livets sirkel.",
-    "imdbRating": "8.5",
-    "imdbUrl": "https://www.imdb.com/title/tt0110357/?ref_=ref_ext_clz",
-    "actors": "Rowan Atkinson | Matthew Broderick | Niketa Calame",
-    "edition": "Blu-Ray & DVD",
-    "barcode": "8717418306373",
     "poster": "https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg"
   },
   {
@@ -6255,21 +5955,6 @@
     "poster": "https://image.tmdb.org/t/p/w500/l5uxY5m5OInWpcExIpKG6AR3rgL.jpg"
   },
   {
-    "title": "Mission: Impossible",
-    "year": "1996",
-    "genres": "Action | Adventure | Thriller",
-    "runtime": "1:50",
-    "director": "Brian De Palma",
-    "format": "DVD",
-    "overview": "Når Ethan Hunt, lederen av et crack-spionasjeteam hvis farefulle operasjon har gått galt uten noen forklaring, oppdager at en føflekk har trengt inn i CIA, blir han overrasket over å høre at han er hovedmistenkt. For å rense navnet sitt, må Hunt nå frese ut den virkelige dobbeltagenten og, i prosessen, jevne ut partituret.",
-    "imdbRating": "7.2",
-    "imdbUrl": "https://www.imdb.com/title/tt0117060/?ref_=ref_ext_clz",
-    "actors": "Tom Cruise | Jon Voight | Emmanuelle Béart",
-    "edition": "Widescreen Collection",
-    "barcode": "7393805318894",
-    "poster": "https://image.tmdb.org/t/p/w500/l5uxY5m5OInWpcExIpKG6AR3rgL.jpg"
-  },
-  {
     "title": "Mission: Impossible II",
     "year": "2000",
     "genres": "Action | Adventure | Thriller",
@@ -6343,36 +6028,6 @@
     "edition": "Single Disc",
     "barcode": "8717418403652",
     "poster": "https://image.tmdb.org/t/p/w500/y7thwJ7z5Bplv6vwl6RI0yteaDD.jpg"
-  },
-  {
-    "title": "Monsters University",
-    "year": "2013",
-    "genres": "Adventure | Animation | Comedy | Family | Fantasy",
-    "runtime": "1:44",
-    "director": "Dan Scanlon",
-    "format": "Blu-ray",
-    "overview": "En titt på forholdet mellom Mike og Sulley i løpet av dagene deres ved Monsters University - da de ikke nødvendigvis var de beste vennene.",
-    "imdbRating": "7.2",
-    "imdbUrl": "https://www.imdb.com/title/tt1453405/?ref_=ref_ext_clz",
-    "actors": "Billy Crystal | John Goodman | Steve Buscemi",
-    "edition": "Single Disc",
-    "barcode": "8717418403652",
-    "poster": "https://image.tmdb.org/t/p/w500/y7thwJ7z5Bplv6vwl6RI0yteaDD.jpg"
-  },
-  {
-    "title": "Monsters vs. Aliens",
-    "year": "2009",
-    "genres": "Action | Adventure | Animation | Comedy | Family | Fantasy | Science Fiction",
-    "runtime": "1:34",
-    "director": "Rob Letterman | Conrad Vernon",
-    "format": "Blu-ray",
-    "overview": "Når Susan Murphy uforvarende blir tråkket av en meteor full av våpen i det ytre rom på bryllupsdagen, vokser hun på mystisk vis til 49 fot-11 tommer. Militæret går i aksjon og fanger Susan og skiller henne ut til en skjult regjeringskompleks. Hun blir omdøpt til Ginormica og satt i fengsel med en ragtag-gruppe med monstre ...",
-    "imdbRating": "6.4",
-    "imdbUrl": "https://www.imdb.com/title/tt0892782/?ref_=ref_ext_clz",
-    "actors": "Reese Witherspoon | Seth Rogen | Hugh Laurie",
-    "edition": "",
-    "barcode": "7332431994928",
-    "poster": "https://image.tmdb.org/t/p/w500/hpHarddVj34j53T7NsoUGdKj4mP.jpg"
   },
   {
     "title": "Monsters vs. Aliens",
@@ -6627,7 +6282,7 @@
     "actors": "Robert Gustafsson | Johan Rheborg | Per Graffman",
     "edition": "",
     "barcode": "7391970802279",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/s7pvFlB6DfxfontRvC9o5l8Uu9H.jpg"
   },
   {
     "title": "Noise",
@@ -6957,7 +6612,7 @@
     "actors": "Inger Nilsson | Maria Persson | Pär Sundberg",
     "edition": "",
     "barcode": "7041271315052",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/qlsXc96lb9XG8n0huUZaNzWLz5q.jpg"
   },
   {
     "title": "Pirates of the Caribbean: At World's End",
@@ -7182,7 +6837,7 @@
     "actors": "Jodi Lyn O'Keefe | William Fichtner | Robert Knepper",
     "edition": "",
     "barcode": "7036988024205",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/vlEtqQFkz4oqXaKo5tQzR2gtmWw.jpg"
   },
   {
     "title": "Prison Break: Season 4",
@@ -7197,22 +6852,7 @@
     "actors": "Sarah Wayne Callies | Jodi Lyn O'Keefe | William Fichtner",
     "edition": "",
     "barcode": "7036984511440",
-    "poster": ""
-  },
-  {
-    "title": "Prison Break: Season 4",
-    "year": "2008",
-    "genres": "Action | Crime | Drama | Mystery | Thriller",
-    "runtime": "17:54",
-    "director": "Kevin Hooks | Bobby Roth | Michael Switzer",
-    "format": "Blu-ray",
-    "overview": "Etter å ha blitt fengslet i Fox River State Penitentiary for å frigjøre sin urettmessig anklagede bror, Lincoln Burrows, er Michael Scofield nå på frifot sammen med sin bror og seks andre domfelte.",
-    "imdbRating": "8.3",
-    "imdbUrl": "https://www.imdb.com/title/tt0455275/?ref_=ref_ext_clz",
-    "actors": "Sarah Wayne Callies | Jodi Lyn O'Keefe | William Fichtner",
-    "edition": "",
-    "barcode": "46980511440",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/iPngrAzUJ6tilHiZLYUXAqmazsO.jpg"
   },
   {
     "title": "Punch-Drunk Love",
@@ -7347,21 +6987,6 @@
     "actors": "Rammstein | Till Lindemann | Richard Kruspe",
     "edition": "",
     "barcode": "602517050723",
-    "poster": "https://image.tmdb.org/t/p/w500/bxosDzLNqNLKVuaqOZB0ycC0SKR.jpg"
-  },
-  {
-    "title": "Rammstein: Völkerball",
-    "year": "2006",
-    "genres": "Documentary | Music",
-    "runtime": "1:42",
-    "director": "Emanuel Fialik | Hamish Hamilton",
-    "format": "DVD",
-    "overview": "Völkerball viser konsertopptredener av bandet i England, Frankrike, Japan og Russland. Spesialutgaven er utvidet med en andre DVD, som inneholder dokumentarene \"Anaconda in the net\" av Mathilde Bonnefoy og \"Making of the album Reise, Reise\" av Rammstein-gitarist Paul Landers. Den begrensede utgaven ble utgitt som en stor svart-hvitt fotobok med bilder av Frederic Batier.",
-    "imdbRating": "8.8",
-    "imdbUrl": "https://www.imdb.com/title/tt3960092/?ref_=ref_ext_clz",
-    "actors": "Rammstein | Till Lindemann | Richard Kruspe",
-    "edition": "",
-    "barcode": "602517050679",
     "poster": "https://image.tmdb.org/t/p/w500/bxosDzLNqNLKVuaqOZB0ycC0SKR.jpg"
   },
   {
@@ -7725,21 +7350,6 @@
     "poster": "https://image.tmdb.org/t/p/w500/urE3Jzl3zuz2XUmAq2rXubYn3SD.jpg"
   },
   {
-    "title": "Romper Stomper",
-    "year": "1992",
-    "genres": "Crime | Drama | Thriller",
-    "runtime": "1:34",
-    "director": "Geoffrey Wright",
-    "format": "DVD",
-    "overview": "Nazistiske skinnhoder i Melbourne tar ut sitt sinne mot lokale vietnamesere, som blir sett på som truende raserenhet. Endelig har vietnameserne fått nok og konfronterer skinheadene i en fullstendig konfrontasjon, og sender skinheadene til å løpe. En kvinne som er utsatt for epileptiske anfall slutter seg til skinnenes lystige band, og hjelper dem på flukt fra rettferdigheten, men er lidelsen hennes også et tegn på urenhet?",
-    "imdbRating": "6.8",
-    "imdbUrl": "https://www.imdb.com/title/tt0105275/?ref_=ref_ext_clz",
-    "actors": "Russell Crowe | Daniel Pollock | Jacqueline McKenzie",
-    "edition": "Special Edition",
-    "barcode": "7319980032257",
-    "poster": "https://image.tmdb.org/t/p/w500/urE3Jzl3zuz2XUmAq2rXubYn3SD.jpg"
-  },
-  {
     "title": "Rorri Racerbil 2: Af sted Rorri",
     "year": "2008",
     "genres": "Animation",
@@ -7947,7 +7557,7 @@
     "actors": "John C. McGinley | Neil Flynn | Ken Jenkins",
     "edition": "",
     "barcode": "7393834542109",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/mgMaSPoRxr0gGvuJYuu6LPZBR6J.jpg"
   },
   {
     "title": "Scrubs: Season 2",
@@ -7962,7 +7572,7 @@
     "actors": "John C. McGinley | Neil Flynn | Ken Jenkins",
     "edition": "",
     "barcode": "7393834542604",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/riFx1qcgl4l8vVyV4qHigFrlrG.jpg"
   },
   {
     "title": "Scrubs: Season 3",
@@ -7977,7 +7587,7 @@
     "actors": "John C. McGinley | Neil Flynn | Ken Jenkins",
     "edition": "",
     "barcode": "8717418080471",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/hgGZH4B3xfnXtmp0JnhWCQfeK8U.jpg"
   },
   {
     "title": "Scrubs: Season 4",
@@ -7992,7 +7602,7 @@
     "actors": "John C. McGinley | Neil Flynn | Ken Jenkins",
     "edition": "",
     "barcode": "8717418120436",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/9llXLcrCCzHnpT1bz8Afg3rtWJ0.jpg"
   },
   {
     "title": "Scrubs: Season 5",
@@ -8007,7 +7617,7 @@
     "actors": "John C. McGinley | Neil Flynn | Ken Jenkins",
     "edition": "",
     "barcode": "8717418120474",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/wPyLZKlzskQTgJCeoIeOdGn3TnG.jpg"
   },
   {
     "title": "Scrubs: Season 6",
@@ -8022,7 +7632,7 @@
     "actors": "John C. McGinley | Neil Flynn | Ken Jenkins",
     "edition": "",
     "barcode": "8717418165710",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/vQdddzNPO0hJKSDppf01U54YC1q.jpg"
   },
   {
     "title": "Senseless",
@@ -8262,7 +7872,7 @@
     "actors": "Mark Boone Junior | Drea de Matteo | Ron Perlman",
     "edition": "",
     "barcode": "7391772327567",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/eZJPW8G7o0b2fH7GC7Av4MOKTj3.jpg"
   },
   {
     "title": "Sorority Boys",
@@ -8412,7 +8022,7 @@
     "actors": "Dee Bradley Baker | James Arnold Taylor | Tom Kane",
     "edition": "",
     "barcode": "5051895022245",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/A3ahBR0y45LjKQeLEu6PU5UwTQs.jpg"
   },
   {
     "title": "Stardust",
@@ -8457,7 +8067,7 @@
     "actors": "Peter Haber | Carina Lidbom | Andreas Hoffer",
     "edition": "",
     "barcode": "7391772368522",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/S31JobfwqugsnNDHd51l7TL2pW.jpg"
   },
   {
     "title": "Surrogates",
@@ -8700,21 +8310,6 @@
     "poster": "https://image.tmdb.org/t/p/w500/3Ma0r1n8kfH7UaQMS7bJ9KsYUjT.jpg"
   },
   {
-    "title": "Tinker Bell",
-    "year": "2008",
-    "genres": "Adventure | Animation | Family | Fantasy",
-    "runtime": "1:18",
-    "director": "Bradley Raymond",
-    "format": "DVD",
-    "overview": "Reis inn i den hemmelige verdenen til Pixie Hollow og hør Tinker Bell snakke for aller første gang når den forbløffende historien om Disneys mest kjente fe endelig avsløres i den helt nye filmen \"Tinker Bell\".",
-    "imdbRating": "6.7",
-    "imdbUrl": "https://www.imdb.com/title/tt0823671/?ref_=ref_ext_clz",
-    "actors": "Mae Whitman | Kristin Chenoweth | Raven-Symoné",
-    "edition": "",
-    "barcode": "8717418109455",
-    "poster": "https://image.tmdb.org/t/p/w500/3Ma0r1n8kfH7UaQMS7bJ9KsYUjT.jpg"
-  },
-  {
     "title": "Tinker Bell and the Legend of the NeverBeast",
     "year": "2014",
     "genres": "Adventure | Animation | Family | Fantasy",
@@ -8758,21 +8353,6 @@
     "edition": "",
     "barcode": "5051895078310",
     "poster": "https://image.tmdb.org/t/p/w500/gFlwbp47uh6F1p203RQOaxYThzX.jpg"
-  },
-  {
-    "title": "Tom And Jerry: Merry Mice",
-    "year": "",
-    "genres": "",
-    "runtime": "0:00",
-    "director": "",
-    "format": "DVD",
-    "overview": "",
-    "imdbRating": "",
-    "imdbUrl": "",
-    "actors": "",
-    "edition": "",
-    "barcode": "5051895246115",
-    "poster": ""
   },
   {
     "title": "Tom And Jerry: Merry Mice",
@@ -8982,7 +8562,7 @@
     "actors": "Eddie Izzard | Donald Sutherland | Elijah Wood",
     "edition": "",
     "barcode": "7319980074660",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/94HhCCbzl3ZVVUVZGlUNYKkzoW4.jpg"
   },
   {
     "title": "Trespass",
@@ -9042,7 +8622,7 @@
     "actors": "Anna Paquin | Chris Bauer | William Sanderson",
     "edition": "",
     "barcode": "5051895040768",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/ovc8TTtwXl3rb50FNhGtbJfy8kr.jpg"
   },
   {
     "title": "True Blood: Season 2",
@@ -9057,7 +8637,7 @@
     "actors": "Anna Paquin | Chris Bauer | Alexander Skarsgård",
     "edition": "",
     "barcode": "5051895033715",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/wSNUPNIihjPqmKngeyDOIJQyolL.jpg"
   },
   {
     "title": "True Blood: Season 3",
@@ -9072,7 +8652,7 @@
     "actors": "Anna Paquin | Chris Bauer | Alexander Skarsgård",
     "edition": "The Complete Third Season",
     "barcode": "5051895063415",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/pMp3qUGXVQLDIuVjW7tYbLQi3mn.jpg"
   },
   {
     "title": "True Blood: Season 4",
@@ -9087,7 +8667,7 @@
     "actors": "Fiona Shaw | Anna Paquin | Chris Bauer",
     "edition": "The Complete Fourth Season",
     "barcode": "5051895164013",
-    "poster": ""
+    "poster": "https://image.tmdb.org/t/p/w500/tr3Y8Hd46GkF77ktFAQnICQx69C.jpg"
   },
   {
     "title": "Twigson in Trouble",
@@ -9255,21 +8835,6 @@
     "poster": "https://image.tmdb.org/t/p/w500/vkPm29sqtEjoekOhXbqxTcgpJ4y.jpg"
   },
   {
-    "title": "Undercover Brother",
-    "year": "2002",
-    "genres": "Action | Comedy",
-    "runtime": "1:26",
-    "director": "Malcolm D. Lee",
-    "format": "DVD",
-    "overview": "En afroamerikansk organisasjon, B.R.O.T.H.E.R.H.O.O.D., er i permanent kamp mot en hvit organisasjon «The Man» som forsvarer verdiene til de svarte i Nord-Amerika. Når den afroamerikanske kandidaten Gen. Warren Boutwell oppfører seg merkelig i sin presidentkampanje, blir Undercover Brother ansatt for å jobbe undercover for «The Man» og finne ut hva som skjedde med den potensielle kandidaten.",
-    "imdbRating": "5.9",
-    "imdbUrl": "https://www.imdb.com/title/tt0279493/?ref_=ref_ext_clz",
-    "actors": "Eddie Griffin | Chris Kattan | Denise Richards",
-    "edition": "",
-    "barcode": "3259190243521",
-    "poster": "https://image.tmdb.org/t/p/w500/vkPm29sqtEjoekOhXbqxTcgpJ4y.jpg"
-  },
-  {
     "title": "Underworld: Blood Wars",
     "year": "2016",
     "genres": "Action | Crime | Drama | Fantasy | Thriller",
@@ -9402,21 +8967,6 @@
     "actors": "Jane Badler | Michael Durrell | Faye Grant",
     "edition": "",
     "barcode": "7321937141462",
-    "poster": "https://image.tmdb.org/t/p/w500/Af9qxvsxzv45VnszT1MKFbHj4NJ.jpg"
-  },
-  {
-    "title": "V",
-    "year": "1983",
-    "genres": "Action | Adventure | Science Fiction",
-    "runtime": "3:17",
-    "director": "Kenneth Johnson",
-    "format": "DVD",
-    "overview": "Romvesener som utgir seg for å være vennlige kommer til jorden og blir mottatt åpent. Romvesenene har maskert seg for å se ut akkurat som mennesker. Når det blir oppdaget at romvesenets planet er døende og at de har kommet for å voldta jorden for dens naturressurser, begynner krigen om jorden.",
-    "imdbRating": "7.8",
-    "imdbUrl": "https://www.imdb.com/title/tt0085106/?ref_=ref_ext_clz",
-    "actors": "Jane Badler | Michael Durrell | Faye Grant",
-    "edition": "",
-    "barcode": "7321937114893",
     "poster": "https://image.tmdb.org/t/p/w500/Af9qxvsxzv45VnszT1MKFbHj4NJ.jpg"
   },
   {
