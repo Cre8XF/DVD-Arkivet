@@ -1,208 +1,142 @@
-import { db, collectionRef, saveMovieToFirestore, deleteMovieFromFirestore, loadMoviesFromFirestore } from "./firebase.js";
-import { openEditPanel } from "./edit.js";
 
 let allMovies = [];
-let currentMovie = null;
-let lastScrollY = 0;
 
-const collectionList = document.getElementById("collectionList");
-const themeSelect = document.getElementById("themeSelect");
-const viewModeSelect = document.getElementById("viewModeSelect");
-const genreFilter = document.getElementById("genreFilter");
-const yearFilter = document.getElementById("yearFilter");
-const resetBtn = document.getElementById("resetBtn");
-const sortSelect = document.getElementById("sortSelect");
-const searchInput = document.getElementById("searchInput");
-const addInput = document.getElementById("addInput");
-const addBtn = document.getElementById("addBtn");
-const tmdbInput = document.getElementById("tmdbInput");
-const tmdbBtn = document.getElementById("tmdbBtn");
-const tmdbResults = document.getElementById("tmdbResults");
-const tmdbResetBtn = document.getElementById("tmdbResetBtn");
-const tmdbApiKey = "db3d7987e3a39baedf6bc138afa46e74";
-
-const toggleBtn = document.getElementById("toggleFilters");
-const filtersPanel = document.getElementById("filterPanel");
-toggleBtn?.addEventListener("click", () => filtersPanel?.classList.toggle("hidden"));
-
-document.addEventListener("DOMContentLoaded", async () => {
-  allMovies = await loadMoviesFromFirestore();
-
-  allMovies = allMovies.map(movie => {
-    if (Array.isArray(movie.genre) && movie.genre.length === 1 && movie.genre[0].includes("|")) {
-      movie.genre = movie.genre[0].split("|").map(g => g.trim());
-    }
-    return movie;
-  });
-
-  renderCollection();
-  populateFilters();
-  applyTheme(themeSelect.value);
-});
-
-function sortMovies(movies) {
-  const sortBy = sortSelect?.value || "title-asc";
-  return [...movies].sort((a, b) => {
-    const aTitle = (a.title || "").toLowerCase();
-    const bTitle = (b.title || "").toLowerCase();
-    const aYear = parseInt(a.year) || 0;
-    const bYear = parseInt(b.year) || 0;
-    const aDate = new Date(a.added || 0);
-    const bDate = new Date(b.added || 0);
-
-    switch (sortBy) {
-      case "title-asc": return aTitle.localeCompare(bTitle);
-      case "title-desc": return bTitle.localeCompare(aTitle);
-      case "year-asc": return aYear - bYear;
-      case "year-desc": return bYear - aYear;
-      case "added-asc": return aDate - bDate;
-      case "added-desc": return bDate - aDate;
-      default: return 0;
-    }
-  });
+async function fetchCollection() {
+  const res = await fetch("json/collection.json");
+  const data = await res.json();
+  return data;
 }
 
-function renderCollection() {
-  collectionList.innerHTML = "";
-
-  const genre = genreFilter?.value;
-  const year = yearFilter?.value;
-  const search = searchInput?.value.trim().toLowerCase();
-
-  const filtered = allMovies.filter(movie => {
-    const movieGenres = Array.isArray(movie.genre)
-      ? movie.genre
-      : typeof movie.genre === "string"
-      ? movie.genre.split("|").map(g => g.trim())
-      : [];
-
-    const matchGenre = !genre || movieGenres.includes(genre);
-    const matchYear = !year || movie.year === year;
-    const matchSearch =
-      !search ||
-      movie.title?.toLowerCase().includes(search) ||
-      movie.cast?.toLowerCase().includes(search);
-
-    return matchGenre && matchYear && matchSearch;
-  });
-
-  const sorted = sortMovies(filtered);
-
-  sorted.forEach(movie => {
-    const card = document.createElement("li");
+function renderMovies(movies) {
+  const container = document.getElementById("collectionList");
+  container.innerHTML = "";
+  movies.forEach(movie => {
+    const card = document.createElement("div");
     card.className = "movie-card";
+
+    const title = movie.title || "Ukjent tittel";
+    const year = movie.year || "";
+    const poster = movie.poster || './images/placeholder.jpg';
+
     card.innerHTML = `
-      <img src="${movie.cover || "https://via.placeholder.com/300x450?text=No+Image"}" class="poster" alt="${movie.title}" />
-      <h4>${movie.title}</h4>
-      <button class="delete-btn">🗑️</button>
-    `;
-    card.querySelector("button").addEventListener("click", () => {
-      if (confirm(`Slette "${movie.title}"?`)) deleteMovie(movie.id);
-    });
-    card.addEventListener("click", () => showMovieDetails(movie));
-    collectionList.appendChild(card);
-  });
-}
-
-function deleteMovie(id) {
-  deleteMovieFromFirestore(id);
-  allMovies = allMovies.filter(m => m.id !== id);
-  renderCollection();
-  populateFilters();
-}
-
-function showMovieDetails(movie) {
-  lastScrollY = window.scrollY;
-  const poster = movie.cover || "https://via.placeholder.com/300x450?text=No+Image";
-  const genres = Array.isArray(movie.genre) ? movie.genre.join(", ") : movie.genre || "Ukjent";
-  const modalOverlay = document.getElementById("modalOverlay");
-  const modalDetails = document.getElementById("modalDetails");
-
-  modalDetails.innerHTML = `
-    <div class="details-card">
-      <img src="${poster}" alt="Poster for ${movie.title}" class="details-poster" />
-      <div class="details-info">
-        <h3>${movie.title}</h3>
-        <p><strong>📅 Utgivelsesår:</strong> ${movie.year || "Ukjent år"}</p>
-        <p><strong>🎭 Sjanger:</strong> ${genres}</p>
-        <p><strong>🎬 Regissør:</strong> ${movie.director || "Ukjent"}</p>
-        <p><strong>🎭 Skuespillere:</strong> ${movie.cast || "Ukjent"}</p>
-        <p><strong>📖 Beskrivelse:</strong><br>${movie.overview || "Ingen beskrivelse tilgjengelig."}</p>
-        <button id="editDetailsBtn">✏️ Rediger</button>
-        <button id="closeDetailsBtn">Lukk</button>
+      <img src="${poster}" alt="${title}">
+      <div class="movie-info">
+        <h3>${title}</h3>
+        <p>${year}</p>
+        <button onclick='showDetails(${movie.id})'>Detaljer</button>
       </div>
-    </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function showDetails(id) {
+  const movie = allMovies.find(m => m.id == id);
+  const modal = document.getElementById("modalOverlay");
+  const content = document.getElementById("modalDetails");
+  content.innerHTML = `
+    <h2>${movie.title} (${movie.year})</h2>
+    <img src="${movie.poster || './images/placeholder.jpg'}" alt="${movie.title}">
+    <p><strong>Regissør:</strong> ${movie.director || "Ukjent"}</p>
+    <p><strong>Skuespillere:</strong> ${movie.actors || "Ukjent"}</p>
+    <p><strong>Varighet:</strong> ${movie.runtime || "?"}</p>
+    <p><strong>IMDb:</strong> ${movie.imdbRating ? movie.imdbRating + ' ⭐️' : "?"}</p>
+    <p><strong>Beskrivelse:</strong><br>${movie.overview}</p>
+    ${movie.imdbUrl ? `<a href="${movie.imdbUrl}" target="_blank">🔗 IMDb-side</a>` : ""}
   `;
-  modalOverlay.classList.remove("is-hidden");
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  modal.classList.remove("is-hidden");
+}
+window.showDetails = showDetails;
+document.getElementById("closeModal").onclick = () => {
+  document.getElementById("modalOverlay").classList.add("is-hidden");
+};
 
-  document.getElementById("editDetailsBtn")?.addEventListener("click", () => openEditPanel(movie));
-  document.getElementById("closeDetailsBtn")?.addEventListener("click", () => {
-    modalOverlay.classList.add("is-hidden");
-    document.getElementById("editPanel").classList.add("is-hidden");
-    modalDetails.innerHTML = "";
-    window.scrollTo({ top: lastScrollY, behavior: "smooth" });
+document.getElementById("resetBtn").onclick = () => {
+  document.getElementById("genreFilter").value = "";
+  document.getElementById("yearFilter").value = "";
+  document.getElementById("sortSelect").value = "title-asc";
+  renderMovies(allMovies);
+};
+
+document.getElementById("sortSelect").addEventListener("change", () => {
+  const val = document.getElementById("sortSelect").value;
+  let sorted = [...allMovies];
+  if (val === "title-asc") sorted.sort((a, b) => a.title.localeCompare(b.title));
+  if (val === "title-desc") sorted.sort((a, b) => b.title.localeCompare(a.title));
+  if (val === "year-asc") sorted.sort((a, b) => (a.year || 0) - (b.year || 0));
+  if (val === "year-desc") sorted.sort((a, b) => (b.year || 0) - (a.year || 0));
+  renderMovies(sorted);
+});
+
+window.onload = async () => {
+  allMovies = await fetchCollection();
+  allMovies.forEach((m, i) => { if (!m.id) m.id = i + 1 });
+
+  renderMovies(allMovies);
+
+  const years = [...new Set(allMovies.map(m => m.year).filter(Boolean))].sort((a, b) => b - a);
+  const yearFilter = document.getElementById("yearFilter");
+  years.forEach(y => {
+    const opt = document.createElement("option");
+    opt.value = y;
+    opt.textContent = y;
+    yearFilter.appendChild(opt);
   });
-}
 
-function populateFilters() {
-  const genreSet = new Set();
-  const years = new Set();
-
-  allMovies.forEach(movie => {
-    const genreList = Array.isArray(movie.genre)
-      ? movie.genre
-      : typeof movie.genre === "string"
-      ? movie.genre.split("|").map(g => g.trim())
-      : [];
-
-    genreList.forEach(g => g && genreSet.add(g));
-    if (movie.year) years.add(movie.year);
+  yearFilter.addEventListener("change", () => {
+    const val = yearFilter.value;
+    if (!val) return renderMovies(allMovies);
+    renderMovies(allMovies.filter(m => m.year == val));
   });
 
-  genreFilter.innerHTML = `<option value="">Alle</option>` + [...genreSet].sort().map(g => `<option value="${g}">${g}</option>`).join("");
-  yearFilter.innerHTML = `<option value="">Alle</option>` + [...years].sort().map(y => `<option value="${y}">${y}</option>`).join("");
-}
+  const genres = new Set();
+  allMovies.forEach(m => {
+    if (typeof m.genres === "string") m.genres.split("|").forEach(g => genres.add(g.trim()));
+    if (Array.isArray(m.genres)) m.genres.forEach(g => genres.add(g));
+  });
 
-genreFilter?.addEventListener("change", () => renderCollection());
-yearFilter?.addEventListener("change", () => renderCollection());
-sortSelect?.addEventListener("change", () => renderCollection());
-searchInput?.addEventListener("input", () => renderCollection());
-themeSelect?.addEventListener("change", () => applyTheme(themeSelect.value));
+  const genreFilter = document.getElementById("genreFilter");
+  [...genres].sort().forEach(g => {
+    const opt = document.createElement("option");
+    opt.value = g;
+    opt.textContent = g;
+    genreFilter.appendChild(opt);
+  });
 
-tmdbResetBtn?.addEventListener("click", () => {
-  tmdbInput.value = "";
-  tmdbResults.innerHTML = "";
-});
-viewModeSelect.addEventListener("change", () => {
-  collectionList.className = viewModeSelect.value === "shelf" ? "shelf-view" : "";
-  renderCollection();
-});
-// === Tema- og visningsmodus ===
-viewModeSelect?.addEventListener("change", () => {
-  const mode = viewModeSelect.value;
-  const body = document.body;
+  genreFilter.addEventListener("change", () => {
+    const val = genreFilter.value;
+    if (!val) return renderMovies(allMovies);
+    renderMovies(allMovies.filter(m => {
+      if (typeof m.genres === "string") return m.genres.includes(val);
+      if (Array.isArray(m.genres)) return m.genres.includes(val);
+      return false;
+    }));
+  });
 
-  if (mode === "shelf") {
-    collectionList.classList.add("shelf-view");
-    body.classList.remove("theme-neon", "theme-sunset", "theme-frost");
-    body.classList.add("theme-wood");
-  } else {
-    collectionList.classList.remove("shelf-view");
-    body.classList.remove("theme-wood");
-    applyTheme(themeSelect?.value); // Bruk valgt tema
-  }
+  // Tema-velger
+  const themeSelect = document.getElementById("themeSelect");
+  themeSelect.addEventListener("change", () => {
+    document.body.className = "";
+    if (themeSelect.value) document.body.classList.add(themeSelect.value);
+  });
 
-  renderCollection(); // Viktig!
-});
+  // Visningsmodus
+  const viewModeSelect = document.getElementById("viewModeSelect");
+  viewModeSelect.addEventListener("change", () => {
+    const cl = document.getElementById("collectionList").classList;
+    cl.remove("shelf-view", "standard-view");
+    if (viewModeSelect.value === "shelf") cl.add("shelf-view");
+    else cl.add("standard-view");
+  });
 
-themeSelect?.addEventListener("change", () => {
-  if (viewModeSelect?.value === "shelf") return; // Ikke bruk tema i hyllemodus
-  applyTheme(themeSelect.value);
-});
-
-function applyTheme(theme) {
-  const themes = ["theme-neon", "theme-sunset", "theme-frost", "theme-wood"];
-  document.body.classList.remove(...themes);
-  if (theme) document.body.classList.add(theme);
-}
+  // Søkefelt
+  const searchInput = document.getElementById("searchInput");
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.trim().toLowerCase();
+    if (!query) return renderMovies(allMovies);
+    renderMovies(allMovies.filter(m =>
+      (m.title && m.title.toLowerCase().includes(query)) ||
+      (m.actors && m.actors.toLowerCase().includes(query))
+    ));
+  });
+};

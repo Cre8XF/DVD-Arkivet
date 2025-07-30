@@ -481,6 +481,12 @@ body.theme-wood {
   background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
   color: #fff;
 }
+.shelf-view {
+  background-image: url('images/shelf.png');
+  background-repeat: repeat-y;
+  background-size: contain;
+  padding: 2rem;
+}
 
 /* === Generelt === */
 #collectionList {
@@ -511,4 +517,52 @@ body.theme-wood .movie-card {
 
 body.theme-wood .movie-card:hover {
   transform: perspective(600px) rotateX(0deg) scale(1.03);
+}
+#collectionList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.movie-card {
+  background: #240038;
+  border-radius: 10px;
+  padding: 0.5rem;
+  text-align: center;
+  color: white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  max-height: 240px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.movie-card h3 {
+  margin: 0.5rem 0 0.2rem;
+  font-size: 0.95rem;
+}
+
+.movie-card p {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.movie-card button {
+  margin-top: 0.5rem;
+  background: purple;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  cursor: pointer;
 }

@@ -48,7 +48,10 @@
         <option value="grid">Standardvisning</option>
         <option value="shelf">Hyllevisning</option>
       </select>
-
+<div class="shelf-row">
+  <div class="shelf-bg"></div>
+  <div class="movies-on-shelf"> ... </div>
+</div>
 
       <label for="searchInput">🔎 Søk etter tittel eller skuespiller:</label>
       <input type="text" id="searchInput" placeholder="F.eks. Matrix eller Brad Pitt" />
@@ -57,23 +60,6 @@
   </header>
 
   <main>
-    <section class="add-panel">
-      <h2>➕ Legg til ny film</h2>
-
-      <fieldset>
-        <legend>🎬 Søk film fra TMDb</legend>
-        <input type="text" id="tmdbInput" placeholder="Skriv filmtittel..." />
-        <button id="tmdbBtn">Søk</button>
-        <button id="tmdbResetBtn">Nullstill</button>
-        <div id="tmdbResults"></div>
-      </fieldset>
-
-      <fieldset>
-        <legend>✍️ Legg til film manuelt</legend>
-        <input type="text" id="addInput" placeholder="Tittel på filmen" />
-        <button id="addBtn">Legg til</button>
-      </fieldset>
-    </section>
 
     <section class="collection">
       <h2>📚 Samlingen min</h2>
@@ -100,7 +86,7 @@
       </section>
     </div>
   </div>
-
+<div id="movieList"></div>
   <footer>
     <button id="exportBtn">⬇️ Eksporter samling</button>
     <input type="file" id="importFile" accept=".json" style="display: none;" />
