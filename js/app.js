@@ -218,3 +218,29 @@ filterOverlay?.addEventListener("click", () => {
   filterOverlay.classList.remove("active");
 });
 
+let touchStartX = 0;
+let touchEndX = 0;
+
+const modal = document.getElementById("modalOverlay");
+
+modal.addEventListener("touchstart", (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+modal.addEventListener("touchend", (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  const delta = touchEndX - touchStartX;
+  if (Math.abs(delta) < 50) return; // ikke nok bevegelse
+
+  const currentIndex = allMovies.findIndex(m => m.id === currentMovieId);
+  if (delta > 0 && currentIndex > 0) {
+    showDetails(allMovies[currentIndex - 1]); // sveip høyre = forrige
+  }
+  if (delta < 0 && currentIndex < allMovies.length - 1) {
+    showDetails(allMovies[currentIndex + 1]); // sveip venstre = neste
+  }
+}
