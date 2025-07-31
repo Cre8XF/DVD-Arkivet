@@ -3,9 +3,13 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+  <meta name="theme-color" content="#ff00ff" />
+
   <title>DVD Profiler</title>
   <link rel="stylesheet" href="/css/styles_combined_final.css" />
+  <link rel="manifest" href="/json/manifest.json">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
   <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 </head>
 
@@ -50,12 +54,6 @@
       <option value="theme-bloodmoon">Bloodmoon</option>
       <option value="theme-void">Void</option>
 
-    </select>
-
-    <label for="viewModeSelect">🧱 Visningsmodus:</label>
-    <select id="viewModeSelect">
-      <option value="grid">Kortvisning</option>
-      <option value="list">Listevisning (mobil)</option>
     </select>
 
     <label for="searchInput">🔎 Søk etter tittel eller skuespiller:</label>
