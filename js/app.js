@@ -244,3 +244,15 @@ function handleSwipe() {
     showDetails(allMovies[currentIndex + 1]); // sveip venstre = neste
   }
 }
+const resetBtn = document.getElementById("resetBtn");
+resetBtn?.addEventListener("click", () => {
+  genreFilter.value = "";
+  yearFilter.value = "";
+  searchInput.value = "";
+  sortSelect.value = "titleAsc";
+  themeSelect.value = "";
+  viewSelect.value = "grid";
+
+  filteredMovies = [...allMovies]; // <- viktig linje!
+  renderMovies(allMovies);
+});
