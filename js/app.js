@@ -1,3 +1,4 @@
+import { openEditPanel } from "./edit.js";
 let currentMovieId = null;
 let allMovies = [];
 
@@ -17,6 +18,7 @@ function updateMovieCount(count) {
 function renderMovies(movies) {
   const container = document.getElementById("collectionList");
   container.innerHTML = "";
+
   movies.forEach(movie => {
     const card = document.createElement("div");
     card.className = "movie-card";
@@ -30,20 +32,25 @@ function renderMovies(movies) {
       <div class="movie-info">
         <h3>${title}</h3>
         <p>${year}</p>
-        <button onclick='showDetails(${movie.id})'>Detaljer</button>
       </div>
     `;
+
+    // 👇 Hele kortet klikker for detaljer
+    card.onclick = () => showDetails(movie);
+
     container.appendChild(card);
   });
-   updateMovieCount(movies.length);
+
+  updateMovieCount(movies.length);
 }
 
-function showDetails(id) {
-  currentMovieId = id;
 
-  const movie = allMovies.find(m => m.id == id);
+function showDetails(movie) {
+  currentMovieId = movie.id;
+
   const modal = document.getElementById("modalOverlay");
   const content = document.getElementById("modalDetails");
+
   content.innerHTML = `
     <h2>${movie.title} (${movie.year})</h2>
     <img src="${movie.poster || './images/placeholder.jpg'}" alt="${movie.title}">
@@ -53,24 +60,29 @@ function showDetails(id) {
     <p><strong>IMDb:</strong> ${movie.imdbRating ? movie.imdbRating + ' ⭐️' : "?"}</p>
     <p><strong>Beskrivelse:</strong><br>${movie.overview}</p>
     ${movie.imdbUrl ? `<a href="${movie.imdbUrl}" target="_blank">🔗 IMDb-side</a>` : ""}
+
+    <div class="detail-actions">
+      <button id="editMovieBtn">✏️ Rediger</button>
+      <button id="deleteMovieBtn">🗑️ Slett</button>
+    </div>
   `;
+
   modal.classList.remove("is-hidden");
+
+  document.getElementById("editMovieBtn").onclick = () => openEditPanel(movie);
+
+  document.getElementById("deleteMovieBtn").onclick = () => {
+    if (confirm(`Slett "${movie.title}" fra samlingen?`)) {
+      const updated = allMovies.filter(m => m.id !== movie.id);
+      localStorage.setItem("collection", JSON.stringify(updated));
+      modal.classList.add("is-hidden");
+      renderMovies(updated);
+    }
+  };
 }
+
 window.showDetails = showDetails;
-document.getElementById("closeModal").onclick = () => {
-  document.getElementById("modalOverlay").classList.add("is-hidden");
 
-document.getElementById("prevMovie").onclick = () => {
-  const current = allMovies.findIndex(m => m.id == currentMovieId);
-  if (current > 0) showDetails(allMovies[current - 1].id);
-};
-
-document.getElementById("nextMovie").onclick = () => {
-  const current = allMovies.findIndex(m => m.id == currentMovieId);
-  if (current < allMovies.length - 1) showDetails(allMovies[current + 1].id);
-};
-
-};
 
 document.getElementById("resetBtn").onclick = () => {
   document.getElementById("genreFilter").value = "";
@@ -192,3 +204,4 @@ document.getElementById("nextMovie").onclick = () => {
 };
 
 };
+

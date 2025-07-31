@@ -120,6 +120,12 @@ button:hover {
   background-color: var(--accent);
   color: var(--bg);
 }
+.detail-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
 
 /* === 6. Filter-seksjon === */
 .filters {
