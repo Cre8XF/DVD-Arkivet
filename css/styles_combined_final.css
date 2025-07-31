@@ -894,9 +894,10 @@ body.theme-wood .movie-card:hover {
   }
 
   .modal-content img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 1rem;
+    max-height: 240px;
+    object-fit: contain;
+    margin: 0 auto 1rem;
+    display: block;
   }
 
   .detail-actions {
@@ -1020,5 +1021,20 @@ body.theme-wood .movie-card:hover {
 
   .close-filter {
     display: none !important;
+  }
+}
+@media (max-width: 600px) {
+  .detail-actions button {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.95rem;
+    border-radius: 8px;
+  }
+
+  .detail-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+    justify-content: center;
   }
 }
