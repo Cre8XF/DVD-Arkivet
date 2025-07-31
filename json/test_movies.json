@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "12 Monkeys",
+    "year": "1995",
+    "poster": "https://image.tmdb.org/t/p/w500/gt3iyguaCIw8DpQZI1LIN5TohM2.jpg",
+    "director": "Terry Gilliam",
+    "actors": "Bruce Willis | Brad Pitt | Madeleine Stowe",
+    "runtime": "2:09",
+    "imdbRating": 8,
+    "imdbUrl": "https://www.imdb.com/title/tt0114746/",
+    "overview": "In a future world devastated by disease, a convict is sent back in time..."
+  },
+  {
+    "id": 2,
+    "title": "The 13th Warrior",
+    "year": "1999",
+    "poster": "https://image.tmdb.org/t/p/w500/tHFzxxk7zU8T1my4s5BLS2XyYWH.jpg",
+    "director": "John McTiernan",
+    "actors": "Antonio Banderas | Diane Venora",
+    "runtime": "1:42",
+    "imdbRating": 6.6,
+    "imdbUrl": "https://www.imdb.com/title/tt0120657/",
+    "overview": "A Muslim ambassador exiled from his homeland..."
+  }
+]

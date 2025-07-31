@@ -58,7 +58,7 @@ function showDetails(movie) {
     <p><strong>Skuespillere:</strong> ${movie.actors || "Ukjent"}</p>
     <p><strong>Varighet:</strong> ${movie.runtime || "?"}</p>
     <p><strong>IMDb:</strong> ${movie.imdbRating ? movie.imdbRating + ' ⭐️' : "?"}</p>
-    <p><strong>Beskrivelse:</strong><br>${movie.overview}</p>
+    <p><strong>Beskrivelse:</strong><br>${movie.overview || "Ingen beskrivelse."}</p>
     ${movie.imdbUrl ? `<a href="${movie.imdbUrl}" target="_blank">🔗 IMDb-side</a>` : ""}
 
     <div class="detail-actions">
@@ -79,28 +79,30 @@ function showDetails(movie) {
       renderMovies(updated);
     }
   };
+
+  // Navigasjonsknapper knyttes her (viktig!)
+  const prevBtn = document.getElementById("prevMovie");
+  const nextBtn = document.getElementById("nextMovie");
+
+  if (prevBtn && nextBtn) {
+    const currentIndex = allMovies.findIndex(m => m.id === movie.id);
+    prevBtn.disabled = currentIndex <= 0;
+    nextBtn.disabled = currentIndex >= allMovies.length - 1;
+
+    prevBtn.onclick = () => {
+      if (currentIndex > 0) showDetails(allMovies[currentIndex - 1]);
+    };
+
+    nextBtn.onclick = () => {
+      if (currentIndex < allMovies.length - 1) showDetails(allMovies[currentIndex + 1]);
+    };
+    document.getElementById("closeModal").onclick = () => {
+  document.getElementById("modalOverlay").classList.add("is-hidden");
+};
+
+  }
 }
 
-window.showDetails = showDetails;
-
-
-document.getElementById("resetBtn").onclick = () => {
-  document.getElementById("genreFilter").value = "";
-  document.getElementById("yearFilter").value = "";
-  document.getElementById("sortSelect").value = "title-asc";
-  renderMovies(allMovies);
-
-document.getElementById("prevMovie").onclick = () => {
-  const current = allMovies.findIndex(m => m.id == currentMovieId);
-  if (current > 0) showDetails(allMovies[current - 1].id);
-};
-
-document.getElementById("nextMovie").onclick = () => {
-  const current = allMovies.findIndex(m => m.id == currentMovieId);
-  if (current < allMovies.length - 1) showDetails(allMovies[current + 1].id);
-};
-
-};
 
 document.getElementById("sortSelect").addEventListener("change", () => {
   const val = document.getElementById("sortSelect").value;
@@ -191,17 +193,6 @@ if (toggleFiltersBtn && filterPanel) {
     filterPanel.classList.toggle("hidden");
   });
 }
-
-
-document.getElementById("prevMovie").onclick = () => {
-  const current = allMovies.findIndex(m => m.id == currentMovieId);
-  if (current > 0) showDetails(allMovies[current - 1].id);
-};
-
-document.getElementById("nextMovie").onclick = () => {
-  const current = allMovies.findIndex(m => m.id == currentMovieId);
-  if (current < allMovies.length - 1) showDetails(allMovies[current + 1].id);
-};
 
 };
 
