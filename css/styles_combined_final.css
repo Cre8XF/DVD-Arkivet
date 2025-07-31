@@ -639,7 +639,6 @@ body.theme-wood .movie-card:hover {
   font-size: 1.2rem;
 }
 
-
 /* === START: responsive.css === */
 /* === Grunnoppsett for filmkort === */
 #collectionList {
@@ -943,54 +942,60 @@ body.theme-wood .movie-card:hover {
 }
 
 /* === SLIDE-OVER FILTERPANEL (MOBIL) === */
-@media (max-width: 768px) {
-  #filterPanel {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 85%;
-    max-width: 320px;
-    height: 100%;
-    background-color: #1a1a1a;
-    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.4);
-    z-index: 1000;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    padding: 1.5rem;
-    overflow-y: auto;
-  }
+#filterPanel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 90vw; /* Mindre bredde */
+  max-width: 280px; /* Tydelig maksgrense */
+  height: 100%;
+  background-color: #1a1a1a;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  padding: 1.2rem; /* Litt bedre luft */
+  overflow-y: auto;
+  box-sizing: border-box; /* Viktig: sikrer at padding ikke overstyrer bredden */
+}
 
-  #filterPanel.open {
-    transform: translateX(0);
-  }
+#filterPanel.open {
+  transform: translateX(0);
+}
 
-  #filterOverlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 900;
-  }
+#filterOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 900;
+}
 
-  #filterOverlay.active {
-    display: block;
-  }
+#filterOverlay.active {
+  display: block;
+}
 
-  #filterPanel .close-filter {
-    display: block;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
+#filterPanel .close-filter {
+  display: block;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
 
-  .mobile-only {
-    display: inline-block;
-  }
+.mobile-only {
+  display: inline-block;
+}
+#filterPanel label,
+#filterPanel select,
+#filterPanel input,
+#filterPanel button {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* === DEAKTIVER SLIDEOVER PÅ DESKTOP === */
