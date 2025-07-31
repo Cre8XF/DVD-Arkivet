@@ -195,4 +195,23 @@ if (toggleFiltersBtn && filterPanel) {
 }
 
 };
+const toggleFiltersBtn = document.getElementById("toggleFilters");
+const filterPanel = document.getElementById("filterPanel");
+const filterOverlay = document.getElementById("filterOverlay");
+const closeFilterBtn = document.querySelector(".close-filter");
+
+toggleFiltersBtn?.addEventListener("click", () => {
+  filterPanel.classList.add("open");
+  filterOverlay.classList.add("active");
+});
+
+closeFilterBtn?.addEventListener("click", () => {
+  filterPanel.classList.remove("open");
+  filterOverlay.classList.remove("active");
+});
+
+filterOverlay?.addEventListener("click", () => {
+  filterPanel.classList.remove("open");
+  filterOverlay.classList.remove("active");
+});
 

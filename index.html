@@ -5,54 +5,57 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DVD Profiler</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="responsive (1).css" />
+  <link rel="stylesheet" href="/css/styles_combined_final.css" />
   <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 </head>
 
 <body class="theme-neon">
+
   <header>
     <h1>📀 DVD Profiler</h1>
-
     <button id="toggleFilters" class="mobile-only">🎛️ Filtrer</button>
-
-    <section id="filterPanel" class="filters hidden">
-      <label for="sortSelect">📁 Sorter etter:</label>
-      <select id="sortSelect">
-        <option value="title-asc">Tittel A–Å</option>
-        <option value="title-desc">Tittel Å–A</option>
-        <option value="year-desc">År: nyeste først</option>
-        <option value="year-asc">År: eldste først</option>
-        <option value="added-desc">Dato lagt til: nyeste</option>
-        <option value="added-asc">Dato lagt til: eldste</option>
-      </select>
-
-      <label for="genreFilter">Filtrer etter sjanger:</label>
-      <select id="genreFilter"></select>
-
-      <label for="yearFilter">Filtrer etter år:</label>
-      <select id="yearFilter"></select>
-
-      <button id="resetBtn">Nullstill søk</button>
-
-      <label for="themeSelect">🎨 Tema:</label>
-      <select id="themeSelect">
-        <option value="">Standard</option>
-        <option value="theme-neon">Neon</option>
-        <option value="theme-sunset">Sunset</option>
-        <option value="theme-frost">Frost</option>
-      </select>
-
-      <label for="viewModeSelect">🧱 Visningsmodus:</label>
-      <select id="viewModeSelect">
-        <option value="grid">Kortvisning</option>
-        <option value="list">Listevisning (mobil)</option>
-      </select>
-
-      <label for="searchInput">🔎 Søk etter tittel eller skuespiller:</label>
-      <input type="text" id="searchInput" placeholder="F.eks. Matrix eller Brad Pitt" />
-    </section>
   </header>
+
+  <div id="filterOverlay"></div>
+
+  <section id="filterPanel" class="filters">
+    <button class="close-filter">❌ Lukk</button>
+
+    <label for="sortSelect">📁 Sorter etter:</label>
+    <select id="sortSelect">
+      <option value="title-asc">Tittel A–Å</option>
+      <option value="title-desc">Tittel Å–A</option>
+      <option value="year-desc">År: nyeste først</option>
+      <option value="year-asc">År: eldste først</option>
+      <option value="added-desc">Dato lagt til: nyeste</option>
+      <option value="added-asc">Dato lagt til: eldste</option>
+    </select>
+
+    <label for="genreFilter">Filtrer etter sjanger:</label>
+    <select id="genreFilter"></select>
+
+    <label for="yearFilter">Filtrer etter år:</label>
+    <select id="yearFilter"></select>
+
+    <button id="resetBtn">Nullstill søk</button>
+
+    <label for="themeSelect">🎨 Tema:</label>
+    <select id="themeSelect">
+      <option value="">Standard</option>
+      <option value="theme-neon">Neon</option>
+      <option value="theme-sunset">Sunset</option>
+      <option value="theme-frost">Frost</option>
+    </select>
+
+    <label for="viewModeSelect">🧱 Visningsmodus:</label>
+    <select id="viewModeSelect">
+      <option value="grid">Kortvisning</option>
+      <option value="list">Listevisning (mobil)</option>
+    </select>
+
+    <label for="searchInput">🔎 Søk etter tittel eller skuespiller:</label>
+    <input type="text" id="searchInput" placeholder="F.eks. Matrix eller Brad Pitt" />
+  </section>
 
   <main>
     <section class="collection">
