@@ -1139,3 +1139,8 @@ body.theme-wood .movie-card:hover {
     display: none !important;
   }
 }
+@media (max-width: 768px) {
+  .nav-buttons {
+    display: none;
+  }
+}
