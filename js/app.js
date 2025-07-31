@@ -188,11 +188,6 @@ window.onload = async () => {
   const toggleFiltersBtn = document.getElementById("toggleFilters");
 const filterPanel = document.getElementById("filterPanel");
 
-if (toggleFiltersBtn && filterPanel) {
-  toggleFiltersBtn.addEventListener("click", () => {
-    filterPanel.classList.toggle("hidden");
-  });
-}
 
 };
 const toggleFiltersBtn = document.getElementById("toggleFilters");
