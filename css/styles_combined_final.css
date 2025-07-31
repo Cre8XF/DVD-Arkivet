@@ -44,6 +44,50 @@
   --shadow: rgba(0, 122, 204, 0.2);
   --highlight: rgba(0, 122, 204, 0.4);
 }
+.theme-cyberpunk {
+  --bg: #0d0d0d;
+  --bg-light: #1a001a;
+  --text: #f0f0f0;
+  --text-muted: #aa88cc;
+  --accent: #ff0099;
+  --accent-hover: #ff33bb;
+  --border: #660066;
+  --shadow: rgba(255, 0, 153, 0.2);
+  --highlight: rgba(255, 0, 153, 0.4);
+}
+.theme-aurora {
+  --bg: #091a1f;
+  --bg-light: #12333f;
+  --text: #c8f0ff;
+  --text-muted: #7fd9ff;
+  --accent: #6effb5;
+  --accent-hover: #32ffaa;
+  --border: #1ee6b2;
+  --shadow: rgba(110, 255, 181, 0.2);
+  --highlight: rgba(110, 255, 181, 0.5);
+}
+.theme-bloodmoon {
+  --bg: #0c0004;
+  --bg-light: #1a000a;
+  --text: #ffeaea;
+  --text-muted: #ffb3b3;
+  --accent: #ff0033;
+  --accent-hover: #ff3366;
+  --border: #800020;
+  --shadow: rgba(255, 0, 51, 0.2);
+  --highlight: rgba(255, 0, 51, 0.5);
+}
+.theme-void {
+  --bg: #0a0a1a;
+  --bg-light: #121232;
+  --text: #d0d0ff;
+  --text-muted: #8888cc;
+  --accent: #4444ff;
+  --accent-hover: #6666ff;
+  --border: #333388;
+  --shadow: rgba(68, 68, 255, 0.2);
+  --highlight: rgba(68, 68, 255, 0.4);
+}
 
 /* === 1. Grunnstruktur og bakgrunn === */
 body {
@@ -1036,5 +1080,62 @@ body.theme-wood .movie-card:hover {
     gap: 0.5rem;
     align-items: stretch;
     justify-content: center;
+  }
+}
+.modal-flex {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.modal-flex img {
+  width: 40%;
+  max-width: 140px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.modal-flex .movie-meta {
+  flex: 1;
+  font-size: 0.9rem;
+}
+@media (max-width: 600px) {
+  .modal-flex {
+    flex-direction: row;
+  }
+}
+@media (min-width: 769px) {
+  #filterPanel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: static;
+    width: auto;
+    max-width: 100%;
+    transform: none;
+    height: auto;
+    padding: 1rem;
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  .close-filter,
+  #filterOverlay {
+    display: none !important;
+  }
+
+  #filterPanel label,
+  #filterPanel select,
+  #filterPanel input,
+  #filterPanel button {
+    width: auto;
+  }
+}
+@media (min-width: 769px) {
+  .mobile-only {
+    display: none !important;
   }
 }

@@ -53,11 +53,16 @@ function showDetails(movie) {
 
   content.innerHTML = `
     <h2>${movie.title} (${movie.year})</h2>
-    <img src="${movie.poster || './images/placeholder.jpg'}" alt="${movie.title}">
-    <p><strong>Regissør:</strong> ${movie.director || "Ukjent"}</p>
-    <p><strong>Skuespillere:</strong> ${movie.actors || "Ukjent"}</p>
-    <p><strong>Varighet:</strong> ${movie.runtime || "?"}</p>
-    <p><strong>IMDb:</strong> ${movie.imdbRating ? movie.imdbRating + ' ⭐️' : "?"}</p>
+    <div class="modal-flex">
+      <img src="${movie.poster || './images/placeholder.jpg'}" alt="${movie.title}">
+      <div class="movie-meta">
+        <p><strong>Regissør:</strong> ${movie.director || "Ukjent"}</p>
+        <p><strong>Skuespillere:</strong> ${movie.actors || "Ukjent"}</p>
+        <p><strong>Varighet:</strong> ${movie.runtime || "?"}</p>
+        <p><strong>IMDb:</strong> ${movie.imdbRating ? movie.imdbRating + ' ⭐️' : "?"}</p>
+      </div>
+    </div>
+
     <p><strong>Beskrivelse:</strong><br>${movie.overview || "Ingen beskrivelse."}</p>
     ${movie.imdbUrl ? `<a href="${movie.imdbUrl}" target="_blank">🔗 IMDb-side</a>` : ""}
 
@@ -69,8 +74,10 @@ function showDetails(movie) {
 
   modal.classList.remove("is-hidden");
 
+  // 🛠️ Rediger-knapp
   document.getElementById("editMovieBtn").onclick = () => openEditPanel(movie);
 
+  // 🗑️ Slett-knapp
   document.getElementById("deleteMovieBtn").onclick = () => {
     if (confirm(`Slett "${movie.title}" fra samlingen?`)) {
       const updated = allMovies.filter(m => m.id !== movie.id);
@@ -80,28 +87,29 @@ function showDetails(movie) {
     }
   };
 
-  // Navigasjonsknapper knyttes her (viktig!)
+  // ❌ Lukke-knapp (flyttet ut av if-blokken!)
+  document.getElementById("closeModal").onclick = () => {
+    modal.classList.add("is-hidden");
+  };
+
+  // ◀▶ Navigasjon
   const prevBtn = document.getElementById("prevMovie");
   const nextBtn = document.getElementById("nextMovie");
+  const currentIndex = allMovies.findIndex(m => m.id === movie.id);
 
   if (prevBtn && nextBtn) {
-    const currentIndex = allMovies.findIndex(m => m.id === movie.id);
     prevBtn.disabled = currentIndex <= 0;
     nextBtn.disabled = currentIndex >= allMovies.length - 1;
 
     prevBtn.onclick = () => {
       if (currentIndex > 0) showDetails(allMovies[currentIndex - 1]);
     };
-
     nextBtn.onclick = () => {
       if (currentIndex < allMovies.length - 1) showDetails(allMovies[currentIndex + 1]);
     };
-    document.getElementById("closeModal").onclick = () => {
-  document.getElementById("modalOverlay").classList.add("is-hidden");
-};
-
   }
 }
+
 
 
 document.getElementById("sortSelect").addEventListener("change", () => {
