@@ -1,3 +1,4 @@
+/* === START: styles.css === */
 /* === 0. Fargevariabler for tema (default) === */
 :root {
   --bg: #121212;
@@ -42,6 +43,50 @@
   --border: #a3cde8;
   --shadow: rgba(0, 122, 204, 0.2);
   --highlight: rgba(0, 122, 204, 0.4);
+}
+.theme-cyberpunk {
+  --bg: #0d0d0d;
+  --bg-light: #1a001a;
+  --text: #f0f0f0;
+  --text-muted: #aa88cc;
+  --accent: #ff0099;
+  --accent-hover: #ff33bb;
+  --border: #660066;
+  --shadow: rgba(255, 0, 153, 0.2);
+  --highlight: rgba(255, 0, 153, 0.4);
+}
+.theme-aurora {
+  --bg: #091a1f;
+  --bg-light: #12333f;
+  --text: #c8f0ff;
+  --text-muted: #7fd9ff;
+  --accent: #6effb5;
+  --accent-hover: #32ffaa;
+  --border: #1ee6b2;
+  --shadow: rgba(110, 255, 181, 0.2);
+  --highlight: rgba(110, 255, 181, 0.5);
+}
+.theme-bloodmoon {
+  --bg: #0c0004;
+  --bg-light: #1a000a;
+  --text: #ffeaea;
+  --text-muted: #ffb3b3;
+  --accent: #ff0033;
+  --accent-hover: #ff3366;
+  --border: #800020;
+  --shadow: rgba(255, 0, 51, 0.2);
+  --highlight: rgba(255, 0, 51, 0.5);
+}
+.theme-void {
+  --bg: #0a0a1a;
+  --bg-light: #121232;
+  --text: #d0d0ff;
+  --text-muted: #8888cc;
+  --accent: #4444ff;
+  --accent-hover: #6666ff;
+  --border: #333388;
+  --shadow: rgba(68, 68, 255, 0.2);
+  --highlight: rgba(68, 68, 255, 0.4);
 }
 
 /* === 1. Grunnstruktur og bakgrunn === */
@@ -636,4 +681,152 @@ body.theme-wood .movie-card:hover {
 .nav-buttons button {
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
+}
+
+/* === START: responsive.css === */
+/* === Grunnoppsett for filmkort === */
+#collectionList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.movie-card {
+  width: 160px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 0.5rem;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.movie-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px var(--highlight, #8800ff);
+}
+
+.movie-card .poster {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.movie-card h4 {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+/* === Slett-knapp (desktop hover og mobil alltid synlig) === */
+.delete-btn {
+  display: none;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 0.85rem;
+  padding: 4px 6px;
+  background-color: crimson;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Vis slett-knapp på hover (desktop) */
+
+/* Vis slett-knapp alltid på mobil og plasser den statisk */
+
+/* === Responsive Justeringer === */
+
+/* === Ekstra mobilvennlig (<480px) === */
+
+/* Vis kun på mobil */
+.mobile-only {
+  display: none;
+}
+
+/* === Mobilvisning === */
+
+/* === FORBEDRET LISTEVISNING (MOBIL) === */
+
+/* === SLIDE-OVER FILTERPANEL (MOBIL) === */
+#filterPanel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 90vw; /* Mindre bredde */
+  max-width: 280px; /* Tydelig maksgrense */
+  height: 100%;
+  background-color: #1a1a1a;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  padding: 1.2rem; /* Litt bedre luft */
+  overflow-y: auto;
+  box-sizing: border-box; /* Viktig: sikrer at padding ikke overstyrer bredden */
+}
+
+#filterPanel.open {
+  transform: translateX(0);
+}
+
+#filterOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 900;
+}
+
+#filterOverlay.active {
+  display: block;
+}
+
+#filterPanel .close-filter {
+  display: block;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.mobile-only {
+  display: inline-block;
+}
+#filterPanel label,
+#filterPanel select,
+#filterPanel input,
+#filterPanel button {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* === DEAKTIVER SLIDEOVER PÅ DESKTOP === */
+.modal-flex {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.modal-flex img {
+  width: 40%;
+  max-width: 140px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.modal-flex .movie-meta {
+  flex: 1;
+  font-size: 0.9rem;
 }

@@ -1,64 +1,8 @@
-/* === Grunnoppsett for filmkort === */
-#collectionList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-  padding: 1rem;
-}
-
-.movie-card {
-  width: 160px;
-  background-color: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
-  padding: 0.5rem;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease;
-  cursor: pointer;
-}
-
-.movie-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 15px var(--highlight, #8800ff);
-}
-
-.movie-card .poster {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.movie-card h4 {
-  margin: 0.5rem 0;
-  font-size: 1rem;
-}
-
-/* === Slett-knapp (desktop hover og mobil alltid synlig) === */
-.delete-btn {
-  display: none;
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  font-size: 0.85rem;
-  padding: 4px 6px;
-  background-color: crimson;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  z-index: 2;
-}
-
-/* Vis slett-knapp på hover (desktop) */
 @media (min-width: 481px) {
   .movie-card:hover .delete-btn {
     display: inline-block;
   }
 }
-
-/* Vis slett-knapp alltid på mobil og plasser den statisk */
 @media (max-width: 480px) {
   .delete-btn {
     display: inline-block;
@@ -66,8 +10,6 @@
     margin-top: 0.5rem;
   }
 }
-
-/* === Responsive Justeringer === */
 @media (max-width: 768px) {
   .movie-card {
     width: 45%;
@@ -105,8 +47,6 @@
     height: 24px;
   }
 }
-
-/* === Ekstra mobilvennlig (<480px) === */
 @media (max-width: 480px) {
   .movie-card {
     width: 100%;
@@ -142,12 +82,6 @@
     gap: 0.5rem;
   }
 }
-
-/* Vis kun på mobil */
-.mobile-only {
-  display: none;
-}
-
 @media (max-width: 480px) {
   .mobile-only {
     display: block;
@@ -201,7 +135,6 @@
     margin-bottom: 1rem;
   }
 }
-/* === Mobilvisning === */
 @media (max-width: 768px) {
   .movie-card {
     width: 100%;
@@ -252,9 +185,10 @@
   }
 
   .modal-content img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 1rem;
+    max-height: 240px;
+    object-fit: contain;
+    margin: 0 auto 1rem;
+    display: block;
   }
 
   .detail-actions {
@@ -262,8 +196,6 @@
     gap: 0.5rem;
   }
 }
-
-/* === FORBEDRET LISTEVISNING (MOBIL) === */
 @media (max-width: 768px) {
   #collectionList.list-view {
     display: flex;
@@ -298,76 +230,19 @@
     margin: 0;
   }
 }
-
-/* === SLIDE-OVER FILTERPANEL (MOBIL) === */
-@media (max-width: 768px) {
-  #filterPanel {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 85%;
-    max-width: 320px;
-    height: 100%;
-    background-color: #1a1a1a;
-    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.4);
-    z-index: 1000;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    padding: 1.5rem;
-    overflow-y: auto;
-  }
-
-  #filterPanel.open {
-    transform: translateX(0);
-  }
-
-  #filterOverlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 900;
-  }
-
-  #filterOverlay.active {
-    display: block;
-  }
-
-  #filterPanel .close-filter {
-    display: block;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .mobile-only {
-    display: inline-block;
-  }
-}
-
-/* === DEAKTIVER SLIDEOVER PÅ DESKTOP === */
 @media (min-width: 769px) {
   #filterPanel {
-    position: sticky;
-    top: 4.5rem; /* rett under sticky header */
-    z-index: 900;
-    width: 100%;
-    padding: 1rem;
-    background-color: var(--bg, #1a1a1a);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
-
+    position: static !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+    padding: 0 !important;
+    box-shadow: none !important;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     align-items: center;
-    justify-content: center;
   }
 
   #filterOverlay {
@@ -376,5 +251,65 @@
 
   .close-filter {
     display: none !important;
+  }
+}
+@media (max-width: 600px) {
+  .detail-actions button {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.95rem;
+    border-radius: 8px;
+  }
+
+  .detail-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+    justify-content: center;
+  }
+}
+@media (max-width: 600px) {
+  .modal-flex {
+    flex-direction: row;
+  }
+}
+@media (min-width: 769px) {
+  #filterPanel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: sticky;
+    top: 4.5rem; /* høyde under header */
+    z-index: 900;
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--bg, #1a1a1a); /* fallback for mørkt tema */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    -webkit-backdrop-filter: blur(4px); /* Safari/iOS support */
+    backdrop-filter: blur(4px); /* valgfritt for moderne effekt */
+  }
+
+  .close-filter,
+  #filterOverlay {
+    display: none !important;
+  }
+
+  #filterPanel label,
+  #filterPanel select,
+  #filterPanel input,
+  #filterPanel button {
+    width: auto;
+  }
+}
+@media (min-width: 769px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
+@media (max-width: 768px) {
+  .nav-buttons {
+    display: none;
   }
 }
