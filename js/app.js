@@ -120,6 +120,31 @@ function showDetails(movie) {
     };
   }
 }
+// === Sveipegest for mobil (neste/forrige) ===
+let touchStartX = 0;
+let touchEndX = 0;
+
+const modal = document.getElementById("modalOverlay");
+modal.addEventListener("touchstart", e => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+modal.addEventListener("touchend", e => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipeGesture();
+});
+
+function handleSwipeGesture() {
+  const deltaX = touchEndX - touchStartX;
+  const minSwipeDistance = 50;
+  if (Math.abs(deltaX) < minSwipeDistance) return;
+
+  const currentIndex = allMovies.findIndex(m => m.id === currentMovieId);
+  if (deltaX < 0 && currentIndex < allMovies.length - 1) {
+    showDetails(allMovies[currentIndex + 1]);
+  } else if (deltaX > 0 && currentIndex > 0) {
+    showDetails(allMovies[currentIndex - 1]);
+  }
+}
 
 window.onload = async () => {
   allMovies = await fetch("json/collection.json").then(r => r.json());
