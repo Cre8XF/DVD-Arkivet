@@ -1,4 +1,3 @@
-import { openEditPanel } from "./edit.js";
 let currentMovieId = null;
 let allMovies = [];
 
@@ -58,14 +57,12 @@ function showDetails(movie) {
     <p><strong>Beskrivelse:</strong><br>${movie.overview || "Ingen beskrivelse."}</p>
     ${movie.imdbUrl ? `<a href="${movie.imdbUrl}" target="_blank">🔗 IMDb-side</a>` : ""}
     <div class="detail-actions">
-      <button id="editMovieBtn">✏️ Rediger</button>
       <button id="deleteMovieBtn">🗑️ Slett</button>
     </div>
   `;
 
   modal.classList.remove("is-hidden");
 
-  document.getElementById("editMovieBtn").onclick = () => openEditPanel(movie);
   document.getElementById("deleteMovieBtn").onclick = () => {
     if (confirm(`Slett "${movie.title}" fra samlingen?`)) {
       const updated = allMovies.filter(m => m.id !== movie.id);
