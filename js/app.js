@@ -1,11 +1,7 @@
+// === DVD Profiler: app.js med forbedret filtrering ===
+import { openEditPanel } from "./edit.js";
 let currentMovieId = null;
 let allMovies = [];
-
-async function fetchCollection() {
-  const res = await fetch("json/collection.json");
-  const data = await res.json();
-  return data;
-}
 
 function updateMovieCount(count) {
   const countElem = document.getElementById("movieCount");
@@ -36,6 +32,39 @@ function renderMovies(movies) {
   });
 
   updateMovieCount(movies.length);
+}
+
+function applyAllFilters() {
+  const yearVal = document.getElementById("yearFilter").value;
+  const genreVal = document.getElementById("genreFilter").value;
+  const searchVal = document.getElementById("searchInput").value.trim().toLowerCase();
+
+  let filtered = [...allMovies];
+
+  if (yearVal) filtered = filtered.filter(m => m.year == yearVal);
+  if (genreVal) filtered = filtered.filter(m => {
+    if (typeof m.genres === "string") return m.genres.includes(genreVal);
+    if (Array.isArray(m.genres)) return m.genres.includes(genreVal);
+    return false;
+  });
+  if (searchVal) {
+    filtered = filtered.filter(m =>
+      (m.title && m.title.toLowerCase().includes(searchVal)) ||
+      (m.actors && m.actors.toLowerCase().includes(searchVal))
+    );
+  }
+
+  renderMovies(filtered);
+  updateActiveFiltersDisplay(yearVal, genreVal, searchVal);
+}
+
+function updateActiveFiltersDisplay(year, genre, search) {
+  const display = document.getElementById("activeFilters");
+  const filters = [];
+  if (genre) filters.push(genre);
+  if (year) filters.push(year);
+  if (search) filters.push(`\"${search}\"`);
+  display.textContent = filters.length ? `🎯 Viser: ${filters.join(" | ")}` : "";
 }
 
 function showDetails(movie) {
@@ -93,7 +122,7 @@ function showDetails(movie) {
 }
 
 window.onload = async () => {
-  allMovies = await fetchCollection();
+  allMovies = await fetch("json/collection.json").then(r => r.json());
   allMovies.forEach((m, i) => { if (!m.id) m.id = i + 1 });
 
   renderMovies(allMovies);
@@ -110,19 +139,24 @@ window.onload = async () => {
   });
 
   const yearFilter = document.getElementById("yearFilter");
-  const years = [...new Set(allMovies.map(m => m.year).filter(Boolean))].sort((a, b) => b - a);
-  years.forEach(y => {
-    const opt = document.createElement("option");
-    opt.value = y;
-    opt.textContent = y;
-    yearFilter.appendChild(opt);
-  });
+const years = [...new Set(allMovies.map(m => m.year).filter(Boolean))].sort((a, b) => b - a);
 
-  yearFilter.addEventListener("change", () => {
-    const val = yearFilter.value;
-    if (!val) return renderMovies(allMovies);
-    renderMovies(allMovies.filter(m => m.year == val));
-  });
+// Legg til tom "Velg år"-opsjon først
+const defaultYearOption = document.createElement("option");
+defaultYearOption.value = "";
+defaultYearOption.textContent = "Velg år";
+yearFilter.appendChild(defaultYearOption);
+
+// Legg til år
+years.forEach(y => {
+  const opt = document.createElement("option");
+  opt.value = y;
+  opt.textContent = y;
+  yearFilter.appendChild(opt);
+});
+
+yearFilter.addEventListener("change", applyAllFilters);
+
 
   const genreFilter = document.getElementById("genreFilter");
   const genres = new Set();
@@ -130,23 +164,13 @@ window.onload = async () => {
     if (typeof m.genres === "string") m.genres.split("|").forEach(g => genres.add(g.trim()));
     if (Array.isArray(m.genres)) m.genres.forEach(g => genres.add(g));
   });
-
   [...genres].sort().forEach(g => {
     const opt = document.createElement("option");
     opt.value = g;
     opt.textContent = g;
     genreFilter.appendChild(opt);
   });
-
-  genreFilter.addEventListener("change", () => {
-    const val = genreFilter.value;
-    if (!val) return renderMovies(allMovies);
-    renderMovies(allMovies.filter(m => {
-      if (typeof m.genres === "string") return m.genres.includes(val);
-      if (Array.isArray(m.genres)) return m.genres.includes(val);
-      return false;
-    }));
-  });
+  genreFilter.addEventListener("change", applyAllFilters);
 
   const themeSelect = document.getElementById("themeSelect");
   themeSelect.addEventListener("change", () => {
@@ -155,14 +179,7 @@ window.onload = async () => {
   });
 
   const searchInput = document.getElementById("searchInput");
-  searchInput.addEventListener("input", () => {
-    const query = searchInput.value.trim().toLowerCase();
-    if (!query) return renderMovies(allMovies);
-    renderMovies(allMovies.filter(m =>
-      (m.title && m.title.toLowerCase().includes(query)) ||
-      (m.actors && m.actors.toLowerCase().includes(query))
-    ));
-  });
+  searchInput.addEventListener("input", applyAllFilters);
 
   const resetBtn = document.getElementById("resetBtn");
   resetBtn.addEventListener("click", () => {
@@ -173,10 +190,8 @@ window.onload = async () => {
     themeSelect.value = "";
     document.body.className = "";
     renderMovies(allMovies);
+    updateActiveFiltersDisplay();
   });
-};
-
-// === Mobil filterpanel ===
 const toggleFiltersBtn = document.getElementById("toggleFilters");
 const filterPanel = document.getElementById("filterPanel");
 const filterOverlay = document.getElementById("filterOverlay");
@@ -186,32 +201,15 @@ toggleFiltersBtn?.addEventListener("click", () => {
   filterPanel.classList.add("open");
   filterOverlay.classList.add("active");
 });
+
 closeFilterBtn?.addEventListener("click", () => {
   filterPanel.classList.remove("open");
   filterOverlay.classList.remove("active");
 });
+
 filterOverlay?.addEventListener("click", () => {
   filterPanel.classList.remove("open");
   filterOverlay.classList.remove("active");
 });
 
-// === Sveip på mobil for neste/forrige ===
-let touchStartX = 0;
-let touchEndX = 0;
-const modal = document.getElementById("modalOverlay");
-
-modal.addEventListener("touchstart", (e) => {
-  touchStartX = e.changedTouches[0].screenX;
-});
-modal.addEventListener("touchend", (e) => {
-  touchEndX = e.changedTouches[0].screenX;
-  handleSwipe();
-});
-
-function handleSwipe() {
-  const delta = touchEndX - touchStartX;
-  if (Math.abs(delta) < 50) return;
-  const currentIndex = allMovies.findIndex(m => m.id === currentMovieId);
-  if (delta > 0 && currentIndex > 0) showDetails(allMovies[currentIndex - 1]);
-  if (delta < 0 && currentIndex < allMovies.length - 1) showDetails(allMovies[currentIndex + 1]);
-}
+};

@@ -7,7 +7,8 @@
   <meta name="theme-color" content="#ff00ff" />
 
   <title>DVD Profiler</title>
-  <link rel="stylesheet" href="/css/styles_combined_final.css" />
+  <link rel="stylesheet" href="/css/styles (2).css" />
+  <link rel="stylesheet" href="/css/responsive (3).css" />
   <link rel="manifest" href="/json/manifest.json">
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
   <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
@@ -16,7 +17,7 @@
 <body class="theme-bloodmoon">
 
   <header>
-    <h1>📀 DVD Profiler</h1>
+    <h1>📀 FILM ARKIVET</h1>
     <button id="toggleFilters" class="mobile-only">🎛️ Filtrer</button>
   </header>
 
@@ -59,10 +60,10 @@
     <label for="searchInput">🔎 Søk etter tittel:</label>
     <input type="text" id="searchInput" placeholder="F.eks. Matrix" />
   </section>
+  <div id="activeFilters" class="active-filters"></div>
 
   <main>
     <section class="collection">
-      <h2>📚 Samlingen min</h2>
       <p id="movieCount">Totalt: 0 filmer</p>
       <ul id="collectionList"></ul>
     </section>
