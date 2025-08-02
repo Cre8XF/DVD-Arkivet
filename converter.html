@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>JSON ⇄ CSV Konverter</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 2rem;
+            max-width: 900px;
+            margin: auto;
+            background: #f9f9f9;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+        }
+
+        input[type="file"] {
+            margin-bottom: 1rem;
+        }
+
+        textarea {
+            width: 100%;
+            height: 300px;
+            font-family: monospace;
+            white-space: pre;
+            margin: 1rem 0;
+        }
+
+        button {
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+            padding: 0.4rem 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🎬 DVD JSON ⇄ CSV Konverter</h1>
+
+    <h2>1. Last opp <code>collection.json</code> og konverter til CSV</h2>
+    <input type="file" id="jsonFile" accept=".json">
+    <br>
+    <button onclick="convertToCSV()">Konverter til CSV</button>
+    <button onclick="downloadCSV()">Last ned CSV</button>
+
+    <h2>CSV-forhåndsvisning:</h2>
+    <textarea id="csvOutput" readonly></textarea>
+
+    <hr>
+
+    <h2>2. Last opp redigert <code>.csv</code> og konverter tilbake til JSON</h2>
+    <input type="file" id="csvFile" accept=".csv">
+    <br>
+    <button onclick="convertToJSON()">Konverter til JSON</button>
+    <button onclick="copyJSON()">📋 Kopier JSON</button>
+    <button onclick="downloadJSON()">⬇️ Last ned JSON</button>
+
+    <h2>JSON-forhåndsvisning:</h2>
+    <textarea id="jsonOutput" readonly></textarea>
+
+    <script>
+        let parsedJson = [];
+
+        function convertToCSV() {
+            if (!parsedJson.length) return alert("Ingen JSON-data lastet.");
+            const keys = Object.keys(parsedJson[0]);
+            const rows = parsedJson.map(obj => keys.map(k => JSON.stringify(obj[k] ?? "")).join(";"));
+            const csv = [keys.join(","), ...rows].join("\n");
+            document.getElementById("csvOutput").value = csv;
+        }
+
+        function convertToJSON() {
+            const file = document.getElementById("csvFile").files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                const lines = e.target.result.split("\n").filter(Boolean);
+                const headers = lines[0].split(",");
+                const data = lines.slice(1).map(line => {
+                    const values = line.split(",").map(v => v.replace(/^"|"$/g, ''));
+                    const obj = {};
+                    headers.forEach((h, i) => obj[h] = values[i]);
+                    return obj;
+                });
+                document.getElementById("jsonOutput").value = JSON.stringify(data, null, 2);
+            };
+            reader.readAsText(file);
+        }
+
+        function downloadCSV() {
+            const csv = document.getElementById("csvOutput").value;
+            if (!csv) return;
+            const blob = new Blob([csv], { type: "text/csv" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "collection.csv";
+            link.click();
+        }
+
+        function downloadJSON() {
+            const json = document.getElementById("jsonOutput").value;
+            if (!json) return;
+            const blob = new Blob([json], { type: "application/json" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "collection_updated.json";
+            link.click();
+        }
+
+        function copyJSON() {
+            const json = document.getElementById("jsonOutput");
+            json.select();
+            document.execCommand("copy");
+            alert("JSON kopiert!");
+        }
+
+        document.getElementById("jsonFile").addEventListener("change", function () {
+            const file = this.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                parsedJson = JSON.parse(e.target.result);
+                alert(`Lest inn ${parsedJson.length} filmer.`);
+            };
+            reader.readAsText(file);
+        });
+    </script>
+
+</body>
+
+</html>

@@ -21,10 +21,12 @@
     <button id="toggleFilters" class="mobile-only">🎛️ Filtrer</button>
   </header>
 
-  <div id="filterOverlay"></div>
+<div id="filterOverlay"></div>
 
-  <section id="filterPanel" class="filters">
-    <button class="close-filter">❌ Lukk</button>
+<section id="filterPanel" class="filters">
+  <button class="close-filter">❌ Lukk</button>
+  <fieldset>
+    <legend>🎛️ Filtrering</legend>
 
     <label for="sortSelect">📁 Sorter etter:</label>
     <select id="sortSelect">
@@ -34,15 +36,20 @@
       <option value="year-asc">År: eldste først</option>
       <option value="added-desc">Dato lagt til: nyeste</option>
       <option value="added-asc">Dato lagt til: eldste</option>
+      <option value="imdb-desc">IMDb-rating: høyest</option>
+      <option value="imdb-asc">IMDb-rating: lavest</option>
+      <option value="runtime-desc">Varighet: lengst</option>
+      <option value="runtime-asc">Varighet: kortest</option>
     </select>
 
-    <label for="genreFilter">Filtrer etter sjanger:</label>
+    <label for="genreFilter">🎭 Sjanger:</label>
     <select id="genreFilter"></select>
 
-    <label for="yearFilter">Filtrer etter år:</label>
+    <label for="yearFilter">📅 År:</label>
     <select id="yearFilter"></select>
 
-    <button id="resetBtn">Nullstill Filtrering</button>
+    <label for="formatFilter">💿 Format:</label>
+    <select id="formatFilter"></select>
 
     <label for="themeSelect">🎨 Tema:</label>
     <select id="themeSelect">
@@ -54,13 +61,18 @@
       <option value="theme-aurora">Aurora</option>
       <option value="theme-bloodmoon">Bloodmoon</option>
       <option value="theme-void">Void</option>
-
     </select>
 
-    <label for="searchInput">🔎 Søk etter tittel:</label>
-    <input type="text" id="searchInput" placeholder="F.eks. Matrix" />
-  </section>
-  <div id="activeFilters" class="active-filters"></div>
+    <label for="searchInput">🔎 Søk:</label>
+    <input type="text" id="searchInput" placeholder="F.eks. Matrix, Spielberg, Cruise" />
+
+    <button id="resetBtn">🔄 Nullstill</button>
+  </fieldset>
+</section>
+
+ 
+
+<div id="activeFilters" class="active-filters"></div>
 
   <main>
     <section class="collection">

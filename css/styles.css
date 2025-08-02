@@ -830,3 +830,23 @@ body.theme-wood .movie-card:hover {
   flex: 1;
   font-size: 0.9rem;
 }
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.filters fieldset {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.8rem;
+  background-color: var(--bg-light);
+}
+
+.filters legend {
+  font-weight: bold;
+  color: var(--accent);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
