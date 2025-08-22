@@ -510,6 +510,7 @@ button:hover {
 #sortSelect {
   margin-left: 1rem;
 }
+
 /* Bakgrunn på siden */
 body {
   background: #1a1a1a url('/images/wood-texture.jpg') repeat;
