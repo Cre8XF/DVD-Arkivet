@@ -85,9 +85,11 @@ DVD-Arkivet/
   css/
     styles.css            Themes and layout
     responsive.css        Responsive breakpoints
+    converter.css         Converter page styles
   js/
     app.js                Core application logic
     edit.js               Movie editing functionality
+    converter.js          CSV/JSON converter logic
   json/
     collection.json       Movie collection data
     manifest.json         PWA manifest
@@ -96,8 +98,12 @@ DVD-Arkivet/
     json_to_csv.py        JSON-to-CSV converter (Python)
   dvd_import/
     import.html           TMDb + Firebase importer
+    import.js             Import logic (ES module)
     manual_import_clz_only.html  Manual CLZ importer
+    manual_import.js      Manual import logic (ES module)
     hent_tmdb_bilder.html Batch poster fetcher (browser)
+    hent_tmdb_bilder.js   Poster fetcher logic
+    import-tools.css      Shared styles for import tools
     config.example.js     API key template
   images/                 Local poster images and icons
 ```
