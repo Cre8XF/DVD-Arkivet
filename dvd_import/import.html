@@ -14,19 +14,10 @@
       collection,
       getDocs
     } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAHoNIX-Pu58-faT0IV0QfSajvx0j9hABQ",
-      authDomain: "dvd-arkivet.firebaseapp.com",
-      projectId: "dvd-arkivet",
-      storageBucket: "dvd-arkivet.appspot.com",
-      messagingSenderId: "936877330102",
-      appId: "1:936877330102:web:8444ad9e0743617ea22017"
-    };
+    import { firebaseConfig, tmdbApiKey } from "./config.js";
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    const tmdbApiKey = "db3d7987e3a39baedf6bc138afa46e74";
     let existingIds = new Set();
     let newMovies = [];
 

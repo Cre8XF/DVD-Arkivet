@@ -3,8 +3,13 @@ const fetch = require("node-fetch");
 
 const inputFile = "season_posters_candidates.json";
 const outputFile = "season_posters_with_posters.json";
-const tmdbApiKey = "db3d7987e3a39baedf6bc138afa46e74";
+const tmdbApiKey = process.env.TMDB_API_KEY;
 const delayMs = 300;
+
+if (!tmdbApiKey) {
+  console.error("Missing TMDB_API_KEY environment variable. Run with: TMDB_API_KEY=your_key node fillSeasonPosters.js");
+  process.exit(1);
+}
 
 // === Ekstraher sesongnummer og rens tittel
 function extractSeasonData(title) {
