@@ -1,6 +1,6 @@
 
 let currentMovieId = null;
-let allMovies = [];
+export let allMovies = [];
 
 function updateMovieCount(count) {
   const countElem = document.getElementById("movieCount");

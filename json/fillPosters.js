@@ -4,8 +4,13 @@ const fetch = require("node-fetch");
 // === KONFIG ===
 const inputFile = "missing_posters.json";
 const outputFile = "missing_posters_with_posters.json";
-const tmdbApiKey = "db3d7987e3a39baedf6bc138afa46e74";
+const tmdbApiKey = process.env.TMDB_API_KEY;
 const delayMs = 300;
+
+if (!tmdbApiKey) {
+  console.error("Missing TMDB_API_KEY environment variable. Run with: TMDB_API_KEY=your_key node fillPosters.js");
+  process.exit(1);
+}
 
 // === Hjelpefunksjon ===
 function delay(ms) {

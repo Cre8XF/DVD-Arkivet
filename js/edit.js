@@ -1,5 +1,6 @@
+import { allMovies } from './app.js';
+
 let currentMovieRef = null;
-let collection = JSON.parse(localStorage.getItem("collection")) || [];
 
 export function openEditPanel(movie) {
   currentMovieRef = movie;
@@ -52,7 +53,7 @@ document.getElementById("saveEditBtn")?.addEventListener("click", () => {
 
 function saveAndClose() {
   // Oppdater lokalStorage (hvis brukt) – eller bare reload
-  localStorage.setItem("collection", JSON.stringify(collection));
+  localStorage.setItem("collection", JSON.stringify(allMovies));
   document.getElementById("editPanel").classList.add("is-hidden");
   document.getElementById("modalOverlay").classList.add("is-hidden");
   showJsonExport(currentMovieRef);
