@@ -241,6 +241,15 @@ filterOverlay?.addEventListener("click", () => {
   filterOverlay.classList.remove("active");
 });
 
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const modal = document.getElementById("modalOverlay");
+      if (modal && !modal.classList.contains("is-hidden")) {
+        modal.classList.add("is-hidden");
+      }
+    }
+  });
+
 };
 
 function parseRuntime(runtime) {
