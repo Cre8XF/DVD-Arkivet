@@ -32,32 +32,11 @@ function renderMovies(movies) {
 }
 
 function applyAllFilters() {
-  const yearVal = document.getElementById("yearFilter").value;
-  const genreVal = document.getElementById("genreFilter").value;
-  const formatVal = document.getElementById("formatFilter").value;
-  const searchVal = document.getElementById("searchInput").value.trim().toLowerCase();
-
-  let filtered = [...allMovies];
-
-  if (yearVal) filtered = filtered.filter(m => m.year == yearVal);
-  if (genreVal) filtered = filtered.filter(m => {
-    if (typeof m.genres === "string") return m.genres.includes(genreVal);
-    if (Array.isArray(m.genres)) return m.genres.includes(genreVal);
-    return false;
-  });
-  if (formatVal) filtered = filtered.filter(m => m.format?.toLowerCase() === formatVal.toLowerCase());
-  if (searchVal) {
-    filtered = filtered.filter(m =>
-      (m.title && m.title.toLowerCase().includes(searchVal)) ||
-      (m.actors && m.actors.toLowerCase().includes(searchVal)) ||
-      (m.director && m.director.toLowerCase().includes(searchVal)) ||
-      (m.overview && m.overview.toLowerCase().includes(searchVal)) ||
-      (m.format && m.format.toLowerCase().includes(searchVal))
-    );
-  }
-
+  updateDropdowns();
+  const filters = getActiveFilters();
+  const filtered = filterMovies(allMovies, filters);
   renderMovies(filtered);
-  updateActiveFiltersDisplay(yearVal, genreVal, searchVal, formatVal);
+  updateActiveFiltersDisplay(filters.year, filters.genre, filters.search, filters.format);
 }
 
 function updateActiveFiltersDisplay(year, genre, search, format) {
@@ -68,6 +47,105 @@ function updateActiveFiltersDisplay(year, genre, search, format) {
   if (format) filters.push(format);
   if (search) filters.push(`"${search}"`);
   display.textContent = filters.length ? `🎯 Viser: ${filters.join(" | ")}` : "";
+}
+
+// === Cascading filter helpers ===
+
+function getActiveFilters() {
+  return {
+    genre: document.getElementById("genreFilter").value,
+    year: document.getElementById("yearFilter").value,
+    format: document.getElementById("formatFilter").value,
+    search: document.getElementById("searchInput").value.trim().toLowerCase()
+  };
+}
+
+function filterMovies(movies, filters, ignoreKey) {
+  let result = movies;
+
+  if (ignoreKey !== "year" && filters.year) {
+    result = result.filter(m => m.year == filters.year);
+  }
+  if (ignoreKey !== "genre" && filters.genre) {
+    result = result.filter(m => {
+      if (typeof m.genres === "string") return m.genres.includes(filters.genre);
+      if (Array.isArray(m.genres)) return m.genres.includes(filters.genre);
+      return false;
+    });
+  }
+  if (ignoreKey !== "format" && filters.format) {
+    result = result.filter(m => m.format?.toLowerCase() === filters.format.toLowerCase());
+  }
+  if (ignoreKey !== "search" && filters.search) {
+    result = result.filter(m =>
+      (m.title && m.title.toLowerCase().includes(filters.search)) ||
+      (m.actors && m.actors.toLowerCase().includes(filters.search)) ||
+      (m.director && m.director.toLowerCase().includes(filters.search)) ||
+      (m.overview && m.overview.toLowerCase().includes(filters.search)) ||
+      (m.format && m.format.toLowerCase().includes(filters.search))
+    );
+  }
+
+  return result;
+}
+
+function extractGenres(movies) {
+  const genres = new Set();
+  movies.forEach(m => {
+    if (typeof m.genres === "string") m.genres.split("|").forEach(g => genres.add(g.trim()));
+    if (Array.isArray(m.genres)) m.genres.forEach(g => genres.add(g));
+  });
+  return [...genres].filter(Boolean).sort();
+}
+
+function extractYears(movies) {
+  return [...new Set(movies.map(m => m.year).filter(Boolean))].sort((a, b) => b - a);
+}
+
+function extractFormats(movies) {
+  return [...new Set(movies.map(m => m.format).filter(Boolean))].sort();
+}
+
+function rebuildDropdown(selectEl, options, defaultLabel, currentValue) {
+  selectEl.innerHTML = "";
+  const defaultOpt = document.createElement("option");
+  defaultOpt.value = "";
+  defaultOpt.textContent = defaultLabel;
+  selectEl.appendChild(defaultOpt);
+
+  let valueStillValid = false;
+  options.forEach(val => {
+    const opt = document.createElement("option");
+    opt.value = val;
+    opt.textContent = val;
+    selectEl.appendChild(opt);
+    if (String(val) === String(currentValue)) valueStillValid = true;
+  });
+
+  selectEl.value = valueStillValid ? currentValue : "";
+}
+
+function updateDropdowns() {
+  const filters = getActiveFilters();
+
+  const moviesForGenre = filterMovies(allMovies, filters, "genre");
+  const moviesForYear = filterMovies(allMovies, filters, "year");
+  const moviesForFormat = filterMovies(allMovies, filters, "format");
+
+  rebuildDropdown(document.getElementById("genreFilter"), extractGenres(moviesForGenre), "Velg sjanger", filters.genre);
+  rebuildDropdown(document.getElementById("yearFilter"), extractYears(moviesForYear), "Velg år", filters.year);
+  rebuildDropdown(document.getElementById("formatFilter"), extractFormats(moviesForFormat), "Velg format", filters.format);
+
+  // Second pass: if any value was auto-reset, recompute with corrected state
+  const corrected = getActiveFilters();
+  if (corrected.genre !== filters.genre || corrected.year !== filters.year || corrected.format !== filters.format) {
+    const mg = filterMovies(allMovies, corrected, "genre");
+    const my = filterMovies(allMovies, corrected, "year");
+    const mf = filterMovies(allMovies, corrected, "format");
+    rebuildDropdown(document.getElementById("genreFilter"), extractGenres(mg), "Velg sjanger", corrected.genre);
+    rebuildDropdown(document.getElementById("yearFilter"), extractYears(my), "Velg år", corrected.year);
+    rebuildDropdown(document.getElementById("formatFilter"), extractFormats(mf), "Velg format", corrected.format);
+  }
 }
 
 function showDetails(movie) {
@@ -152,54 +230,13 @@ window.onload = async () => {
   });
 
   const yearFilter = document.getElementById("yearFilter");
-const years = [...new Set(allMovies.map(m => m.year).filter(Boolean))].sort((a, b) => b - a);
+  const genreFilter = document.getElementById("genreFilter");
+  const formatFilter = document.getElementById("formatFilter");
 
-// Legg til tom "Velg år"-valg først
-const defaultYearOption = document.createElement("option");
-defaultYearOption.value = "";
-defaultYearOption.textContent = "Velg år";
-yearFilter.appendChild(defaultYearOption);
-
-years.forEach(y => {
-  const opt = document.createElement("option");
-  opt.value = y;
-  opt.textContent = y;
-  yearFilter.appendChild(opt);
-});
+  updateDropdowns();
 
   yearFilter.addEventListener("change", applyAllFilters);
-
-  const genreFilter = document.getElementById("genreFilter");
-  const genres = new Set();
-  allMovies.forEach(m => {
-    if (typeof m.genres === "string") m.genres.split("|").forEach(g => genres.add(g.trim()));
-    if (Array.isArray(m.genres)) m.genres.forEach(g => genres.add(g));
-  });
-  [...genres].sort().forEach(g => {
-    const opt = document.createElement("option");
-    opt.value = g;
-    opt.textContent = g;
-    genreFilter.appendChild(opt);
-  });
   genreFilter.addEventListener("change", applyAllFilters);
-
- const formatFilter = document.getElementById("formatFilter");
-const formats = [...new Set(allMovies.map(m => m.format).filter(Boolean))];
-formats.sort();
-
-// Legg til tom "Velg format"-valg først
-const defaultFormatOption = document.createElement("option");
-defaultFormatOption.value = "";
-defaultFormatOption.textContent = "Velg format";
-formatFilter.appendChild(defaultFormatOption);
-
-formats.forEach(f => {
-  const opt = document.createElement("option");
-  opt.value = f;
-  opt.textContent = f;
-  formatFilter.appendChild(opt);
-});
-
   formatFilter.addEventListener("change", applyAllFilters);
 
   const themeSelect = document.getElementById("themeSelect");
@@ -211,13 +248,11 @@ formats.forEach(f => {
   document.getElementById("searchInput").addEventListener("input", applyAllFilters);
 
   document.getElementById("resetBtn").addEventListener("click", () => {
-    genreFilter.value = "";
-    yearFilter.value = "";
-    formatFilter.value = "";
     document.getElementById("searchInput").value = "";
     sortSelect.value = "title-asc";
     themeSelect.value = "";
     document.body.className = "";
+    updateDropdowns();
     renderMovies(allMovies);
     updateActiveFiltersDisplay();
   });
