@@ -69,7 +69,7 @@
             if (!parsedJson.length) return alert("Ingen JSON-data lastet.");
             const keys = Object.keys(parsedJson[0]);
             const rows = parsedJson.map(obj => keys.map(k => JSON.stringify(obj[k] ?? "")).join(";"));
-            const csv = [keys.join(","), ...rows].join("\n");
+            const csv = [keys.join(";"), ...rows].join("\n");
             document.getElementById("csvOutput").value = csv;
         }
 
@@ -79,11 +79,14 @@
             const reader = new FileReader();
             reader.onload = e => {
                 const lines = e.target.result.split("\n").filter(Boolean);
-                const headers = lines[0].split(",");
+                const headers = lines[0].split(";");
                 const data = lines.slice(1).map(line => {
-                    const values = line.split(",").map(v => v.replace(/^"|"$/g, ''));
+                    const values = line.split(";").map(v => {
+                        const trimmed = v.trim();
+                        try { return JSON.parse(trimmed); } catch { return trimmed; }
+                    });
                     const obj = {};
-                    headers.forEach((h, i) => obj[h] = values[i]);
+                    headers.forEach((h, i) => obj[h.trim()] = values[i]);
                     return obj;
                 });
                 document.getElementById("jsonOutput").value = JSON.stringify(data, null, 2);
@@ -112,10 +115,9 @@
         }
 
         function copyJSON() {
-            const json = document.getElementById("jsonOutput");
-            json.select();
-            document.execCommand("copy");
-            alert("JSON kopiert!");
+            const json = document.getElementById("jsonOutput").value;
+            if (!json) return;
+            navigator.clipboard.writeText(json).then(() => alert("JSON kopiert!"));
         }
 
         document.getElementById("jsonFile").addEventListener("change", function () {
