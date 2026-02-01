@@ -38,11 +38,10 @@
         ? raw.map(item => ({
             title: item["Title"] || "",
             year: String(item["Release Date"] || ""),
-            genre: item["Genres"] ? item["Genres"].split(" | ") : [],
+            genres: item["Genres"] || "",
             runtime: item["Runtime"] || "",
             director: item["Director"] || "",
-            cover: "",
-            backcover: "",
+            poster: "",
             overview: "",
             added: item["Added Date"] || new Date().toISOString().split("T")[0]
           }))
@@ -72,13 +71,12 @@
             title: details.title,
             overview: details.overview || "",
             year: details.release_date ? details.release_date.split("-")[0] : "",
-            genre: details.genres.map(g => g.name),
+            genres: details.genres.map(g => g.name).join(" | "),
             director: details.credits.crew.find(p => p.job === "Director")?.name || "",
-            cast: details.credits.cast.slice(0, 5).map(a => a.name).join(", "),
+            actors: details.credits.cast.slice(0, 5).map(a => a.name).join(" | "),
             runtime: details.runtime ? `${Math.floor(details.runtime / 60)}:${String(details.runtime % 60).padStart(2, '0')}` : "",
-            cover: details.poster_path ? "https://image.tmdb.org/t/p/w300" + details.poster_path : "",
-            imdb: result.vote_average ? result.vote_average.toFixed(1) : "Ukjent",
-            backcover: "",
+            poster: details.poster_path ? "https://image.tmdb.org/t/p/w300" + details.poster_path : "",
+            imdbRating: result.vote_average ? result.vote_average.toFixed(1) : "",
             added: movie.added || new Date().toISOString().split("T")[0]
           };
 
@@ -89,11 +87,11 @@
           div.className = "movie-card";
           div.innerHTML = `
             <h3>${fullMovie.title} (${fullMovie.year})</h3>
-            ${fullMovie.cover ? `<img src="${fullMovie.cover}" alt="Poster">` : "<p>❌ Ingen plakat</p>"}
-            <p><strong>⭐ IMDb:</strong> ${fullMovie.imdb}</p>
-            <p><strong>Sjanger:</strong> ${fullMovie.genre.join(", ")}</p>
+            ${fullMovie.poster ? `<img src="${fullMovie.poster}" alt="Poster">` : "<p>❌ Ingen plakat</p>"}
+            <p><strong>⭐ IMDb:</strong> ${fullMovie.imdbRating || "Ukjent"}</p>
+            <p><strong>Sjanger:</strong> ${fullMovie.genres}</p>
             <p><strong>Regissør:</strong> ${fullMovie.director}</p>
-            <p><strong>Skuespillere:</strong> ${fullMovie.cast}</p>
+            <p><strong>Skuespillere:</strong> ${fullMovie.actors}</p>
             <p><strong>Spilletid:</strong> ${fullMovie.runtime}</p>
             <p><strong>📖 Beskrivelse:</strong><br>${fullMovie.overview}</p>
             <p style="color:${exists ? 'lime' : 'orange'};">${exists ? "✅ Allerede i samling" : "🆕 Ikke lagret ennå"}</p>

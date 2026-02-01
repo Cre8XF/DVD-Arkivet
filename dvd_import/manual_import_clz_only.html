@@ -41,12 +41,12 @@
         div.className = "movie-card";
         div.innerHTML = `
           <h3>${movie.title} (${movie.year})</h3>
-          ${movie.cover ? `<img src="${movie.cover}" alt="Poster">` : "<p>❌ Ingen plakat</p>"}
-          <p><strong>Sjanger:</strong> ${movie.genre?.join(", ") || ""}</p>
+          ${(movie.poster || movie.cover) ? `<img src="${movie.poster || movie.cover}" alt="Poster">` : "<p>❌ Ingen plakat</p>"}
+          <p><strong>Sjanger:</strong> ${movie.genres || (Array.isArray(movie.genre) ? movie.genre.join(", ") : movie.genre) || "-"}</p>
           <p><strong>Format:</strong> ${movie.format || "-"}</p>
           <p><strong>Regissør:</strong> ${movie.director || "-"}</p>
           <p><strong>Lengde:</strong> ${movie.runtime || "-"}</p>
-          <p><strong>IMDb:</strong> ${movie.imdb || "-"}</p>
+          <p><strong>IMDb:</strong> ${movie.imdbRating || movie.imdb || "-"}</p>
           <p style="color:${exists ? 'lime' : 'orange'};">${exists ? "✅ Allerede i samling" : "🆕 Ikke lagret ennå"}</p>
           ${!exists ? `<button>➕ Legg til</button>` : ""}
         `;

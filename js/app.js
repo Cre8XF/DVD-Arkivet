@@ -1,5 +1,4 @@
 
-let currentMovieId = null;
 export let allMovies = [];
 
 function updateMovieCount(count) {
@@ -72,7 +71,6 @@ function updateActiveFiltersDisplay(year, genre, search, format) {
 }
 
 function showDetails(movie) {
-  currentMovieId = movie.id;
   const modal = document.getElementById("modalOverlay");
   const content = document.getElementById("modalDetails");
 
@@ -125,7 +123,15 @@ function showDetails(movie) {
   }
 }
 window.onload = async () => {
-  allMovies = await fetch("json/collection.json").then(r => r.json());
+  try {
+    const response = await fetch("json/collection.json");
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    allMovies = await response.json();
+  } catch (err) {
+    document.getElementById("collectionList").innerHTML =
+      `<p style="color:red;text-align:center;">Kunne ikke laste filmsamlingen: ${err.message}</p>`;
+    return;
+  }
   allMovies.forEach((m, i) => { if (!m.id) m.id = i + 1 });
 
   renderMovies(allMovies);

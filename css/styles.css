@@ -275,12 +275,6 @@ button:hover {
   background-color: var(--accent);
   color: var(--bg);
 }
-#tmdbResults {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
-}
 .search-result {
   display: flex;
   gap: 1rem;
@@ -301,7 +295,6 @@ button:hover {
 
 /* === 9. Modal for filminfo === */
 .modal {
-  display: none;
   position: fixed;
   z-index: 999;
   left: 0;
@@ -310,7 +303,6 @@ button:hover {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   padding: 2rem;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -511,11 +503,6 @@ button:hover {
   margin-left: 1rem;
 }
 
-/* Bakgrunn på siden */
-body {
-  background: #1a1a1a url('/images/wood-texture.jpg') repeat;
-  background-size: cover;
-}
 /* === Temaer === */
 body.theme-neon {
   background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
@@ -529,47 +516,7 @@ body.theme-frost {
   background: linear-gradient(to bottom, #e0eafc, #cfdef3);
   color: #222;
 }
-body.theme-wood {
-  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
-  color: #fff;
-}
-.shelf-view {
-  background-image: url('images/shelf.png');
-  background-repeat: repeat-y;
-  background-size: contain;
-  padding: 2rem;
-}
-
 /* === Generelt === */
-#collectionList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1rem;
-}
-
-/* === Hylleeffekt for wood theme === */
-body.theme-wood #collectionList {
-  background: repeating-linear-gradient(to bottom, #5a3e22 0, #5a3e22 2px, transparent 2px, transparent 120px);
-  padding: 3rem 1rem;
-  position: relative;
-}
-
-body.theme-wood .movie-card {
-  background: #2d1f0f;
-  padding: 1rem;
-  border-radius: 6px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
-  transform: perspective(600px) rotateX(1.5deg);
-  transition: transform 0.3s;
-  position: relative;
-  z-index: 1;
-}
-
-body.theme-wood .movie-card:hover {
-  transform: perspective(600px) rotateX(0deg) scale(1.03);
-}
 #collectionList {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -745,11 +692,6 @@ body.theme-wood .movie-card:hover {
 /* === Responsive Justeringer === */
 
 /* === Ekstra mobilvennlig (<480px) === */
-
-/* Vis kun på mobil */
-.mobile-only {
-  display: none;
-}
 
 /* === Mobilvisning === */
 
